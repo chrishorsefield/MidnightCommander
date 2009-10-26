@@ -82,6 +82,17 @@ EditScrollDownAltHighlight =
 EditParagraphUpAltHighlight =
 EditParagraphDownAltHighlight =
 
+EditSaveRecently1 =
+EditSaveRecently2 =
+EditSaveRecently3 =
+EditSaveRecently4 =
+EditSaveRecently5 =
+EditLoadRecently1 =
+EditLoadRecently2 =
+EditLoadRecently3 =
+EditLoadRecently4 =
+EditLoadRecently5 =
+
 EditSaveBlock = ctrl-f
 EditColumnMark = f13
 EditFindAgain = f17

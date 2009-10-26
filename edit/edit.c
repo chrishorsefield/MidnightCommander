@@ -3073,6 +3073,36 @@ edit_execute_cmd (WEdit *edit, int command, int char_for_insertion)
     case CK_Find_Definition:
 	edit_get_match_keyword_cmd (edit);
 	break;
+    case CK_LoadBookmark1:
+	edit_load_bm_cmd (edit, 1);
+	break;
+    case CK_LoadBookmark2:
+	edit_load_bm_cmd (edit, 2);
+	break;
+    case CK_LoadBookmark3:
+	edit_load_bm_cmd (edit, 3);
+	break;
+    case CK_LoadBookmark4:
+	edit_load_bm_cmd (edit, 4);
+	break;
+    case CK_LoadBookmark5:
+	edit_load_bm_cmd (edit, 5);
+	break;
+    case CK_SaveBookmark1:
+	edit_save_bm_cmd (edit, 1);
+	break;
+    case CK_SaveBookmark2:
+	edit_save_bm_cmd (edit, 2);
+	break;
+    case CK_SaveBookmark3:
+	edit_save_bm_cmd (edit, 3);
+	break;
+    case CK_SaveBookmark4:
+	edit_save_bm_cmd (edit, 4);
+	break;
+    case CK_SaveBookmark5:
+	edit_save_bm_cmd (edit, 5);
+	break;
     case CK_Quit:
 	dlg_stop (edit->widget.parent);
 	break;

@@ -51,6 +51,7 @@
 #define EDIT_MACRO_FILE		EDIT_DIR PATH_SEP_STR "cooledit.macros"
 #define EDIT_BLOCK_FILE		EDIT_DIR PATH_SEP_STR "cooledit.block"
 #define EDIT_TEMP_FILE		EDIT_DIR PATH_SEP_STR "cooledit.temp"
+#define EDIT_RECENTLY_FILE	EDIT_DIR PATH_SEP_STR "recently"
 
 #define EDIT_GLOBAL_MENU	"cedit.menu"
 #define EDIT_LOCAL_MENU		".cedit.menu"

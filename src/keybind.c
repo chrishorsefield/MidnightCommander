@@ -133,6 +133,18 @@ static const name_keymap_t command_names[] = {
     { "EditFlushBookmarks",                CK_Flush_Bookmarks },
     { "EditNextBookmark",                  CK_Next_Bookmark },
     { "EditPrevBookmark",                  CK_Prev_Bookmark },
+
+    { "EditSaveRecently1",                 CK_SaveBookmark1 },
+    { "EditSaveRecently2",                 CK_SaveBookmark2 },
+    { "EditSaveRecently3",                 CK_SaveBookmark3 },
+    { "EditSaveRecently4",                 CK_SaveBookmark4 },
+    { "EditSaveRecently5",                 CK_SaveBookmark5 },
+    { "EditLoadRecently1",                 CK_LoadBookmark1 },
+    { "EditLoadRecently2",                 CK_LoadBookmark2 },
+    { "EditLoadRecently3",                 CK_LoadBookmark3 },
+    { "EditLoadRecently4",                 CK_LoadBookmark4 },
+    { "EditLoadRecently5",                 CK_LoadBookmark5 },
+
     { "EditPageUpHighlight",               CK_Page_Up_Highlight },
     { "EditPageDownHighlight",             CK_Page_Down_Highlight },
     { "EditLeftHighlight",                 CK_Left_Highlight },

@@ -269,6 +269,9 @@ void book_mark_flush (WEdit * edit, int c);
 void book_mark_inc (WEdit * edit, int line);
 void book_mark_dec (WEdit * edit, int line);
 
+int edit_load_bm_cmd (WEdit * edit, int num);
+int edit_save_bm_cmd (WEdit * edit, int num);
+
 int line_is_blank (WEdit *edit, long line);
 int edit_indent_width (WEdit *edit, long p);
 void edit_insert_indent (WEdit *edit, int indent);

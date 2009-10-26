@@ -2030,6 +2030,103 @@ edit_insert_file_cmd (WEdit *edit)
     return 0;
 }
 
+/**
+   This loads and saves the bookmarked recently file
+   ~/.mc/recently in using the profile code.
+**/
+
+char *
+edit_recently_get (const int *key)
+{
+    char *profile;
+    mc_config_t *mc_cfg;
+    char key_name[BUF_TINY];
+    char *this_entry = NULL;
+
+    profile = concat_dir_and_file (home_dir, EDIT_RECENTLY_FILE);
+    mc_cfg = mc_config_init (profile);
+
+    g_snprintf (key_name, sizeof (key_name), "%d", key);
+
+    this_entry = mc_config_get_string (mc_cfg, "editor", key_name, "");
+
+    mc_config_save_file (mc_cfg);
+    mc_config_deinit (mc_cfg);
+    g_free (profile);
+
+    return this_entry;
+}
+
+void
+edit_recently_set (const char *file_name, const int key)
+{
+    char *profile;
+    mc_config_t *mc_cfg;
+    int i;
+    char key_name[BUF_TINY];
+
+    if (!file_name)
+        return;
+
+    if (!*file_name)
+        return;
+
+    profile = concat_dir_and_file (home_dir, EDIT_RECENTLY_FILE);
+    mc_cfg = mc_config_init(profile);
+
+    if ((i = mc_open (profile, O_CREAT | O_EXCL, S_IRUSR | S_IWUSR)) != -1)
+        mc_close (i);
+
+    /* Make sure the file is only readable by the user */
+    if (chmod (profile, S_IRUSR | S_IWUSR) == -1 && errno != ENOENT) {
+        g_free (profile);
+        return;
+    }
+    g_snprintf (key_name, sizeof (key_name), "%d", key);
+    mc_config_set_string(mc_cfg, "editor", key_name, file_name);
+
+    mc_config_save_file (mc_cfg);
+    mc_config_deinit (mc_cfg);
+    g_free (profile);
+}
+
+
+int
+edit_load_bm_cmd (WEdit *edit, int num)
+{
+    if (edit->modified
+        && edit_query_dialog2 (_("Warning"),
+             _(" Current text was modified without a file save. \n"
+               " Continue discards these changes. "),
+             _("C&ontinue"), _("&Cancel"))) {
+        edit->force |= REDRAW_COMPLETELY;
+        return 0;
+    }
+
+    char *filename = NULL;
+    filename = edit_recently_get (num);
+    if (filename[0] != '\0') {
+        edit_load_file_from_filename (edit, filename);
+        g_free (filename);
+        return 1;
+    }
+    g_free (filename);
+    return 0;
+}
+
+int
+edit_save_bm_cmd (WEdit *edit, int num)
+{
+    char *filename = NULL;
+    filename = vfs_canon (edit->filename);
+    if (filename) {
+        edit_recently_set (filename, num);
+        g_free(filename);
+        return 1;
+    }
+    return 0;
+}
+
 /* sorts a block, returns -1 on system fail, 1 on cancel and 0 on success */
 int edit_sort_cmd (WEdit * edit)
 {

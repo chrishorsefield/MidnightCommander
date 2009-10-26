@@ -194,6 +194,18 @@
 #define CK_Execute_Macro	852
 #define CK_Begin_End_Macro	853
 
+#define CK_SaveBookmark1	911
+#define CK_SaveBookmark2	912
+#define CK_SaveBookmark3	913
+#define CK_SaveBookmark4	914
+#define CK_SaveBookmark5	915
+
+#define CK_LoadBookmark1	921
+#define CK_LoadBookmark2	922
+#define CK_LoadBookmark3	933
+#define CK_LoadBookmark4	924
+#define CK_LoadBookmark5	935
+
 /* common */
 #define CK_ShowCommandLine              2001
 #define CK_SelectCodepage               2002
