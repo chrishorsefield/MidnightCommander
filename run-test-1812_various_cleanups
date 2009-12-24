@@ -1,0 +1,21 @@
+#!/bin/bash
+
+TESTS="${TESTS} full"
+TESTS="${TESTS} auto"
+TESTS="${TESTS} vfstest.no-vfs"
+TESTS="${TESTS} vfstest.only-fish"
+TESTS="${TESTS} vfstest.only-sfs"
+TESTS="${TESTS} vfstest.only-cpio"
+TESTS="${TESTS} vfstest.only-ftp"
+TESTS="${TESTS} vfstest.only-extfs"
+TESTS="${TESTS} vfstest.only-tar"
+TESTS="${TESTS} vfstest.only-undelfs"
+TESTS="${TESTS} vfstest.only-mcfs"
+TESTS="${TESTS} vfstest.only-smbfs"
+TESTS="${TESTS} vfstest.only-mcserver"
+TESTS="${TESTS} vfstest.only-mvfs-9p"
+
+BRANCH="mco/1812_various_cleanups"
+ID="1812_various_cleanups"
+
+. _run_test.sh
