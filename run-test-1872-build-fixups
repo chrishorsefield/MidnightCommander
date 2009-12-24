@@ -1,0 +1,27 @@
+#!/bin/bash
+
+BRANCH="mco/1872_build_fixups"
+ID="1872_build_fixups"
+
+TESTS="${TESTS} no-nls"
+TESTS="${TESTS} no-edit"
+TESTS="${TESTS} full"
+TESTS="${TESTS} auto"
+TESTS="${TESTS} minimal"
+TESTS="${TESTS} master-full"
+TESTS="${TESTS} 1775_mvfs_9P.minimal"
+TESTS="${TESTS} 1775_mvfs_9P.full"
+TESTS="${TESTS} vfstest.no-vfs"
+TESTS="${TESTS} vfstest.only-fish"
+TESTS="${TESTS} vfstest.only-sfs"
+TESTS="${TESTS} vfstest.only-cpio"
+TESTS="${TESTS} vfstest.only-ftp"
+TESTS="${TESTS} vfstest.only-extfs"
+TESTS="${TESTS} vfstest.only-tar"
+TESTS="${TESTS} vfstest.only-undelfs"
+TESTS="${TESTS} vfstest.only-mcfs"
+TESTS="${TESTS} vfstest.only-smbfs"
+TESTS="${TESTS} vfstest.only-mcserver"
+TESTS="${TESTS} vfstest.only-mvfs-9p"
+
+. _run_test.sh
