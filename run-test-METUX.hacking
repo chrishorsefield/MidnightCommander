@@ -1,0 +1,8 @@
+#!/bin/bash
+
+TESTS="minimal master-full"
+#TESTS="master-full"
+BRANCH="metux/METUX.hacking"
+ID="metux-hacking"
+
+. _run_test.sh
