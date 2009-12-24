@@ -1,0 +1,16 @@
+--enable-werror
+--disable-netcode
+--enable-vfs
+--disable-vfs-fish
+--disable-vfs-tar
+--disable-vfs-cpio
+--disable-vfs-extfs
+--disable-vfs-sfs
+--disable-vfs-ftp
+--enable-vfs-undelfs
+--disable-vfs-mcfs
+--disable-vfs-smbfs
+--disable-vfs-mvfs
+--disable-mvfs
+--disable-mvfs-9p
+--disable-mcserver

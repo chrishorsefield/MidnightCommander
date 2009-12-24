@@ -1,0 +1,5 @@
+--enable-werror
+--disable-nls
+--disable-vfs
+--without-x
+--without-edit
