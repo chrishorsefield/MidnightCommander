@@ -1,0 +1,32 @@
+Midnight commander testfarm
+----------------------------
+
+CAUTION: ALWAYS run the test under an unprivileged user
+where no harm can be done!
+
+
+1. Generic Setup:
+
+* Check out the branch MC-testfarm
+* Adapt config.sh to your needs (probably not necessary)
+* Run ./update-repo to download the repo master (which the
+  individual build workdirs are always copied from)
+* Also re-run that script regularily to keep up-to-date
+
+2. How the test-scripts work
+
+* There are several scripts which test different branches
+  in different option variants (defined in the $TEST variable
+  within the scripts)
+* By convention, there is one test script per branch, named
+  "run-test-<branch>". Within these scripts, the tests to run
+  (aka option variants) and an ID (used for subdir names) is
+  defined. The actual dirty work is done by _run_test.sh
+* The ./configure options for each variant reside under ./opt
+* Output files are found under ./out/$ID/
+* Different test scripts can be run parallel, but only one
+  instance is allowed per individual script
+* For each successfully variant an appropriate *.OK file
+  is put into the ./out/$ID/ subdir.
+* These *.OK files prevent that test to be rerun on next
+  call of the test-script.

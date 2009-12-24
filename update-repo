@@ -1,0 +1,20 @@
+#!/bin/bash
+
+. ./config.sh || ( echo "cannot load config.sh" ; exit 1 )
+
+if [ -d "$TESTFARM_REPO_DIR" ]; then
+    echo "Repos already initialized. Remove $TESTFARM_REPO_DIR to force reinit"
+    cd $TESTFARM_REPO_DIR || ( echo "cannot change to $TESTFARM_REPO_DIR" ; exit 2 )
+    git remote update
+    git remote prune mco
+    git remote prune metux
+    git reflog expire --expire=0
+    git gc
+    git prune
+else
+    mkdir $TESTFARM_REPO_DIR
+    cd $TESTFARM_REPO_DIR
+    git init
+    cp ../git.config .git/config
+    git remote update
+fi
