@@ -3,10 +3,12 @@
 BRANCH="mco/1775_mvfs_9P_2"
 ID="1775_mvfs_9P_2"
 
-TESTS="${TESTS} 1775_mvfs_9P.minimal"
-TESTS="${TESTS} 1775_mvfs_9P.full"
 TESTS="${TESTS} full"
 TESTS="${TESTS} auto"
+TESTS="${TESTS} minimal"
+TESTS="${TESTS} master-full"
+TESTS="${TESTS} no-nls"
+TESTS="${TESTS} no-edit"
 TESTS="${TESTS} vfstest.no-vfs"
 TESTS="${TESTS} vfstest.only-fish"
 TESTS="${TESTS} vfstest.only-sfs"
@@ -19,5 +21,7 @@ TESTS="${TESTS} vfstest.only-mcfs"
 TESTS="${TESTS} vfstest.only-smbfs"
 TESTS="${TESTS} vfstest.only-mcserver"
 TESTS="${TESTS} vfstest.only-mvfs-9p"
+TESTS="${TESTS} 1775_mvfs_9P.minimal"
+TESTS="${TESTS} 1775_mvfs_9P.full"
 
 . _run_test.sh
