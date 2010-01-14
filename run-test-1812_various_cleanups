@@ -18,8 +18,6 @@ TESTS="${TESTS} vfstest.only-mcfs"
 TESTS="${TESTS} vfstest.only-smbfs"
 TESTS="${TESTS} vfstest.only-mcserver"
 TESTS="${TESTS} vfstest.only-mvfs-9p"
-TESTS="${TESTS} 1775_mvfs_9P.minimal"
-TESTS="${TESTS} 1775_mvfs_9P.full"
 
 BRANCH="mco/1812_various_cleanups"
 ID="1812_various_cleanups"

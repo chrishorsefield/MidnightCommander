@@ -3,8 +3,6 @@
 BRANCH="mco/1775_mvfs_9P"
 ID="1775_mvfs_9P"
 
-TESTS="${TESTS} 1775_mvfs_9P.minimal"
-TESTS="${TESTS} 1775_mvfs_9P.full"
 TESTS="${TESTS} full"
 TESTS="${TESTS} auto"
 TESTS="${TESTS} vfstest.no-vfs"
