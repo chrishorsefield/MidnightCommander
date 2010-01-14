@@ -22,4 +22,6 @@ TESTS="${TESTS} vfstest.only-smbfs"
 TESTS="${TESTS} vfstest.only-mcserver"
 TESTS="${TESTS} vfstest.only-mvfs-9p"
 
+TESTFARM_CFLAGS="-O -Wwrite-strings -Wempty-body -Werror"
+
 . _run_test.sh

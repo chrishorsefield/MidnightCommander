@@ -27,4 +27,9 @@ TESTFARM_DESTDIR_ROOT=`pwd`/__install
 TESTFARM_REMOVE_SUCCESS_LOGS="yes"
 
 ## local configuration
-export CFLAGS="$CFLAGS -O -Wwrite-strings -Wempty-body -Werror"
+if [ "$TESTFARM_CFLAGS" ]; then
+    export CFLAGS="$TESTFARM_CFLAGS"
+else
+    export CFLAGS="$CFLAGS -O -Wwrite-strings -Wempty-body"
+#    export CFLAGS="$CFLAGS -O -Wwrite-strings -Wempty-body -Werror"
+fi
