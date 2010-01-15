@@ -1,0 +1,27 @@
+#!/bin/bash
+
+BRANCH="mco/1945_editor_mark_all"
+ID="1945_editor_mark_all"
+
+TESTS="${TESTS} no-nls"
+TESTS="${TESTS} no-edit"
+TESTS="${TESTS} full"
+TESTS="${TESTS} auto"
+TESTS="${TESTS} minimal"
+TESTS="${TESTS} master-full"
+# TESTS="${TESTS} vfstest.no-vfs"
+TESTS="${TESTS} vfstest.only-fish"
+TESTS="${TESTS} vfstest.only-sfs"
+TESTS="${TESTS} vfstest.only-cpio"
+TESTS="${TESTS} vfstest.only-ftp"
+TESTS="${TESTS} vfstest.only-extfs"
+TESTS="${TESTS} vfstest.only-tar"
+TESTS="${TESTS} vfstest.only-undelfs"
+TESTS="${TESTS} vfstest.only-mcfs"
+TESTS="${TESTS} vfstest.only-smbfs"
+# TESTS="${TESTS} vfstest.only-mcserver"
+TESTS="${TESTS} vfstest.only-mvfs-9p"
+
+TESTFARM_CFLAGS="-O -Wwrite-strings -Wempty-body"
+
+. _run_test.sh
