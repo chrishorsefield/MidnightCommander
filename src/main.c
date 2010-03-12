@@ -1152,7 +1152,7 @@ midnight_execute_cmd (Widget *sender, unsigned long command)
         break;
 #ifdef ENABLE_CDBURN
     case CK_BurnConfig:
-        burn_config ();
+        cdburn_config ();
         break;
 #endif
     case CK_ChmodCmd:
@@ -1207,13 +1207,13 @@ midnight_execute_cmd (Widget *sender, unsigned long command)
         break;
 #ifdef ENABLE_CDBURN
     case CK_DoBlank:
-        do_blank ();
+        cdburn_do_blank ();
         break;
     case CK_DoBurn:
-        do_burn ();
+        cdburn_do_burn ();
         break;
     case CK_DoSession:
-        do_session ();
+        cdburn_do_session ();
         break;
 #endif
     case CK_EditCmd:

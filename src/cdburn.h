@@ -16,14 +16,11 @@
 
 /*** declarations of public functions ************************************************************/
 
-void do_burn (void);
-void do_session (void);
-void do_blank (void);
-void burn_config (void);
-void init_burn_config (void);   /* initialize burner config dialog */
-void init_burn (void);          /* initialize burner dialog */
-void init_burn_img (void);      /* initialize burner dialog */
-void load_mcburn_settings (void);
-void save_mcburn_settings (void);
+void cdburn_do_burn (void);
+void cdburn_do_session (void);
+void cdburn_do_blank (void);
+void cdburn_config (void);
+void cdburn_load_settings (void);
+void cdburn_save_settings (void);
 
 #endif                          /* MC_CDBURN_H */

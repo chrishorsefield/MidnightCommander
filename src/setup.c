@@ -423,7 +423,7 @@ save_setup (void)
     ret = mc_config_save_to_file (mc_main_config, tmp_profile, NULL);
 
 #ifdef ENABLE_CDBURN
-    save_mcburn_settings ();
+    cdburn_save_settings ();
 #endif /* ENABLE_CDBURN */
 
     g_free (tmp_profile);
@@ -879,7 +879,7 @@ load_setup (void)
 #endif /* HAVE_CHARSET */
 
 #ifdef ENABLE_CDBURN
-    load_mcburn_settings ();
+    cdburn_load_settings ();
 #endif /* ENABLE_CDBURN */
 }
 

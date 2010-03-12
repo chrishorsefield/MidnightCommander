@@ -8,6 +8,7 @@
    Andy Shevchenko <andy.shevchenko@gmail.com>, 2005-2008
    Sergey E. Ovsyannikov <ose@ntmk.ru>, 2009, 2010
    Slava Zanko <slavazanko@gmail.com>, 2010
+   Andrew Borodin <aborodin@vmail.ru>, 2010
 
    This file is part of the Midnight Commander.
 
@@ -44,47 +45,23 @@
 #include <sys/stat.h>
 #include <stdlib.h>
 #include <ctype.h>
-#ifdef HAVE_UNISTD_H
-#   include <unistd.h>
-#endif
+#include <unistd.h>
 
 #include "lib/global.h"
-#include "lib/tty/tty.h"
-#include "lib/tty/win.h"
 #include "lib/skin.h"
 
-#include "layout.h"
+#include "dialog.h"             /* do_refresh() */
 #include "widget.h"
-#include "setup.h"              /* For save_setup() */
-#include "dialog.h"             /* For do_refresh() */
-#include "main.h"
+#include "wtools.h"
+#include "panel.h"              /* current_panel */
 
-#include "dir.h"
-#include "file.h"
-#include "layout.h"             /* For nice_rotating_dash */
-#include "option.h"
+#include "main.h"
+#include "execute.h"            /* EXECUTE_INTERNAL */
+#include "charsets.h"           /* codepages */
 
 #include "cdburn.h"
-#include "charsets.h"
-#include "wtools.h"
-#include "main.h"
-#include "execute.h"
 
 /*** global variables ****************************************************************************/
-
-int interimage = 0;
-int dummyrun = 0;
-int joliet = 1;
-int rockridge = 1;
-int multi = 1;
-int fast = 1;
-int speed = 12;
-int scsi_bus = -1, scsi_id = -1, scsi_lun = -1;
-int device = -1;
-char *cdwriter = NULL;
-
-int start = -1, finish = -1;
-
 /*** file scope macro definitions ****************************************************************/
 
 #define TOGGLE_VARIABLE 0
@@ -116,10 +93,8 @@ int start = -1, finish = -1;
 
 /*** file scope variables ************************************************************************/
 
-
 /* watch it! $HOME_DIR will be prepended to this path */
 static const char *configfile = "/.mc/mcburn.conf";
-
 
 static int burner_option_width = 0, fs_option_width = 0, blank_option_width = 0;
 static int FX = 0;
@@ -135,6 +110,18 @@ static char *mkisofs_path;
 /* amount of burner and fs options */
 static int burner_options, fs_options, blank_options;
 
+static int cdburn_interimage = 0;
+static int cdburn_dummyrun = 0;
+static int cdburn_joliet = 1;
+static int cdburn_rockridge = 1;
+static int cdburn_multi = 1;
+static int cdburn_fast = 1;
+static int cdburn_speed = 12;
+static int scsi_bus = -1, scsi_id = -1, scsi_lun = -1;
+static int device = -1;
+static char *cdwriter = NULL;
+static int cdburn_start = -1, cdburn_finish = -1;
+
 /* one struct with all burner settings */
 /* *INDENT-OFF* */
 static struct
@@ -147,24 +134,23 @@ static struct
     WInput *w_input;
     const char *tk;
     const char *description;
-
     /* only applicable for the input widget; shoot me for the overhead */
     int i_length;
 } options[] =
 {
     {
         N_("make &Intermediate image"),
-        &interimage, CHECKBOX, BURNER, NULL, NULL,
+        &cdburn_interimage, CHECKBOX, BURNER, NULL, NULL,
         "interimage", N_("Make intermediate image"), 0
     },
     {
         N_("&Dummy run"),
-        &dummyrun, CHECKBOX, BURNER, NULL, NULL,
+        &cdburn_dummyrun, CHECKBOX, BURNER, NULL, NULL,
         "dummyrun", N_("Turn the laser off"), 0
     },
     {
         N_("&Multisession CD"),
-        &multi, CHECKBOX, BURNER, NULL, NULL,
+        &cdburn_multi, CHECKBOX, BURNER, NULL, NULL,
         "multi", N_("Create a multi-session CD"), 0
     },
     {
@@ -174,25 +160,25 @@ static struct
     },
     {
         N_("Speed"),
-        &speed, INPUT, BURNER, NULL, NULL,
+        &cdburn_speed, INPUT, BURNER, NULL, NULL,
         "speed", N_("Speed"), 3
     },
     {
         N_("&Joliet extensions"),
-        &joliet, CHECKBOX, FS, NULL, NULL,
+        &cdburn_joliet, CHECKBOX, FS, NULL, NULL,
         "joliet", N_("Use Joliet extensions"), 0
     },
     {
         N_("&RockRidge extensions"),
-        &rockridge, CHECKBOX, FS, NULL, NULL,
+        &cdburn_rockridge, CHECKBOX, FS, NULL, NULL,
         "rockridge", N_("Use RockRidge extensions"), 0
     },
     {
         N_("&Fast blank"),
-        &fast, CHECKBOX, BLANK, NULL, NULL,
+        &cdburn_fast, CHECKBOX, BLANK, NULL, NULL,
         "fast", N_("Minimally blank the disk"), 0
     },
-    {0, 0, 0, 0}
+    { NULL, NULL, 0, 0, NULL, NULL, NULL, NULL, 0 }
 };
 /* *INDENT-ON* */
 
@@ -389,304 +375,11 @@ scan_for_recorder (char *cdrecord_command)
 }
 
 /* --------------------------------------------------------------------------------------------- */
-/*** public functions ****************************************************************************/
-/* --------------------------------------------------------------------------------------------- */
-
-/* this lets the user choose a dir and burn that dir, with the
-   current options */
-void
-do_burn (void)
-{
-    char buffer[1024];
-
-    /* make sure cdrecord and mkisofs is available, and get their full path */
-    mkisofs_path = check_for ("mkisofs");
-    if (mkisofs_path == NULL)
-    {
-        message (1, MSG_ERROR, _("Couldn't find mkisofs"));
-        return;
-    }
-    cdrecord_path = check_for ("cdrecord");
-    if (cdrecord_path == NULL)
-    {
-        message (1, MSG_ERROR, _("Couldn't find cdrecord"));
-        return;
-    }
-
-    if (!strcmp (current_panel->dir.list[current_panel->selected].fname, ".."))
-    {
-        message (1, MSG_ERROR, _("You can't burn the parent-directory"));
-        return;
-    }
-
-    burndir =
-        concat_dir_and_file (current_panel->cwd,
-                             current_panel->dir.list[current_panel->selected].fname);
-
-    if (!S_ISDIR (current_panel->dir.list[current_panel->selected].st.st_mode))
-    {
-        /*
-           message(1, MSG_ERROR, _("You can't burn a single file to CD"));
-           return;
-         */
-        int ret_value;
-
-        if (!scan_for_recorder (cdrecord_path))
-        {
-            sprintf (buffer, _("No CD-Writer found"));
-            message (1, MSG_ERROR, buffer);
-            return;
-        }
-
-        init_burn_img ();
-        run_dlg (burn_img_dlg);
-        ret_value = burn_img_dlg->ret_value;
-        destroy_dlg (burn_img_dlg);
-
-        if (ret_value == B_ENTER)
-        {
-            /* here, the actual burning takes place
-             * construct a (series of) command(s) to execute
-             */
-            sprintf (buffer, "echo \"Burning %s to CD ...\"", burndir);
-            shell_execute (buffer, EXECUTE_INTERNAL);
-
-            sprintf (buffer, "echo \"Burning CD...\"");
-            shell_execute (buffer, EXECUTE_INTERNAL);
-            strcpy (buffer, cdrecord_path);
-            if (dummyrun)
-                strcat (buffer, " -dummy");
-            sprintf (buffer, "%s -v speed=%d", buffer, speed);
-            sprintf (buffer, "%s dev=%d,%d,%d", buffer, scsi_bus, scsi_id, scsi_lun);
-            sprintf (buffer, "%s -eject -overburn driveropts=burnproof", buffer);
-            sprintf (buffer, "%s -data %s", buffer,
-                     current_panel->dir.list[current_panel->selected].fname);
-
-            /* execute the burn command */
-            shell_execute (buffer, EXECUTE_INTERNAL);
-        }
-    }
-    else
-    {
-        int ret_value;
-
-        if (!scan_for_recorder (cdrecord_path))
-        {
-            sprintf (buffer, _("No CD-Writer found"));
-            message (1, MSG_ERROR, buffer);
-            return;
-        }
-
-        init_burn ();
-        run_dlg (burn_dlg);
-        ret_value = burn_dlg->ret_value;
-        destroy_dlg (burn_dlg);
-
-        if (ret_value == B_ENTER)
-        {
-            /* here, the actual burning takes place
-             * construct a (series of) command(s) to execute
-             */
-            char cpname[1024] = "";
-            char cont_str[1024] = "";
-
-            int i =
-                source_codepage > 0 ? source_codepage : display_codepage > 0 ? display_codepage : 0;
-
-            sprintf (buffer, "echo \"Burning %s to CD ...\"", burndir);
-            shell_execute (buffer, EXECUTE_INTERNAL);
-
-            sprintf (cpname, "%s", i ? codepages[i].id : "");
-            for (i = 0; cpname[i]; i++)
-                cpname[i] = tolower (cpname[i]);
-
-            if ((start >= 0) && (finish >= 0))
-                sprintf (cont_str, " -C %d,%d -dev %d,%d,%d", start, finish, scsi_bus, scsi_id,
-                         scsi_lun);
-
-                /** continue here
-                 ** 1. make a mkisofs command
-                 ** 2. make a cdrecord command
-                 ** 3. pipe them if necessary (!interimage)
-                 ** 4. run consecutively if necessary (interimage)
-                 ** NOTE: dummyrun is NOT before writing, its just a dummy run (nice for testing purposes)
-                 **/
-
-            /* STEP 1: create an image if the user wants to. Put the image in $HOMEDIR
-             * it's the user's responsibility to make sure the is enough room (TODO 3)
-             * this is where the fs-options come in, using -r for RockRidge and -J for Joliet extensions
-             */
-            if (interimage)
-            {
-                sprintf (buffer, "echo \"Building image...\"");
-                shell_execute (buffer, EXECUTE_INTERNAL);
-                strcpy (buffer, mkisofs_path);
-                if (rockridge)
-                    strcat (buffer, " -r");
-                if (cpname[0])
-                {
-                    strcat (buffer, " -input-charset ");
-                    strcat (buffer, cpname);
-                }
-                if (joliet)
-                    strcat (buffer, " -J -joliet-long");
-                if (strlen (cont_str))
-                    strcat (buffer, cont_str);
-                strcat (buffer, " -o ");
-                strcat (buffer, home_dir);
-                strcat (buffer, "/mcburn.iso \"");
-                strcat (buffer, burndir);
-                strcat (buffer, "\"");
-                shell_execute (buffer, EXECUTE_INTERNAL);
-                /*
-                   }
-                 */
-                /* STEP 2: create a cdrecord command, this is where speed, dummy, multi and the scsi_* vars come in
-                 * also, check for an image or pipe it right into cdrecord
-                 *
-                 * STEP 2b: cdrecord without a pipe (assume the $HOME/mcburn.iso exists (TODO 4))
-                 */
-                /*
-                   if (interimage) {
-                 */
-                sprintf (buffer, "echo \"Burning CD...\"");
-                shell_execute (buffer, EXECUTE_INTERNAL);
-                strcpy (buffer, cdrecord_path);
-                if (dummyrun)
-                    strcat (buffer, " -dummy");
-                if (multi)
-                    strcat (buffer, " -multi");
-                sprintf (buffer, "%s -v speed=%d", buffer, speed);
-                sprintf (buffer, "%s dev=%d,%d,%d", buffer, scsi_bus, scsi_id, scsi_lun);
-                sprintf (buffer, "%s -eject -overburn driveropts=burnproof", buffer);
-                sprintf (buffer, "%s -data %s/mcburn.iso", buffer, home_dir);
-
-                /* execute the burn command */
-                shell_execute (buffer, EXECUTE_INTERNAL);
-
-                sprintf (buffer, "echo \"Erase image...\"");
-                shell_execute (buffer, EXECUTE_INTERNAL);
-                strcpy (buffer, "/bin/rm ");
-                strcat (buffer, home_dir);
-                strcat (buffer, "/mcburn.iso");
-                shell_execute (buffer, EXECUTE_INTERNAL);
-
-            }
-            else
-            {
-                /* no image present, pipe mkisofs into cdrecord */
-                /* first get the size of the image to build */
-                FILE *mkisofs_pipe;
-                int imagesize;
-
-                sprintf (buffer, "%s %s %s -q -print-size \"%s\"/  2>&1 | sed -e \"s/.* = //\"",
-                         mkisofs_path, rockridge ? "-r" : "", joliet ? "-J -joliet-long" : "",
-                         burndir);
-                mkisofs_pipe = popen (buffer, "r");
-                /*FIXME: need to respect return value... */
-                fgets (buffer, 1024, mkisofs_pipe);
-                imagesize = atoi (buffer);
-                pclose (mkisofs_pipe);
-
-                sprintf (buffer,
-                         "[ \"0%d\" -ne 0 ] && %s %s %s %s %s%s \"%s\" | %s %s %s speed=%d dev=%d,%d,%d -eject -overburn driveropts=burnproof -data -",
-                         imagesize, mkisofs_path, rockridge ? "-r" : "",
-                         cpname[0] ? "-input-charset" : "", cpname[0] ? cpname : "",
-                         joliet ? "-J -joliet-long" : "", strlen (cont_str) ? cont_str : "",
-                         burndir, cdrecord_path, dummyrun ? "-dummy" : "", multi ? "-multi" : "",
-                         speed, scsi_bus, scsi_id, scsi_lun);
-                /* execute the burn command */
-                shell_execute (buffer, EXECUTE_INTERNAL);
-            }
-        }
-    }
-}
-
-/* --------------------------------------------------------------------------------------------- */
-
-void
-do_session (void)
-{
-    char buffer[1024];
-    FILE *cdrecord_pipe;
-
-    if (!(cdrecord_path = check_for ("cdrecord")))
-    {
-        message (1, MSG_ERROR, _("Couldn't find cdrecord"));
-        return;
-    }
-
-    if (!scan_for_recorder (cdrecord_path))
-    {
-        sprintf (buffer, _("No CD-Writer found"));
-        message (1, MSG_ERROR, buffer);
-        return;
-    }
-
-    sprintf (buffer, "%s -msinfo dev=%d,%d,%d 2>&1 | head -1", cdrecord_path, scsi_bus, scsi_id,
-             scsi_lun);
-    cdrecord_pipe = popen (buffer, "r");
-    fgets (buffer, 1024, cdrecord_pipe);
-    pclose (cdrecord_pipe);
-    sscanf (buffer, "%i,%i", &start, &finish);
-
-    if ((start == -1) && (finish == -1))
-    {
-        message (1, MSG_ERROR, _("Couldn't continue session"));
-        return;
-    }
-
-    do_burn ();
-    start = -1, finish = -1;
-}
-
-/* --------------------------------------------------------------------------------------------- */
-
-void
-do_blank (void)
-{
-    char buffer[1024];
-
-    if (!(cdrecord_path = check_for ("cdrecord")))
-    {
-        message (1, MSG_ERROR, _("Couldn't find cdrecord"));
-        return;
-    }
-
-    if (!scan_for_recorder (cdrecord_path))
-    {
-        sprintf (buffer, _("No CD-Writer found"));
-        message (1, MSG_ERROR, buffer);
-        return;
-    }
-
-    init_blank ();
-    run_dlg (blank_dlg);
-
-    if (blank_dlg->ret_value == B_ENTER)
-    {
-        /* here, the actual burning takes place
-         * construct a (series of) command(s) to execute
-         */
-
-        strcpy (buffer, "echo \"Erase CD ...\"");
-        shell_execute (buffer, EXECUTE_INTERNAL);
-
-        sprintf (buffer, "%s speed=%d dev=%d,%d,%d -eject -force blank=%s",
-                 cdrecord_path, speed, scsi_bus, scsi_id, scsi_lun, fast ? "fast" : "all");
-
-        /* execute the burn command */
-        shell_execute (buffer, EXECUTE_INTERNAL);
-    }
-    destroy_dlg (blank_dlg);
-}
-
-/* --------------------------------------------------------------------------------------------- */
 
 /* this initializes the burn dialog box
    there will be no way back after OK'ing this one */
-void
-init_burn (void)
+static void
+cdburn_init (void)
 {
     int i;
     int line = 5;
@@ -725,7 +418,7 @@ init_burn (void)
     if (strlen (burndir) + 12 > dialog_width)
         dialog_width = strlen (burndir) + 12;
 
-    if ((start == -1) && (finish == -1))
+    if ((cdburn_start == -1) && (cdburn_finish == -1))
         strcpy (buffer, _("Burn directory to CD"));
     else
         strcpy (buffer, _("Burn next session"));
@@ -769,8 +462,8 @@ init_burn (void)
 
 /* --------------------------------------------------------------------------------------------- */
 
-void
-init_burn_img (void)
+static void
+cdburn_init_img (void)
 {
     int i;
     int line = 5;
@@ -851,59 +544,9 @@ init_burn_img (void)
 
 /* --------------------------------------------------------------------------------------------- */
 
-/***************************************************************************************************
-  MC-Burn options functions
-***************************************************************************************************/
-
-/* this shows the burn options dialog */
-void
-burn_config (void)
-{
-    int result, i;
-
-    init_burn_config ();
-
-    run_dlg (burn_conf_dlg);
-
-    /* they pushed the OK or Save button, set the variables right */
-    result = burn_conf_dlg->ret_value;
-
-    if (result == B_ENTER || result == B_EXIT)
-        for (i = 0; options[i].tk; i++)
-            switch (options[i].type)
-            {
-            case CHECKBOX:
-                if (options[i].w_check->state & C_CHANGE)
-                    *options[i].variable = !(*options[i].variable);
-                break;
-            case INPUT:
-                if (!strcmp (options[i].tk, "device"))
-                {
-                    scsi_bus = scsi_id = scsi_lun = -1;
-                    sscanf (options[i].w_input->buffer, "%d,%d,%d", &scsi_bus, &scsi_id, &scsi_lun);
-                    if ((scsi_bus == -1) || (scsi_id == -1) || (scsi_lun == -1))
-                        scsi_bus = scsi_id = scsi_lun = -1;
-                    *options[i].variable = scsi_bus * 256 + scsi_id * 16 + scsi_lun;
-                }
-                else
-                    *options[i].variable = atoi (options[i].w_input->buffer);
-                break;
-            }
-
-    /* If they pressed the save button, save the values to ~/.mc/mcburn.conf */
-    if (result == B_EXIT)
-    {
-        save_mcburn_settings ();
-    }
-
-    destroy_dlg (burn_conf_dlg);
-}
-
-/* --------------------------------------------------------------------------------------------- */
-
 /* this initializes the burn options dialog box */
-void
-init_burn_config (void)
+static void
+cdburn_init_config (void)
 {
     int i = 0;
     static int dialog_height = 0, dialog_width = 0;
@@ -913,7 +556,7 @@ init_burn_config (void)
     char *ok_button = _("&Ok");
     char *cancel_button = _("&Cancel");
     char *save_button = _("&Save");
-    register int l1;
+    int l1;
 
     burner_options = 0;
     fs_options = 0;
@@ -1075,6 +718,349 @@ init_burn_config (void)
 }
 
 /* --------------------------------------------------------------------------------------------- */
+/*** public functions ****************************************************************************/
+/* --------------------------------------------------------------------------------------------- */
+
+/* this lets the user choose a dir and burn that dir, with the
+   current options */
+void
+cdburn_do_burn (void)
+{
+    char buffer[1024];
+
+    /* make sure cdrecord and mkisofs is available, and get their full path */
+    mkisofs_path = check_for ("mkisofs");
+    if (mkisofs_path == NULL)
+    {
+        message (1, MSG_ERROR, _("Couldn't find mkisofs"));
+        return;
+    }
+    cdrecord_path = check_for ("cdrecord");
+    if (cdrecord_path == NULL)
+    {
+        message (1, MSG_ERROR, _("Couldn't find cdrecord"));
+        return;
+    }
+
+    if (!strcmp (current_panel->dir.list[current_panel->selected].fname, ".."))
+    {
+        message (1, MSG_ERROR, _("You can't burn the parent-directory"));
+        return;
+    }
+
+    burndir =
+        concat_dir_and_file (current_panel->cwd,
+                             current_panel->dir.list[current_panel->selected].fname);
+
+    if (!S_ISDIR (current_panel->dir.list[current_panel->selected].st.st_mode))
+    {
+        /*
+           message(1, MSG_ERROR, _("You can't burn a single file to CD"));
+           return;
+         */
+        int ret_value;
+
+        if (!scan_for_recorder (cdrecord_path))
+        {
+            sprintf (buffer, _("No CD-Writer found"));
+            message (1, MSG_ERROR, buffer);
+            return;
+        }
+
+        cdburn_init_img ();
+        run_dlg (burn_img_dlg);
+        ret_value = burn_img_dlg->ret_value;
+        destroy_dlg (burn_img_dlg);
+
+        if (ret_value == B_ENTER)
+        {
+            /* here, the actual burning takes place
+             * construct a (series of) command(s) to execute
+             */
+            sprintf (buffer, "echo \"Burning %s to CD ...\"", burndir);
+            shell_execute (buffer, EXECUTE_INTERNAL);
+
+            sprintf (buffer, "echo \"Burning CD...\"");
+            shell_execute (buffer, EXECUTE_INTERNAL);
+            strcpy (buffer, cdrecord_path);
+            if (cdburn_dummyrun)
+                strcat (buffer, " -dummy");
+            sprintf (buffer, "%s -v speed=%d", buffer, cdburn_speed);
+            sprintf (buffer, "%s dev=%d,%d,%d", buffer, scsi_bus, scsi_id, scsi_lun);
+            sprintf (buffer, "%s -eject -overburn driveropts=burnproof", buffer);
+            sprintf (buffer, "%s -data %s", buffer,
+                     current_panel->dir.list[current_panel->selected].fname);
+
+            /* execute the burn command */
+            shell_execute (buffer, EXECUTE_INTERNAL);
+        }
+    }
+    else
+    {
+        int ret_value;
+
+        if (!scan_for_recorder (cdrecord_path))
+        {
+            sprintf (buffer, _("No CD-Writer found"));
+            message (1, MSG_ERROR, buffer);
+            return;
+        }
+
+        cdburn_init ();
+        run_dlg (burn_dlg);
+        ret_value = burn_dlg->ret_value;
+        destroy_dlg (burn_dlg);
+
+        if (ret_value == B_ENTER)
+        {
+            /* here, the actual burning takes place
+             * construct a (series of) command(s) to execute
+             */
+            char cpname[1024] = "";
+            char cont_str[1024] = "";
+
+            int i =
+                source_codepage > 0 ? source_codepage : display_codepage > 0 ? display_codepage : 0;
+
+            sprintf (buffer, "echo \"Burning %s to CD ...\"", burndir);
+            shell_execute (buffer, EXECUTE_INTERNAL);
+
+            sprintf (cpname, "%s", i ? codepages[i].id : "");
+            for (i = 0; cpname[i]; i++)
+                cpname[i] = tolower (cpname[i]);
+
+            if ((cdburn_start >= 0) && (cdburn_finish >= 0))
+                sprintf (cont_str, " -C %d,%d -dev %d,%d,%d", cdburn_start, cdburn_finish, scsi_bus, scsi_id,
+                         scsi_lun);
+
+                /** continue here
+                 ** 1. make a mkisofs command
+                 ** 2. make a cdrecord command
+                 ** 3. pipe them if necessary (!interimage)
+                 ** 4. run consecutively if necessary (interimage)
+                 ** NOTE: dummyrun is NOT before writing, its just a dummy run (nice for testing purposes)
+                 **/
+
+            /* STEP 1: create an image if the user wants to. Put the image in $HOMEDIR
+             * it's the user's responsibility to make sure the is enough room (TODO 3)
+             * this is where the fs-options come in, using -r for RockRidge and -J for Joliet extensions
+             */
+            if (cdburn_interimage)
+            {
+                sprintf (buffer, "echo \"Building image...\"");
+                shell_execute (buffer, EXECUTE_INTERNAL);
+                strcpy (buffer, mkisofs_path);
+                if (cdburn_rockridge)
+                    strcat (buffer, " -r");
+                if (cpname[0])
+                {
+                    strcat (buffer, " -input-charset ");
+                    strcat (buffer, cpname);
+                }
+                if (cdburn_joliet)
+                    strcat (buffer, " -J -joliet-long");
+                if (strlen (cont_str))
+                    strcat (buffer, cont_str);
+                strcat (buffer, " -o ");
+                strcat (buffer, home_dir);
+                strcat (buffer, "/mcburn.iso \"");
+                strcat (buffer, burndir);
+                strcat (buffer, "\"");
+                shell_execute (buffer, EXECUTE_INTERNAL);
+                /*
+                   }
+                 */
+                /* STEP 2: create a cdrecord command, this is where speed, dummy, multi and the scsi_* vars come in
+                 * also, check for an image or pipe it right into cdrecord
+                 *
+                 * STEP 2b: cdrecord without a pipe (assume the $HOME/mcburn.iso exists (TODO 4))
+                 */
+                /*
+                   if (interimage) {
+                 */
+                sprintf (buffer, "echo \"Burning CD...\"");
+                shell_execute (buffer, EXECUTE_INTERNAL);
+                strcpy (buffer, cdrecord_path);
+                if (cdburn_dummyrun)
+                    strcat (buffer, " -dummy");
+                if (cdburn_multi)
+                    strcat (buffer, " -multi");
+                sprintf (buffer, "%s -v speed=%d", buffer, cdburn_speed);
+                sprintf (buffer, "%s dev=%d,%d,%d", buffer, scsi_bus, scsi_id, scsi_lun);
+                sprintf (buffer, "%s -eject -overburn driveropts=burnproof", buffer);
+                sprintf (buffer, "%s -data %s/mcburn.iso", buffer, home_dir);
+
+                /* execute the burn command */
+                shell_execute (buffer, EXECUTE_INTERNAL);
+
+                sprintf (buffer, "echo \"Erase image...\"");
+                shell_execute (buffer, EXECUTE_INTERNAL);
+                strcpy (buffer, "/bin/rm ");
+                strcat (buffer, home_dir);
+                strcat (buffer, "/mcburn.iso");
+                shell_execute (buffer, EXECUTE_INTERNAL);
+
+            }
+            else
+            {
+                /* no image present, pipe mkisofs into cdrecord */
+                /* first get the size of the image to build */
+                FILE *mkisofs_pipe;
+                int imagesize;
+
+                sprintf (buffer, "%s %s %s -q -print-size \"%s\"/  2>&1 | sed -e \"s/.* = //\"",
+                         mkisofs_path, cdburn_rockridge ? "-r" : "", cdburn_joliet ? "-J -joliet-long" : "",
+                         burndir);
+                mkisofs_pipe = popen (buffer, "r");
+                /*FIXME: need to respect return value... */
+                fgets (buffer, 1024, mkisofs_pipe);
+                imagesize = atoi (buffer);
+                pclose (mkisofs_pipe);
+
+                sprintf (buffer,
+                         "[ \"0%d\" -ne 0 ] && %s %s %s %s %s%s \"%s\" | %s %s %s speed=%d dev=%d,%d,%d -eject -overburn driveropts=burnproof -data -",
+                         imagesize, mkisofs_path, cdburn_rockridge ? "-r" : "",
+                         cpname[0] ? "-input-charset" : "", cpname[0] ? cpname : "",
+                         cdburn_joliet ? "-J -joliet-long" : "", strlen (cont_str) ? cont_str : "",
+                         burndir, cdrecord_path, cdburn_dummyrun ? "-dummy" : "", cdburn_multi ? "-multi" : "",
+                         cdburn_speed, scsi_bus, scsi_id, scsi_lun);
+                /* execute the burn command */
+                shell_execute (buffer, EXECUTE_INTERNAL);
+            }
+        }
+    }
+}
+
+/* --------------------------------------------------------------------------------------------- */
+
+void
+cdburn_do_session (void)
+{
+    char buffer[1024];
+    FILE *cdrecord_pipe;
+
+    if (!(cdrecord_path = check_for ("cdrecord")))
+    {
+        message (1, MSG_ERROR, _("Couldn't find cdrecord"));
+        return;
+    }
+
+    if (!scan_for_recorder (cdrecord_path))
+    {
+        sprintf (buffer, _("No CD-Writer found"));
+        message (1, MSG_ERROR, buffer);
+        return;
+    }
+
+    sprintf (buffer, "%s -msinfo dev=%d,%d,%d 2>&1 | head -1", cdrecord_path, scsi_bus, scsi_id,
+             scsi_lun);
+    cdrecord_pipe = popen (buffer, "r");
+    fgets (buffer, 1024, cdrecord_pipe);
+    pclose (cdrecord_pipe);
+    sscanf (buffer, "%i,%i", &cdburn_start, &cdburn_finish);
+
+    if ((cdburn_start == -1) && (cdburn_finish == -1))
+    {
+        message (1, MSG_ERROR, _("Couldn't continue session"));
+        return;
+    }
+
+    cdburn_do_burn ();
+    cdburn_start = -1, cdburn_finish = -1;
+}
+
+/* --------------------------------------------------------------------------------------------- */
+
+void
+cdburn_do_blank (void)
+{
+    char buffer[1024];
+
+    if (!(cdrecord_path = check_for ("cdrecord")))
+    {
+        message (1, MSG_ERROR, _("Couldn't find cdrecord"));
+        return;
+    }
+
+    if (!scan_for_recorder (cdrecord_path))
+    {
+        sprintf (buffer, _("No CD-Writer found"));
+        message (1, MSG_ERROR, buffer);
+        return;
+    }
+
+    init_blank ();
+    run_dlg (blank_dlg);
+
+    if (blank_dlg->ret_value == B_ENTER)
+    {
+        /* here, the actual burning takes place
+         * construct a (series of) command(s) to execute
+         */
+
+        strcpy (buffer, "echo \"Erase CD ...\"");
+        shell_execute (buffer, EXECUTE_INTERNAL);
+
+        sprintf (buffer, "%s speed=%d dev=%d,%d,%d -eject -force blank=%s",
+                 cdrecord_path, cdburn_speed, scsi_bus, scsi_id, scsi_lun, cdburn_fast ? "fast" : "all");
+
+        /* execute the burn command */
+        shell_execute (buffer, EXECUTE_INTERNAL);
+    }
+    destroy_dlg (blank_dlg);
+}
+
+/* --------------------------------------------------------------------------------------------- */
+
+/***************************************************************************************************
+  MC-Burn options functions
+***************************************************************************************************/
+
+/* this shows the burn options dialog */
+void
+cdburn_config (void)
+{
+    int result, i;
+
+    cdburn_init_config ();
+
+    run_dlg (burn_conf_dlg);
+
+    /* they pushed the OK or Save button, set the variables right */
+    result = burn_conf_dlg->ret_value;
+
+    if (result == B_ENTER || result == B_EXIT)
+        for (i = 0; options[i].tk; i++)
+            switch (options[i].type)
+            {
+            case CHECKBOX:
+                if (options[i].w_check->state & C_CHANGE)
+                    *options[i].variable = !(*options[i].variable);
+                break;
+            case INPUT:
+                if (!strcmp (options[i].tk, "device"))
+                {
+                    scsi_bus = scsi_id = scsi_lun = -1;
+                    sscanf (options[i].w_input->buffer, "%d,%d,%d", &scsi_bus, &scsi_id, &scsi_lun);
+                    if ((scsi_bus == -1) || (scsi_id == -1) || (scsi_lun == -1))
+                        scsi_bus = scsi_id = scsi_lun = -1;
+                    *options[i].variable = scsi_bus * 256 + scsi_id * 16 + scsi_lun;
+                }
+                else
+                    *options[i].variable = atoi (options[i].w_input->buffer);
+                break;
+            }
+
+    /* If they pressed the save button, save the values to ~/.mc/mcburn.conf */
+    if (result == B_EXIT)
+    {
+        cdburn_save_settings ();
+    }
+
+    destroy_dlg (burn_conf_dlg);
+}
+
+/* --------------------------------------------------------------------------------------------- */
 
 /***************************************************************************************************
   MC-Burn configfile functions
@@ -1082,7 +1068,7 @@ init_burn_config (void)
 
 /* this loads the settings from ~/.mc/mcburn.conf */
 void
-load_mcburn_settings (void)
+cdburn_load_settings (void)
 {
     FILE *mcburn_settings_file;
     char *filename;
@@ -1128,7 +1114,7 @@ load_mcburn_settings (void)
 
 /* this saves the settings to ~/.mc/mcburn.conf */
 void
-save_mcburn_settings (void)
+cdburn_save_settings (void)
 {
     FILE *mcburn_settings_file;
     int i;
