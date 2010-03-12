@@ -3789,3 +3789,135 @@ msgstr "Желаете очистить историю?"
 
 msgid "Background process:"
 msgstr "Фоновый процесс:"
+
+#: messages for mcburn patch
+#: src/main.c
+msgid "CD B&urning config..."
+msgstr "&Запись на CD..."
+
+msgid "Burn t&o CD"
+msgstr "&Записать на CD"
+
+msgid "Burn &next session"
+msgstr "Продол&жить сессию"
+
+msgid "Blan&k this CD"
+msgstr "О&чисить диск"
+
+#: src/mcburn.c
+msgid "make &Intermediate image"
+msgstr "&Использовать файл образа"
+
+msgid "Make intermediate image"
+msgstr "Используется файл образа"
+
+msgid "&Dummy run"
+msgstr "&Эмулировать запись"
+
+msgid "Turn the laser off"
+msgstr "Эмуляция записи"
+
+msgid "&Multisession CD"
+msgstr "&Мультисессия"
+
+msgid "Create a multi-session CD"
+msgstr "Мультисессия"
+
+msgid "Speed"
+msgstr "Скорость"
+
+msgid "Device"
+msgstr "Устройство"
+
+msgid "&Joliet extensions"
+msgstr "Использовать &Joliet"
+
+msgid "Use Joliet extensions"
+msgstr "Joliet"
+
+msgid "&RockRidge extensions"
+msgstr "Использовать &RockRidge"
+
+msgid "Use RockRidge extensions"
+msgstr "RockRidge"
+
+msgid "An error occurred checking for program (popen failed)"
+msgstr "Ошибка при проверке программы (popen failed)"
+
+msgid "Couldn't find mkisofs"
+msgstr "Не найден mkisofs"
+
+msgid "Couldn't find cdrecord"
+msgstr "Не найден cdrecord"
+
+msgid "You can't burn the parent-directory"
+msgstr "Нельзя записать родительский каталог"
+
+msgid "You can't burn a single file to CD"
+msgstr "Нельзя записать отдельный файл"
+
+msgid "No CD-Writer found"
+msgstr "Не найдено устройство записи"
+
+msgid "An error occurred scanning for writers (popen failed)"
+msgstr "Устройство записи не найдено (popen failed)"
+
+msgid "&Burn"
+msgstr "Про&жиг"
+
+msgid "CD Burn"
+msgstr "Запись CD"
+
+msgid "Burn directory to CD"
+msgstr "Запись каталога на CD"
+
+msgid "Directory:"
+msgstr "Каталог:"
+
+msgid "Burn image to CD"
+msgstr "Запись образа на CD"
+
+msgid "Image:"
+msgstr "Образ:"
+
+msgid "Settings:"
+msgstr "Параметры:"
+
+msgid " CD-Burn options "
+msgstr " Параметры записи на CD "
+
+msgid " Burner options "
+msgstr "Опции записи"
+
+msgid " Filesystem options "
+msgstr " Расширения "
+
+msgid "CD Burn options"
+msgstr "Параметры записи на CD"
+
+msgid " Save failed "
+msgstr " Ошибка записи "
+
+msgid "&Fast blank"
+msgstr "&Быстрая очистка"
+
+msgid "Minimally blank the disk"
+msgstr "Быстрая очистка диска"
+
+msgid "&Blank"
+msgstr "О&чистить"
+
+msgid "CD Blank"
+msgstr "Очистка диска"
+
+msgid "Blank the CD"
+msgstr "Очистка диска "
+
+msgid " Blank options "
+msgstr " Опции очистки "
+
+msgid "Couldn't continue session"
+msgstr "Невозможно продолжить сессию"
+
+msgid "Burn next session"
+msgstr "Продол&жение сессии"

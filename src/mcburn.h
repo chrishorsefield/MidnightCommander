@@ -7,17 +7,24 @@
 #ifndef __MCBURN_H
 #define __MCBURN_H
 
-void do_burn ();
-void do_session ();
-void do_blank ();
-void burn_config ();
-void init_burn_config ();						/* initialize burner config dialog */
-void init_burn ();									/* initialize burner dialog */
-void init_burn_img ();									/* initialize burner dialog */
-void init_blank ();									/* initialize blank dialog */
-void load_mcburn_settings ();
-void save_mcburn_settings ();
-int scan_for_recorder(char *);
-char *concatstrings(const char *, const char *);	/* returns a string that is the concatenation of s1 and s2 */
+/*** typedefs(not structures) and defined constants **********************************************/
+
+/*** enums ***************************************************************************************/
+
+/*** structures declarations (and typedefs of structures)*****************************************/
+
+/*** global variables defined in .c file *********************************************************/
+
+/*** declarations of public functions ************************************************************/
+
+void do_burn (void);
+void do_session (void);
+void do_blank (void);
+void burn_config (void);
+void init_burn_config (void);   /* initialize burner config dialog */
+void init_burn (void);          /* initialize burner dialog */
+void init_burn_img (void);      /* initialize burner dialog */
+void load_mcburn_settings (void);
+void save_mcburn_settings (void);
 
 #endif
