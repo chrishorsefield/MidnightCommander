@@ -255,6 +255,9 @@ CmdCopyCurrentPathname = p
 CmdCopyOtherPathname = ctrl-p
 CmdCopyCurrentTagged = t
 CmdCopyOtherTagged = ctrl-t
+CmdDoBlank =
+CmdDoBBurn =
+CmdDoSession =
 
 [panel]
 PanelStartSearch = ctrl-s; alt-s

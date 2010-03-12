@@ -78,6 +78,9 @@ SRC_mc_keybind = \
 SRC_mc_extended_charset = \
 	ecs.c ecs.h
 
+SRC_mc_burn = \
+	mcburn.c mcburn.h
+
 mc_SOURCES = \
 	$(SRC_USE_charset) \
 	$(SRC_mc_widgets) \
@@ -85,6 +88,7 @@ mc_SOURCES = \
 	$(SRC_mc_options) \
 	$(SRC_mc_keybind) \
 	$(SRC_mc_extended_charset) \
+	$(SRC_mc_burn) \
 	achown.c achown.h \
 	args.c args.h \
 	background.c background.h \

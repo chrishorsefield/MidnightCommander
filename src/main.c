@@ -110,6 +110,8 @@
 
 #include "keybind.h"		/* type global_keymap_t */
 
+#include "mcburn.h"             /* the CD recording extensions */
+
 /* When the modes are active, left_panel, right_panel and tree_panel */
 /* Point to a proper data structure.  You should check with the functions */
 /* get_current_type and get_other_type the types of the panels before using */
@@ -749,6 +751,10 @@ create_command_menu (void)
     entries = g_list_append (entries, menu_entry_create (_("E&xternal panelize"),            CK_ExternalPanelize));
     entries = g_list_append (entries, menu_entry_create (_("Show directory s&izes"),         CK_SingleDirsizeCmd));
     entries = g_list_append (entries, menu_separator_create ());
+    entries = g_list_append (entries, menu_entry_create (_("Burn t&o CD"),                   CK_DoBurn));
+    entries = g_list_append (entries, menu_entry_create (_("Burn &next session"),            CK_DoSession));
+    entries = g_list_append (entries, menu_entry_create (_("Blan&k this CD"),                CK_DoBlank));
+    entries = g_list_append (entries, menu_separator_create ());
     entries = g_list_append (entries, menu_entry_create (_("Command &history"),              CK_HistoryCmd));
     entries = g_list_append (entries, menu_entry_create (_("Di&rectory hotlist"),            CK_QuickChdirCmd));
 #ifdef ENABLE_VFS
@@ -787,6 +793,8 @@ create_options_menu (void)
 #ifdef ENABLE_VFS
     entries = g_list_append (entries, menu_entry_create (_("&Virtual FS..."),    CK_ConfigureVfs));
 #endif
+    entries = g_list_append (entries, menu_separator_create ());
+    entries = g_list_append (entries, menu_entry_create (_("CD B&urning config..."), CK_BurnConfig));
     entries = g_list_append (entries, menu_separator_create ());
     entries = g_list_append (entries, menu_entry_create (_("&Save setup"),       CK_SaveSetupCmd));
 
@@ -1141,6 +1149,9 @@ midnight_execute_cmd (Widget *sender, unsigned long command)
     case CK_AddHotlist:
         add2hotlist_cmd ();
         break;
+    case CK_BurnConfig:
+        burn_config ();
+        break;
     case CK_ChmodCmd:
         chmod_cmd ();
         break;
@@ -1190,6 +1201,15 @@ midnight_execute_cmd (Widget *sender, unsigned long command)
         break;
     case CK_DisplayBitsBox:
         display_bits_box ();
+        break;
+    case CK_DoBlank:
+        do_blank ();
+        break;
+    case CK_DoBurn:
+        do_burn ();
+        break;
+    case CK_DoSession:
+        do_session ();
         break;
     case CK_EditCmd:
         edit_cmd ();

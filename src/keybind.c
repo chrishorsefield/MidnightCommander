@@ -284,6 +284,9 @@ static name_keymap_t command_names[] = {
     { "TreeRemove",                      CK_TreeRemove },
 
     /* main commands */
+    { "CmdDoBlank",                      CK_DoBlank },
+    { "CmdDoBurn",                       CK_DoBurn },
+    { "CmdDoSession",                    CK_DoSession },
     { "CmdHelp",                         CK_HelpCmd },
     { "CmdMenu",                         CK_MenuCmd },
     { "CmdChmod",                        CK_ChmodCmd },
@@ -860,6 +863,9 @@ const global_keymap_t default_main_x_map[] = {
     { 'q',         CK_QuickViewCmd,        "q" },
     { 'h',         CK_AddHotlist,          "h" },
     { '!',         CK_ExternalPanelize,    "!" },
+    { 'b',         CK_DoBurn,              "b" },
+    { 'n',         CK_DoSession,           "n" },
+    { 'k',         CK_DoBlank,             "k" },
 #ifdef WITH_BACKGROUND
     { 'j',         CK_JobsCmd,             "j" },
 #endif				/* WITH_BACKGROUND */

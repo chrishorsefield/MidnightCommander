@@ -71,7 +71,7 @@
 #   include "src/editor/edit.h"
 #endif
 
-
+#include "mcburn.h"
 
 extern int num_history_items_recorded;
 
@@ -419,6 +419,9 @@ save_setup (void)
 #endif /* HAVE_CHARSET */
     tmp_profile = g_build_filename (home_dir, MC_USERCONF_DIR, MC_CONFIG_FILE, NULL);
     ret = mc_config_save_to_file (mc_main_config, tmp_profile, NULL);
+
+    save_mcburn_settings();
+
 
     g_free (tmp_profile);
     saving_setup = 0;
@@ -871,6 +874,8 @@ load_setup (void)
     if (get_codepage_id (display_codepage))
         utf8_display = str_isutf8 (get_codepage_id (display_codepage));
 #endif /* HAVE_CHARSET */
+
+    load_mcburn_settings();
 }
 
 #if defined(ENABLE_VFS) && defined (USE_NETCODE)

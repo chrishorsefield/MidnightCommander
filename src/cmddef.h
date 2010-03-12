@@ -275,6 +275,12 @@
 #define CK_ViewToggleRuler              5026
 #define CK_ViewToggleHexNavMode         5027
 
+/* burn */
+#define CK_DoBurn                       5040
+#define CK_DoSession                    5041
+#define CK_DoBlank                      5042
+#define CK_BurnConfig                   5043
+
 /* Tree */
 #define CK_TreeHelp                     6001
 #define CK_TreeForget                   6003
