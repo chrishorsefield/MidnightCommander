@@ -72,7 +72,7 @@
 #endif
 
 #ifdef ENABLE_CDBURN
-#include "mcburn.h"
+#include "cdburn.h"
 #endif
 
 extern int num_history_items_recorded;

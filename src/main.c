@@ -103,7 +103,7 @@
 #endif				/* HAVE_CHARSET */
 
 #ifdef ENABLE_CDBURN
-#include "mcburn.h"             /* the CD recording extensions */
+#include "cdburn.h"             /* the CD recording extensions */
 #endif				/* ENABLE_CDBURN */
 
 #include "keybind.h"		/* type global_keymap_t */

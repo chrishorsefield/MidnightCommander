@@ -1,4 +1,4 @@
-/* mcburn.h
+/* cdburn.h
  * Header file for cdrecord support in Midnight Commander
  * Copyright 2001 Bart Friederichs
  */

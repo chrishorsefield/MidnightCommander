@@ -79,8 +79,8 @@ SRC_mc_extended_charset = \
 	ecs.c ecs.h
 
 if CDBURN
-SRC_mc_burn = \
-	mcburn.c mcburn.h
+SRC_mc_cdburn = \
+	cdburn.c cdburn.h
 endif
 
 mc_SOURCES = \
@@ -90,7 +90,7 @@ mc_SOURCES = \
 	$(SRC_mc_options) \
 	$(SRC_mc_keybind) \
 	$(SRC_mc_extended_charset) \
-	$(SRC_mc_burn) \
+	$(SRC_mc_cdburn) \
 	achown.c achown.h \
 	args.c args.h \
 	background.c background.h \

@@ -64,7 +64,7 @@
 #include "layout.h"             /* For nice_rotating_dash */
 #include "option.h"
 
-#include "mcburn.h"
+#include "cdburn.h"
 #include "charsets.h"
 #include "wtools.h"
 #include "main.h"
