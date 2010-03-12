@@ -510,6 +510,20 @@ if test "x$enable_charset" != "xno"; then
     charset_msg="yes"
 fi
 
+dnl
+dnl CD/DVD burning
+dnl
+AC_ARG_ENABLE([cdburn],
+	      [  --enable-cdburn         Support for CD/DVD burning [[yes]]])
+have_cdburn=
+cdburn_msg="no"
+if test "x$enable_cdburn" != "xno"; then
+    AC_DEFINE(ENABLE_CDBURN, 1,
+	      [Define to enable CD/DVD burning])
+    have_cdburn=yes
+    cdburn_msg="yes"
+fi
+
 if test "$GLIBC21" != yes; then
     AC_DEFINE(USE_INCLUDED_REGEX, 1, [Use the regex included here])
 fi
@@ -556,6 +570,7 @@ AM_CONDITIONAL(ENABLE_VFS_NET, [test x"$use_net_code" = xtrue])
 AM_CONDITIONAL(USE_SAMBA_FS, [test -n "$use_smbfs"])
 AM_CONDITIONAL(ENABLE_MCSERVER, [test x"$enable_mcserver" = "xyes"])
 AM_CONDITIONAL(CHARSET, [test -n "$have_charset"])
+AM_CONDITIONAL(CDBURN, [test -n "$have_cdburn"])
 AM_CONDITIONAL(CONS_SAVER, [test -n "$cons_saver"])
 
 AC_CONFIG_FILES([
@@ -660,5 +675,6 @@ Configuration:
   With subshell support:      ${subshell}
   Internal editor:            ${edit_msg}
   Support for charset:        ${charset_msg}
+  Support for CD/DVD burning: ${cdburn_msg}
   Search type:                ${SEARCH_TYPE}
 "

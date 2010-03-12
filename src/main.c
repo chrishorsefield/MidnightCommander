@@ -90,14 +90,9 @@
 #include "wtools.h"
 #include "cmddef.h"		/* CK_ cmd name const */
 #include "user.h"		/* user_file_menu_cmd() */
-
-
 #include "chmod.h"
 #include "chown.h"
 #include "achown.h"
-
-#include "main.h"
-
 
 #ifdef USE_INTERNAL_EDIT
 #   include "src/editor/edit.h"
@@ -107,10 +102,13 @@
 #include "charsets.h"
 #endif				/* HAVE_CHARSET */
 
+#ifdef ENABLE_CDBURN
+#include "mcburn.h"             /* the CD recording extensions */
+#endif				/* ENABLE_CDBURN */
 
 #include "keybind.h"		/* type global_keymap_t */
 
-#include "mcburn.h"             /* the CD recording extensions */
+#include "main.h"
 
 /* When the modes are active, left_panel, right_panel and tree_panel */
 /* Point to a proper data structure.  You should check with the functions */
@@ -750,10 +748,12 @@ create_command_menu (void)
     entries = g_list_append (entries, menu_entry_create (_("&Compare directories"),          CK_CompareDirsCmd));
     entries = g_list_append (entries, menu_entry_create (_("E&xternal panelize"),            CK_ExternalPanelize));
     entries = g_list_append (entries, menu_entry_create (_("Show directory s&izes"),         CK_SingleDirsizeCmd));
+#ifdef ENABLE_CDBURN
     entries = g_list_append (entries, menu_separator_create ());
     entries = g_list_append (entries, menu_entry_create (_("Burn t&o CD"),                   CK_DoBurn));
     entries = g_list_append (entries, menu_entry_create (_("Burn &next session"),            CK_DoSession));
     entries = g_list_append (entries, menu_entry_create (_("Blan&k this CD"),                CK_DoBlank));
+#endif
     entries = g_list_append (entries, menu_separator_create ());
     entries = g_list_append (entries, menu_entry_create (_("Command &history"),              CK_HistoryCmd));
     entries = g_list_append (entries, menu_entry_create (_("Di&rectory hotlist"),            CK_QuickChdirCmd));
@@ -785,18 +785,19 @@ create_options_menu (void)
 {
     GList *entries = NULL;
 
-    entries = g_list_append (entries, menu_entry_create (_("&Configuration..."), CK_ConfigureBox));
-    entries = g_list_append (entries, menu_entry_create (_("&Layout..."),        CK_LayoutCmd));
-    entries = g_list_append (entries, menu_entry_create (_("C&onfirmation..."),  CK_ConfirmBox));
-    entries = g_list_append (entries, menu_entry_create (_("&Display bits..."),  CK_DisplayBitsBox));
-    entries = g_list_append (entries, menu_entry_create (_("Learn &keys..."),    CK_LearnKeys));
+    entries = g_list_append (entries, menu_entry_create (_("&Configuration..."),     CK_ConfigureBox));
+    entries = g_list_append (entries, menu_entry_create (_("&Layout..."),            CK_LayoutCmd));
+    entries = g_list_append (entries, menu_entry_create (_("C&onfirmation..."),      CK_ConfirmBox));
+    entries = g_list_append (entries, menu_entry_create (_("&Display bits..."),      CK_DisplayBitsBox));
+    entries = g_list_append (entries, menu_entry_create (_("Learn &keys..."),        CK_LearnKeys));
 #ifdef ENABLE_VFS
-    entries = g_list_append (entries, menu_entry_create (_("&Virtual FS..."),    CK_ConfigureVfs));
+    entries = g_list_append (entries, menu_entry_create (_("&Virtual FS..."),        CK_ConfigureVfs));
+#endif
+#ifdef ENABLE_CDBURN
+    entries = g_list_append (entries, menu_entry_create (_("CD b&urning config..."), CK_BurnConfig));
 #endif
     entries = g_list_append (entries, menu_separator_create ());
-    entries = g_list_append (entries, menu_entry_create (_("CD B&urning config..."), CK_BurnConfig));
-    entries = g_list_append (entries, menu_separator_create ());
-    entries = g_list_append (entries, menu_entry_create (_("&Save setup"),       CK_SaveSetupCmd));
+    entries = g_list_append (entries, menu_entry_create (_("&Save setup"),           CK_SaveSetupCmd));
 
     return entries;
 }
@@ -1149,9 +1150,11 @@ midnight_execute_cmd (Widget *sender, unsigned long command)
     case CK_AddHotlist:
         add2hotlist_cmd ();
         break;
+#ifdef ENABLE_CDBURN
     case CK_BurnConfig:
         burn_config ();
         break;
+#endif
     case CK_ChmodCmd:
         chmod_cmd ();
         break;
@@ -1202,6 +1205,7 @@ midnight_execute_cmd (Widget *sender, unsigned long command)
     case CK_DisplayBitsBox:
         display_bits_box ();
         break;
+#ifdef ENABLE_CDBURN
     case CK_DoBlank:
         do_blank ();
         break;
@@ -1211,6 +1215,7 @@ midnight_execute_cmd (Widget *sender, unsigned long command)
     case CK_DoSession:
         do_session ();
         break;
+#endif
     case CK_EditCmd:
         edit_cmd ();
         break;

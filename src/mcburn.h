@@ -1,13 +1,12 @@
-// mcburn.h
-// Header file for cdrecord support in Midnight Commander
-// Copyright 2001 Bart Friederichs
+/* mcburn.h
+ * Header file for cdrecord support in Midnight Commander
+ * Copyright 2001 Bart Friederichs
+ */
 
-// Changed for CVS
+#ifndef MC_CDBURN_H
+#define MC_CDBURN_H
 
-#ifndef __MCBURN_H
-#define __MCBURN_H
-
-/*** typedefs(not structures) and defined constants **********************************************/
+/*** typedefs (not structures) and defined constants *********************************************/
 
 /*** enums ***************************************************************************************/
 
@@ -27,4 +26,4 @@ void init_burn_img (void);      /* initialize burner dialog */
 void load_mcburn_settings (void);
 void save_mcburn_settings (void);
 
-#endif
+#endif                          /* MC_CDBURN_H */

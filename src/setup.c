@@ -68,10 +68,12 @@
 #endif
 
 #ifdef USE_INTERNAL_EDIT
-#   include "src/editor/edit.h"
+#include "src/editor/edit.h"
 #endif
 
+#ifdef ENABLE_CDBURN
 #include "mcburn.h"
+#endif
 
 extern int num_history_items_recorded;
 
@@ -420,8 +422,9 @@ save_setup (void)
     tmp_profile = g_build_filename (home_dir, MC_USERCONF_DIR, MC_CONFIG_FILE, NULL);
     ret = mc_config_save_to_file (mc_main_config, tmp_profile, NULL);
 
-    save_mcburn_settings();
-
+#ifdef ENABLE_CDBURN
+    save_mcburn_settings ();
+#endif /* ENABLE_CDBURN */
 
     g_free (tmp_profile);
     saving_setup = 0;
@@ -875,7 +878,9 @@ load_setup (void)
         utf8_display = str_isutf8 (get_codepage_id (display_codepage));
 #endif /* HAVE_CHARSET */
 
-    load_mcburn_settings();
+#ifdef ENABLE_CDBURN
+    load_mcburn_settings ();
+#endif /* ENABLE_CDBURN */
 }
 
 #if defined(ENABLE_VFS) && defined (USE_NETCODE)

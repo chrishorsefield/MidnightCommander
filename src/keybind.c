@@ -284,9 +284,11 @@ static name_keymap_t command_names[] = {
     { "TreeRemove",                      CK_TreeRemove },
 
     /* main commands */
+#ifdef ENABLE_CDBURN
     { "CmdDoBlank",                      CK_DoBlank },
     { "CmdDoBurn",                       CK_DoBurn },
     { "CmdDoSession",                    CK_DoSession },
+#endif /* ENABLE_CDBURN */
     { "CmdHelp",                         CK_HelpCmd },
     { "CmdMenu",                         CK_MenuCmd },
     { "CmdChmod",                        CK_ChmodCmd },
@@ -863,9 +865,11 @@ const global_keymap_t default_main_x_map[] = {
     { 'q',         CK_QuickViewCmd,        "q" },
     { 'h',         CK_AddHotlist,          "h" },
     { '!',         CK_ExternalPanelize,    "!" },
+#ifdef ENABLE_CDBURN
     { 'b',         CK_DoBurn,              "b" },
     { 'n',         CK_DoSession,           "n" },
     { 'k',         CK_DoBlank,             "k" },
+#endif				/* ENABLE_CDBURN */
 #ifdef WITH_BACKGROUND
     { 'j',         CK_JobsCmd,             "j" },
 #endif				/* WITH_BACKGROUND */

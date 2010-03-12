@@ -62,13 +62,9 @@ static const char *const features[] = {
 #endif
 
 #ifdef HAVE_SLANG
-
     N_("Using system-installed S-Lang library"),
-
     " ",
-
     N_("with terminfo database"),
-
 #elif defined(USE_NCURSES)
     N_("Using the ncurses library"),
 #elif defined(USE_NCURSESW)
@@ -108,6 +104,10 @@ static const char *const features[] = {
 
 #ifdef HAVE_CHARSET
     N_("With multiple codepages support\n"),
+#endif
+
+#ifdef ENABLE_CDBURN
+    N_("With CD/DVD burinig support\n"),
 #endif
 
     NULL

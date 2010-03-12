@@ -78,8 +78,10 @@ SRC_mc_keybind = \
 SRC_mc_extended_charset = \
 	ecs.c ecs.h
 
+if CDBURN
 SRC_mc_burn = \
 	mcburn.c mcburn.h
+endif
 
 mc_SOURCES = \
 	$(SRC_USE_charset) \
