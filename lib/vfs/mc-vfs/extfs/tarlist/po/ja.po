@@ -1,0 +1,289 @@
+# Japanese messages for GNU tar 1.22.91
+# Copyright (C) 1999, 2000, 2001, 2004, 2006, 2007, 2008, 2009, 2010 Free Software Foundation, Inc.
+# This file is distributed under the same license as the tar package.
+# Masahito Yamaga <ma@yama-ga.com>, 2010.
+#  derived from the version by
+#              Daisuke Yamashita <yamad@mb.infoweb.ne.jp>, 1999-2001.
+#              Masahito Yamaga <yamaga@ipc.chiba-u.ac.jp>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: GNU tar 1.22.91\n"
+"Report-Msgid-Bugs-To: http://www.midnight-commander.org/\n"
+"POT-Creation-Date: 2010-08-06 14:07+0400\n"
+"PO-Revision-Date: 2010-02-13 10:46+0900\n"
+"Last-Translator: Masahito Yamaga <ma@yama-ga.com>\n"
+"Language-Team: Japanese <translation-team-ja@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=EUC-JP\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=0;\n"
+
+#, c-format
+msgid "invalid argument %s for %s"
+msgstr "引数 %s は %s に対して無効です"
+
+#, c-format
+msgid "ambiguous argument %s for %s"
+msgstr "引数 %s は %s に対してあいまいです"
+
+#, c-format
+msgid "Valid arguments are:"
+msgstr "正しい引数は:"
+
+msgid "write error"
+msgstr "書き込みエラー"
+
+msgid "memory exhausted"
+msgstr "メモリを使い切りました"
+
+#. TRANSLATORS:
+#. Get translations for open and closing quotation marks.
+#.
+#. The message catalog should translate "`" to a left
+#. quotation mark suitable for the locale, and similarly for
+#. "'".  If the catalog has no translation,
+#. locale_quoting_style quotes `like this', and
+#. clocale_quoting_style quotes "like this".
+#.
+#. For example, an American English Unicode locale should
+#. translate "`" to U+201C (LEFT DOUBLE QUOTATION MARK), and
+#. should translate "'" to U+201D (RIGHT DOUBLE QUOTATION
+#. MARK).  A British English Unicode locale should instead
+#. translate these to U+2018 (LEFT SINGLE QUOTATION MARK)
+#. and U+2019 (RIGHT SINGLE QUOTATION MARK), respectively.
+#.
+#. If you don't know what to put here, please see
+#. <http://en.wikipedia.org/wiki/Quotation_mark#Glyphs>
+#. and use glyphs suitable for your language.
+msgid "`"
+msgstr "`"
+
+msgid "'"
+msgstr "'"
+
+#. TRANSLATORS: %s after `Cannot' is a function name, e.g. `Cannot open'.
+#. Directly translating this to another language will not work, first because
+#. %s itself is not translated.
+#. Translate it as `%s: Function %s failed'.
+#, c-format
+msgid "%s: Cannot %s"
+msgstr "%s: %s 不能"
+
+#. TRANSLATORS: %s after `Cannot' is a function name, e.g. `Cannot open'.
+#. Directly translating this to another language will not work, first because
+#. %s itself is not translated.
+#. Translate it as `%s: Function %s failed'.
+#, c-format
+msgid "%s: Warning: Cannot %s"
+msgstr "%s: 警告: %s 不能"
+
+#, c-format
+msgid "Removing leading `%s' from member names"
+msgstr "メンバ名から先頭の `%s' を取り除きます"
+
+#, c-format
+msgid "Removing leading `%s' from hard link targets"
+msgstr "ハードリンク先から先頭の `%s' を取り除きます"
+
+msgid "Substituting `.' for empty member name"
+msgstr "空のメンバ名に `.' を代入します"
+
+msgid "Substituting `.' for empty hard link target"
+msgstr "空のハードリンク先に `.' を代入します"
+
+msgid "This does not look like a tar archive"
+msgstr "これは tar アーカイブではないようです"
+
+msgid "(pipe)"
+msgstr "(パイプ)"
+
+msgid "Invalid value for record_size"
+msgstr "record_size が無効な値です"
+
+msgid "No archive name given"
+msgstr "アーカイブ名が指定されていません"
+
+#, c-format
+msgid "Archive is compressed. Use %s option"
+msgstr "アーカイブは圧縮されています. %s オプションを使ってください"
+
+msgid "At beginning of tape, quitting now"
+msgstr "テープの先頭です. 処理を中止します"
+
+msgid "Too many errors, quitting"
+msgstr "エラーが多すぎます. 処理を中止します"
+
+#, c-format
+msgid "Unaligned block (%lu byte) in archive"
+msgid_plural "Unaligned block (%lu bytes) in archive"
+msgstr[0] "アーカイブ内のアラインメントされていないブロック (%lu バイト)"
+msgstr[1] "アーカイブ内のアラインメントされていないブロック (%lu バイト)"
+
+msgid "rmtlseek not stopped at a record boundary"
+msgstr "rmtlseek を記録の境界で止めません"
+
+msgid "Error is not recoverable: exiting now"
+msgstr ""
+
+#, c-format
+msgid "A lone zero block at %s"
+msgstr "%s に長いゼロブロック"
+
+msgid "Skipping to next header"
+msgstr "次のヘッダをスキップします"
+
+msgid "Unexpected EOF in archive"
+msgstr "アーカイブ中に予期せぬ EOF があります"
+
+#. TRANSLATORS: %s is type of the value (gid_t, uid_t,
+#. etc.)
+#, c-format
+msgid "Blanks in header where numeric %s value expected"
+msgstr "数値 %s となるべきヘッダ位置が空になっています"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive octal value %.*s is out of %s range; assuming two's complement"
+msgstr "8 進数値 %.*s は %s の範囲外です -- 2 の補数と見なします"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive octal value %.*s is out of %s range"
+msgstr "8 進数値 %.*s は %s の範囲外です"
+
+msgid "Archive contains obsolescent base-64 headers"
+msgstr "アーカイブに廃れた base-64 ヘッダが含まれています"
+
+#, c-format
+msgid "Archive signed base-64 string %s is out of %s range"
+msgstr "符号付き base-64 文字列 %s は %s の範囲外です"
+
+#, c-format
+msgid "Archive base-256 value is out of %s range"
+msgstr "base-256 値は %s の範囲外です"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive contains %.*s where numeric %s value expected"
+msgstr "アーカイブに %.*s が含まれていますが、ここは数値 %s となるはずです"
+
+#. TRANSLATORS: Second %s is type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive value %s is out of %s range %s..%s"
+msgstr "アーカイブの値 %s は %s の範囲 %s..%s 内にありません"
+
+msgid "Unexpected long name header"
+msgstr "予期せぬ長い名前ヘッダ"
+
+#, c-format
+msgid " link to %s\n"
+msgstr " %s へのリンク\n"
+
+#, c-format
+msgid " unknown file type %s\n"
+msgstr " 不明なファイルタイプ %s\n"
+
+#, c-format
+msgid "--Long Link--\n"
+msgstr "--長いリンク--\n"
+
+#, c-format
+msgid "--Long Name--\n"
+msgstr "--長い名前--\n"
+
+#, c-format
+msgid "--Volume Header--\n"
+msgstr "--ボリュームヘッダ--\n"
+
+#, c-format
+msgid "--Continued at byte %s--\n"
+msgstr "--バイト %s で連続--\n"
+
+msgid "child process"
+msgstr "子プロセス"
+
+msgid "interprocess channel"
+msgstr "プロセス間チャネル"
+
+#, fuzzy, c-format
+msgid "%s: invalid sparse archive member"
+msgstr "%s: 無効なアーカイブ形式"
+
+#, c-format
+msgid "%s: numeric overflow in sparse archive member"
+msgstr ""
+
+#, c-format
+msgid "%s: malformed sparse archive member"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Child died with signal %d"
+msgstr "コマンドがステータス %d で失敗\n"
+
+#, c-format
+msgid "Child returned status %d"
+msgstr ""
+
+#, fuzzy
+msgid "Cannot close"
+msgstr "捜し出せません"
+
+#, fuzzy
+msgid "Cannot dup"
+msgstr "%s: %s 不能"
+
+msgid "tar (child)"
+msgstr ""
+
+msgid "tar (grandchild)"
+msgstr ""
+
+msgid "Exiting with failure status due to previous errors"
+msgstr "前のエラーにより失敗ステータスで終了します"
+
+msgid "Malformed extended header: missing length"
+msgstr "不正形式の拡張ヘッダ: 長さの指定がありません"
+
+msgid "Extended header length is out of allowed range"
+msgstr "拡張ヘッダ長は許可された範囲外です"
+
+#, c-format
+msgid "Extended header length %*s is out of range"
+msgstr "拡張ヘッダ長 %*s は範囲外です"
+
+msgid "Malformed extended header: missing blank after length"
+msgstr "不正形式の拡張ヘッダ: 長さの後にブランクがありません"
+
+msgid "Malformed extended header: missing equal sign"
+msgstr "不正形式の拡張ヘッダ: = (イコール) 記号がありません"
+
+msgid "Malformed extended header: missing newline"
+msgstr "不正形式の拡張ヘッダ: 改行がありません"
+
+#, c-format
+msgid "Ignoring unknown extended header keyword `%s'"
+msgstr "未知の拡張ヘッダキーワード `%s' を無視"
+
+#. TRANSLATORS: The first %s is the pax extended header keyword
+#. (atime, gid, etc.).
+#, c-format
+msgid "Extended header %s=%s is out of range %s..%s"
+msgstr "拡張ヘッダ %s=%s は %s..%s の範囲内にありません"
+
+#, c-format
+msgid "Malformed extended header: invalid %s=%s"
+msgstr "不正形式の拡張ヘッダ: %s=%s は不正"
+
+#, c-format
+msgid "Malformed extended header: excess %s=%s"
+msgstr "不正形式の拡張ヘッダ: %s=%s は余分"
+
+#, c-format
+msgid "Malformed extended header: invalid %s: unexpected delimiter %c"
+msgstr "不正形式の拡張ヘッダ: %s は無効: 予期せぬ区切り文字 %c"
+
+#, c-format
+msgid "Malformed extended header: invalid %s: odd number of values"
+msgstr "不正形式の拡張ヘッダ: %s は無効: 奇数値"

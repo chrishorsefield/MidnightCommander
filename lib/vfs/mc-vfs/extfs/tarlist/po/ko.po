@@ -1,0 +1,304 @@
+# Korean messages for GNU tar
+# Copyright (C) 1996 Free Software Foundation, Inc.
+# Bang Jun-Young <bangjy@nownuri.net>, 1996-1997.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: GNU tar 1.12\n"
+"Report-Msgid-Bugs-To: http://www.midnight-commander.org/\n"
+"POT-Creation-Date: 2010-08-06 14:07+0400\n"
+"PO-Revision-Date: 1997-05-30 22:55+0900\n"
+"Last-Translator: Bang Jun-Young <bangjy@nownuri.net>\n"
+"Language-Team: Korean <ko@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=EUC-KR\n"
+"Content-Transfer-Encoding: 8-bit\n"
+
+#, fuzzy, c-format
+msgid "invalid argument %s for %s"
+msgstr "부적절한 날짜 형식 `%s'"
+
+#, fuzzy, c-format
+msgid "ambiguous argument %s for %s"
+msgstr "모호한 패턴 `%s'"
+
+#, c-format
+msgid "Valid arguments are:"
+msgstr ""
+
+msgid "write error"
+msgstr ""
+
+#, fuzzy
+msgid "memory exhausted"
+msgstr "메모리가 바닥남"
+
+#. TRANSLATORS:
+#. Get translations for open and closing quotation marks.
+#.
+#. The message catalog should translate "`" to a left
+#. quotation mark suitable for the locale, and similarly for
+#. "'".  If the catalog has no translation,
+#. locale_quoting_style quotes `like this', and
+#. clocale_quoting_style quotes "like this".
+#.
+#. For example, an American English Unicode locale should
+#. translate "`" to U+201C (LEFT DOUBLE QUOTATION MARK), and
+#. should translate "'" to U+201D (RIGHT DOUBLE QUOTATION
+#. MARK).  A British English Unicode locale should instead
+#. translate these to U+2018 (LEFT SINGLE QUOTATION MARK)
+#. and U+2019 (RIGHT SINGLE QUOTATION MARK), respectively.
+#.
+#. If you don't know what to put here, please see
+#. <http://en.wikipedia.org/wiki/Quotation_mark#Glyphs>
+#. and use glyphs suitable for your language.
+msgid "`"
+msgstr ""
+
+msgid "'"
+msgstr ""
+
+#
+#. TRANSLATORS: %s after `Cannot' is a function name, e.g. `Cannot open'.
+#. Directly translating this to another language will not work, first because
+#. %s itself is not translated.
+#. Translate it as `%s: Function %s failed'.
+#, fuzzy, c-format
+msgid "%s: Cannot %s"
+msgstr "%s를 실행할 수 없습니다"
+
+#. TRANSLATORS: %s after `Cannot' is a function name, e.g. `Cannot open'.
+#. Directly translating this to another language will not work, first because
+#. %s itself is not translated.
+#. Translate it as `%s: Function %s failed'.
+#, c-format
+msgid "%s: Warning: Cannot %s"
+msgstr ""
+
+#
+#, fuzzy, c-format
+msgid "Removing leading `%s' from member names"
+msgstr "절대 링크들에서 앞에 붙은 `/'를 제거함"
+
+#
+#, fuzzy, c-format
+msgid "Removing leading `%s' from hard link targets"
+msgstr "절대 링크들에서 앞에 붙은 `/'를 제거함"
+
+msgid "Substituting `.' for empty member name"
+msgstr ""
+
+msgid "Substituting `.' for empty hard link target"
+msgstr ""
+
+#
+msgid "This does not look like a tar archive"
+msgstr "이것은 tar 아카이브처럼 보이지 않습니다"
+
+msgid "(pipe)"
+msgstr ""
+
+msgid "Invalid value for record_size"
+msgstr "record_size로 부적절한 값"
+
+#
+msgid "No archive name given"
+msgstr "아카이브 이름이 주어지지 않았습니다"
+
+#, c-format
+msgid "Archive is compressed. Use %s option"
+msgstr ""
+
+#
+msgid "At beginning of tape, quitting now"
+msgstr "테이프의 시작 부분에서 지금 종료함"
+
+#
+msgid "Too many errors, quitting"
+msgstr "오류가 너무 많아서 종료합니다"
+
+#, c-format
+msgid "Unaligned block (%lu byte) in archive"
+msgid_plural "Unaligned block (%lu bytes) in archive"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "rmtlseek not stopped at a record boundary"
+msgstr ""
+
+msgid "Error is not recoverable: exiting now"
+msgstr ""
+
+#, c-format
+msgid "A lone zero block at %s"
+msgstr ""
+
+#
+msgid "Skipping to next header"
+msgstr "다음 헤더로 건너 뜀"
+
+#
+msgid "Unexpected EOF in archive"
+msgstr "아카이브에 예기치 않은 EOF"
+
+#. TRANSLATORS: %s is type of the value (gid_t, uid_t,
+#. etc.)
+#, c-format
+msgid "Blanks in header where numeric %s value expected"
+msgstr ""
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive octal value %.*s is out of %s range; assuming two's complement"
+msgstr ""
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive octal value %.*s is out of %s range"
+msgstr ""
+
+msgid "Archive contains obsolescent base-64 headers"
+msgstr ""
+
+#, c-format
+msgid "Archive signed base-64 string %s is out of %s range"
+msgstr ""
+
+#
+#, fuzzy, c-format
+msgid "Archive base-256 value is out of %s range"
+msgstr "이 볼륨은 순서를 벗어났습니다"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive contains %.*s where numeric %s value expected"
+msgstr ""
+
+#. TRANSLATORS: Second %s is type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive value %s is out of %s range %s..%s"
+msgstr ""
+
+#
+#, fuzzy
+msgid "Unexpected long name header"
+msgstr "아카이브 파일에 예기치 않은 EOF"
+
+#
+#, c-format
+msgid " link to %s\n"
+msgstr " %s로 링크\n"
+
+#
+#, fuzzy, c-format
+msgid " unknown file type %s\n"
+msgstr " 알 수 없는 파일 타입 `%c'\n"
+
+#, c-format
+msgid "--Long Link--\n"
+msgstr ""
+
+#, c-format
+msgid "--Long Name--\n"
+msgstr ""
+
+#
+#, c-format
+msgid "--Volume Header--\n"
+msgstr "--볼륨 헤더--\n"
+
+#
+#, fuzzy, c-format
+msgid "--Continued at byte %s--\n"
+msgstr "--%ld 바이트 째에 계속됨--\n"
+
+msgid "child process"
+msgstr ""
+
+msgid "interprocess channel"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: invalid sparse archive member"
+msgstr "부적절한 날짜 형식 `%s'"
+
+#, c-format
+msgid "%s: numeric overflow in sparse archive member"
+msgstr ""
+
+#, c-format
+msgid "%s: malformed sparse archive member"
+msgstr ""
+
+#
+#, fuzzy, c-format
+msgid "Child died with signal %d"
+msgstr "자식이 신호 %d%s와 함께 죽었음"
+
+#
+#, c-format
+msgid "Child returned status %d"
+msgstr "자식이 상태 %d를 되돌려 주었습니다"
+
+#, fuzzy
+msgid "Cannot close"
+msgstr "파일 #%d를 닫을 수 없습니다"
+
+#
+#, fuzzy
+msgid "Cannot dup"
+msgstr "fork할 수 없습니다"
+
+msgid "tar (child)"
+msgstr "tar (자식)"
+
+msgid "tar (grandchild)"
+msgstr "tar (손자)"
+
+msgid "Exiting with failure status due to previous errors"
+msgstr ""
+
+msgid "Malformed extended header: missing length"
+msgstr ""
+
+msgid "Extended header length is out of allowed range"
+msgstr ""
+
+#, c-format
+msgid "Extended header length %*s is out of range"
+msgstr ""
+
+msgid "Malformed extended header: missing blank after length"
+msgstr ""
+
+msgid "Malformed extended header: missing equal sign"
+msgstr ""
+
+msgid "Malformed extended header: missing newline"
+msgstr ""
+
+#, c-format
+msgid "Ignoring unknown extended header keyword `%s'"
+msgstr ""
+
+#. TRANSLATORS: The first %s is the pax extended header keyword
+#. (atime, gid, etc.).
+#, c-format
+msgid "Extended header %s=%s is out of range %s..%s"
+msgstr ""
+
+#, c-format
+msgid "Malformed extended header: invalid %s=%s"
+msgstr ""
+
+#, c-format
+msgid "Malformed extended header: excess %s=%s"
+msgstr ""
+
+#, c-format
+msgid "Malformed extended header: invalid %s: unexpected delimiter %c"
+msgstr ""
+
+#, c-format
+msgid "Malformed extended header: invalid %s: odd number of values"
+msgstr ""

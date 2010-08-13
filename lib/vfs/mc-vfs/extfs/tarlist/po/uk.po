@@ -1,0 +1,299 @@
+# Ukrainian messages for GNU tar
+# This file is distributed under the same license as the tar package.
+# Copyright (C) 2010 Free Software Foundation, Inc.
+# Sergey Poznyakoff <gray@gnu.org>, 2005, 2006, 2007, 2008, 2009, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: tar 1.23\n"
+"Report-Msgid-Bugs-To: http://www.midnight-commander.org/\n"
+"POT-Creation-Date: 2010-08-06 14:07+0400\n"
+"PO-Revision-Date: 2010-03-10 13:30+0200\n"
+"Last-Translator: Sergey Poznyakoff <gray@gnu.org>\n"
+"Language-Team: Ukrainian <translation-team-uk@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#, c-format
+msgid "invalid argument %s for %s"
+msgstr "неправильний аргумент %s для %s"
+
+#, c-format
+msgid "ambiguous argument %s for %s"
+msgstr "неоднозначний аргумент %s для %s"
+
+#, c-format
+msgid "Valid arguments are:"
+msgstr "Дозволені аргументи такі:"
+
+msgid "write error"
+msgstr "помилка запису"
+
+msgid "memory exhausted"
+msgstr "пам'ять вичерпана"
+
+#. TRANSLATORS:
+#. Get translations for open and closing quotation marks.
+#.
+#. The message catalog should translate "`" to a left
+#. quotation mark suitable for the locale, and similarly for
+#. "'".  If the catalog has no translation,
+#. locale_quoting_style quotes `like this', and
+#. clocale_quoting_style quotes "like this".
+#.
+#. For example, an American English Unicode locale should
+#. translate "`" to U+201C (LEFT DOUBLE QUOTATION MARK), and
+#. should translate "'" to U+201D (RIGHT DOUBLE QUOTATION
+#. MARK).  A British English Unicode locale should instead
+#. translate these to U+2018 (LEFT SINGLE QUOTATION MARK)
+#. and U+2019 (RIGHT SINGLE QUOTATION MARK), respectively.
+#.
+#. If you don't know what to put here, please see
+#. <http://en.wikipedia.org/wiki/Quotation_mark#Glyphs>
+#. and use glyphs suitable for your language.
+msgid "`"
+msgstr "`"
+
+msgid "'"
+msgstr "'"
+
+#. TRANSLATORS: %s after `Cannot' is a function name, e.g. `Cannot open'.
+#. Directly translating this to another language will not work, first because
+#. %s itself is not translated.
+#. Translate it as `%s: Function %s failed'.
+#, c-format
+msgid "%s: Cannot %s"
+msgstr "%s: Помилка у функції %s"
+
+#. TRANSLATORS: %s after `Cannot' is a function name, e.g. `Cannot open'.
+#. Directly translating this to another language will not work, first because
+#. %s itself is not translated.
+#. Translate it as `%s: Function %s failed'.
+#, c-format
+msgid "%s: Warning: Cannot %s"
+msgstr "%s: Попередження: Помилка у функції %s"
+
+#, c-format
+msgid "Removing leading `%s' from member names"
+msgstr "Видалення початкового префіксу `%s' з назв файлів"
+
+#, c-format
+msgid "Removing leading `%s' from hard link targets"
+msgstr "Видалення початкового префіксу `%s' з назви цілі жорсткого посилання"
+
+msgid "Substituting `.' for empty member name"
+msgstr "Підстановка `.' замість пустої назви файлу"
+
+msgid "Substituting `.' for empty hard link target"
+msgstr "Підстановка `.' замість пустої назви цілі жорсткого посилання"
+
+msgid "This does not look like a tar archive"
+msgstr "Це не схоже на архів tar"
+
+msgid "(pipe)"
+msgstr "(канал)"
+
+msgid "Invalid value for record_size"
+msgstr "Недійсне значення record_size"
+
+msgid "No archive name given"
+msgstr "Не вказано назви архіву"
+
+#, c-format
+msgid "Archive is compressed. Use %s option"
+msgstr "Архів стиснений. Використовуйте опцію %s"
+
+msgid "At beginning of tape, quitting now"
+msgstr "На початку стрічки, закінчуємо"
+
+msgid "Too many errors, quitting"
+msgstr "Надто багато помилок, виконання перервано"
+
+#, c-format
+msgid "Unaligned block (%lu byte) in archive"
+msgid_plural "Unaligned block (%lu bytes) in archive"
+msgstr[0] "Невірне вирівнювання блоку (%lu байт) в архіві"
+msgstr[1] "Невірне вирівнювання блоку (%lu байти) в архіві"
+msgstr[2] "Невірне вирівнювання блоку (%lu байтів) в архіві"
+
+msgid "rmtlseek not stopped at a record boundary"
+msgstr "rmtlseek не зупинився на межі запису"
+
+msgid "Error is not recoverable: exiting now"
+msgstr ""
+
+#, c-format
+msgid "A lone zero block at %s"
+msgstr "Самотній блок нулів, зсув %s"
+
+msgid "Skipping to next header"
+msgstr "Перехід до наступного заголовка"
+
+msgid "Unexpected EOF in archive"
+msgstr "Неочікуваний кінець файла в архіві"
+
+#. TRANSLATORS: %s is type of the value (gid_t, uid_t,
+#. etc.)
+#, c-format
+msgid "Blanks in header where numeric %s value expected"
+msgstr "Пробіли у заголовку замість очікуваного числового значення типу %s"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive octal value %.*s is out of %s range; assuming two's complement"
+msgstr ""
+"Вісімкове значення %.*s знаходиться поза межами діапазону типу %s; "
+"вважається, що це є двійкове доповнення"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive octal value %.*s is out of %s range"
+msgstr "Вісімкове значення %.*s знаходиться поза межами діапазону типу %s"
+
+# FIXME: base=64?
+msgid "Archive contains obsolescent base-64 headers"
+msgstr "Архів містить застарілі заголовки з основою 64"
+
+#, c-format
+msgid "Archive signed base-64 string %s is out of %s range"
+msgstr ""
+"Архів містить знакову строку з основою 64 %s, що є поза допустимими межами "
+"типу %s"
+
+# FIXME: base-256
+#, c-format
+msgid "Archive base-256 value is out of %s range"
+msgstr "Значення з основою 256 поза допустимими межами типу %s"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive contains %.*s where numeric %s value expected"
+msgstr "Знайдено %.*s замість числового значення типу %s"
+
+#. TRANSLATORS: Second %s is type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive value %s is out of %s range %s..%s"
+msgstr "Значення %s поза допустимими межами типу %s %s..%s"
+
+msgid "Unexpected long name header"
+msgstr "Неочікуваний кінець файла у заголовку довгої назви"
+
+#, c-format
+msgid " link to %s\n"
+msgstr "посилання до %s\n"
+
+#, c-format
+msgid " unknown file type %s\n"
+msgstr "невідомий тип файла %s\n"
+
+#, c-format
+msgid "--Long Link--\n"
+msgstr "--Довге посилання--\n"
+
+#, c-format
+msgid "--Long Name--\n"
+msgstr "--Довга назва--\n"
+
+#, c-format
+msgid "--Volume Header--\n"
+msgstr "--Заголовок тому--\n"
+
+#, c-format
+msgid "--Continued at byte %s--\n"
+msgstr "--Продовжується з байту %s--\n"
+
+msgid "child process"
+msgstr "процес-нащадок"
+
+msgid "interprocess channel"
+msgstr "канал між процесами"
+
+#, fuzzy, c-format
+msgid "%s: invalid sparse archive member"
+msgstr "%s: Невірний формат архіву"
+
+#, c-format
+msgid "%s: numeric overflow in sparse archive member"
+msgstr ""
+
+#, c-format
+msgid "%s: malformed sparse archive member"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Child died with signal %d"
+msgstr "Команда завершилася з кодом %d\n"
+
+#, c-format
+msgid "Child returned status %d"
+msgstr ""
+
+#, fuzzy
+msgid "Cannot close"
+msgstr "не вдається виконати lseek"
+
+#, fuzzy
+msgid "Cannot dup"
+msgstr "%s: Помилка у функції %s"
+
+msgid "tar (child)"
+msgstr ""
+
+msgid "tar (grandchild)"
+msgstr ""
+
+msgid "Exiting with failure status due to previous errors"
+msgstr "Невдачне завершення внаслідок попередніх помилок"
+
+msgid "Malformed extended header: missing length"
+msgstr "Невірно сформований розширений заголовок: бракує довжини"
+
+msgid "Extended header length is out of allowed range"
+msgstr "Довжина розширеного заголовку є за межами діапазону"
+
+#, c-format
+msgid "Extended header length %*s is out of range"
+msgstr "Довжина розширеного заголовку %*s є за межами діапазону"
+
+msgid "Malformed extended header: missing blank after length"
+msgstr ""
+"Невірно сформований розширений заголовок: відсутній пробіл після довжини"
+
+msgid "Malformed extended header: missing equal sign"
+msgstr "Невірно сформований розширений заголовок: відсутній знак рівняння"
+
+msgid "Malformed extended header: missing newline"
+msgstr "Невірно сформований розширений заголовок: відсутній знак нового рядка"
+
+#, c-format
+msgid "Ignoring unknown extended header keyword `%s'"
+msgstr "Невідоме ключове слово `%s' іґнорується"
+
+#. TRANSLATORS: The first %s is the pax extended header keyword
+#. (atime, gid, etc.).
+#, c-format
+msgid "Extended header %s=%s is out of range %s..%s"
+msgstr ""
+"Значення розширеного заголовку %s=%s лежить поза допустимими межами типу %s.."
+"%s"
+
+#, c-format
+msgid "Malformed extended header: invalid %s=%s"
+msgstr "Невірно сформований розширений заголовок: недійсна змінна %s=%s"
+
+#, c-format
+msgid "Malformed extended header: excess %s=%s"
+msgstr "Невірно сформований розширений заголовок: зайвий %s=%s"
+
+#, c-format
+msgid "Malformed extended header: invalid %s: unexpected delimiter %c"
+msgstr ""
+"Невірно сформований розширений заголовок: змінна %s: неочікуваний розділювач "
+"%c"
+
+#, c-format
+msgid "Malformed extended header: invalid %s: odd number of values"
+msgstr "Невірно сформований розширений заголовок %s: непарна кількість значень"

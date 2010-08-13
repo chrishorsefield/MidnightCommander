@@ -1,0 +1,299 @@
+# Hungarian translation of the GNU tar.
+# Copyright (C) 2002, 2006, 2007, 2008, 2009, 2010 Free Software Foundation, Inc.
+# This file is distributed under the same license as the tar package.
+#
+# Gábor István <stive@mezobereny.hu>, 2002.
+# Gabor Kelemen <kelemeng@gnome.hu>, 2006, 2007, 2008, 2009, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: tar 1.22.91\n"
+"Report-Msgid-Bugs-To: http://www.midnight-commander.org/\n"
+"POT-Creation-Date: 2010-08-06 14:07+0400\n"
+"PO-Revision-Date: 2010-02-23 20:01+0100\n"
+"Last-Translator: Gabor Kelemen <kelemeng@gnome.hu>\n"
+"Language-Team: Hungarian <translation-team-hu@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
+
+#, c-format
+msgid "invalid argument %s for %s"
+msgstr "a(z) „%s” argumentum érvénytelen a következőhöz: %s"
+
+#, c-format
+msgid "ambiguous argument %s for %s"
+msgstr "a(z) „%s” argumentum nem egyértelmű a következőhöz: „%s”"
+
+#, c-format
+msgid "Valid arguments are:"
+msgstr "Az érvényes argumentumok a következők:"
+
+msgid "write error"
+msgstr "íráshiba"
+
+msgid "memory exhausted"
+msgstr "elfogyott a memória"
+
+#. TRANSLATORS:
+#. Get translations for open and closing quotation marks.
+#.
+#. The message catalog should translate "`" to a left
+#. quotation mark suitable for the locale, and similarly for
+#. "'".  If the catalog has no translation,
+#. locale_quoting_style quotes `like this', and
+#. clocale_quoting_style quotes "like this".
+#.
+#. For example, an American English Unicode locale should
+#. translate "`" to U+201C (LEFT DOUBLE QUOTATION MARK), and
+#. should translate "'" to U+201D (RIGHT DOUBLE QUOTATION
+#. MARK).  A British English Unicode locale should instead
+#. translate these to U+2018 (LEFT SINGLE QUOTATION MARK)
+#. and U+2019 (RIGHT SINGLE QUOTATION MARK), respectively.
+#.
+#. If you don't know what to put here, please see
+#. <http://en.wikipedia.org/wiki/Quotation_mark#Glyphs>
+#. and use glyphs suitable for your language.
+msgid "`"
+msgstr "”"
+
+msgid "'"
+msgstr "”"
+
+#. TRANSLATORS: %s after `Cannot' is a function name, e.g. `Cannot open'.
+#. Directly translating this to another language will not work, first because
+#. %s itself is not translated.
+#. Translate it as `%s: Function %s failed'.
+#, c-format
+msgid "%s: Cannot %s"
+msgstr "%s: a következő függvény meghiúsult: %s"
+
+#. TRANSLATORS: %s after `Cannot' is a function name, e.g. `Cannot open'.
+#. Directly translating this to another language will not work, first because
+#. %s itself is not translated.
+#. Translate it as `%s: Function %s failed'.
+#, c-format
+msgid "%s: Warning: Cannot %s"
+msgstr "%s: Figyelmeztetés: a következő függvény meghiúsult: %s"
+
+#, c-format
+msgid "Removing leading `%s' from member names"
+msgstr "A kezdő „%s” eltávolítása a nevek elejéről"
+
+#, c-format
+msgid "Removing leading `%s' from hard link targets"
+msgstr "A kezdő „%s” eltávolítása a közvetlen linkek céljaiból"
+
+msgid "Substituting `.' for empty member name"
+msgstr "Egy . helyettesítése az üres tagnév helyett"
+
+msgid "Substituting `.' for empty hard link target"
+msgstr "Egy . helyettesítése a közvetlen link üres célja helyett"
+
+msgid "This does not look like a tar archive"
+msgstr "Ez nem úgy néz ki, mint egy tar archívum"
+
+msgid "(pipe)"
+msgstr "(cső)"
+
+msgid "Invalid value for record_size"
+msgstr "A record_size értéke érvénytelen"
+
+msgid "No archive name given"
+msgstr "Nem adott meg archívumnevet"
+
+#, c-format
+msgid "Archive is compressed. Use %s option"
+msgstr "Az archívum tömörített. Használja a(z) %s kapcsolót."
+
+msgid "At beginning of tape, quitting now"
+msgstr "A szalag eleje, most kilépek"
+
+msgid "Too many errors, quitting"
+msgstr "Túl sok hiba, kilépek"
+
+#, c-format
+msgid "Unaligned block (%lu byte) in archive"
+msgid_plural "Unaligned block (%lu bytes) in archive"
+msgstr[0] "Kitöltetlen blokk (%lu bájt) az archívumban"
+msgstr[1] "Kitöltetlen blokk (%lu bájt) az archívumban"
+
+msgid "rmtlseek not stopped at a record boundary"
+msgstr "az rmtlseek nem állt meg egy rekord határán"
+
+msgid "Error is not recoverable: exiting now"
+msgstr ""
+
+#, c-format
+msgid "A lone zero block at %s"
+msgstr "Egy magányos nulla blokk %s helyen"
+
+msgid "Skipping to next header"
+msgstr "Ugrás a következő fejlécre"
+
+msgid "Unexpected EOF in archive"
+msgstr "Váratlan fájlvége jel az archívumban"
+
+#. TRANSLATORS: %s is type of the value (gid_t, uid_t,
+#. etc.)
+#, c-format
+msgid "Blanks in header where numeric %s value expected"
+msgstr ""
+"Üres értékek a fejléc azon részében, ahol a program a(z) %s számértéket várta"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive octal value %.*s is out of %s range; assuming two's complement"
+msgstr ""
+"Az archívum %.*s oktális értéke túllépi a(z) %s tartományt, a program "
+"feltételezi, hogy kettes komplemens"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive octal value %.*s is out of %s range"
+msgstr "Az archívum %.*s oktális értéke túllépi a(z) %s tartományt"
+
+msgid "Archive contains obsolescent base-64 headers"
+msgstr "Az archívum elavulófélben levő base-64-es fejléceket tartalmaz"
+
+#, c-format
+msgid "Archive signed base-64 string %s is out of %s range"
+msgstr ""
+"Az archívum előjeles base-64 karakterlánca (%s) túllépi a(z) %s tartományt"
+
+#, c-format
+msgid "Archive base-256 value is out of %s range"
+msgstr "Az archívum base-256-os értéke túllépi a(z) %s tartományt"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive contains %.*s where numeric %s value expected"
+msgstr "Az archívum %.*s értéket tartalmaz, ahol a program %s számértéket vár"
+
+#. TRANSLATORS: Second %s is type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive value %s is out of %s range %s..%s"
+msgstr "Az archívum %s értéke túllépi a(z) %s %s..%s tartományát"
+
+msgid "Unexpected long name header"
+msgstr "Váratlan hosszú névfejléc"
+
+#, c-format
+msgid " link to %s\n"
+msgstr " link a következőre: %s\n"
+
+#, c-format
+msgid " unknown file type %s\n"
+msgstr " ismeretlen fájltípus: %s\n"
+
+#, c-format
+msgid "--Long Link--\n"
+msgstr "--Hosszú link--\n"
+
+#, c-format
+msgid "--Long Name--\n"
+msgstr "--Hosszú név--\n"
+
+#, c-format
+msgid "--Volume Header--\n"
+msgstr "--Kötetfejléc--\n"
+
+#, c-format
+msgid "--Continued at byte %s--\n"
+msgstr "--Folytatva %s bájttól--\n"
+
+msgid "child process"
+msgstr "gyermekfolyamat"
+
+msgid "interprocess channel"
+msgstr "folyamatközi csatorna"
+
+#, fuzzy, c-format
+msgid "%s: invalid sparse archive member"
+msgstr "%s: Érvénytelen archívumformátum"
+
+#, c-format
+msgid "%s: numeric overflow in sparse archive member"
+msgstr ""
+
+#, c-format
+msgid "%s: malformed sparse archive member"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Child died with signal %d"
+msgstr "A parancs meghiúsult a következő állapottal: %d\n"
+
+#, c-format
+msgid "Child returned status %d"
+msgstr ""
+
+#, fuzzy
+msgid "Cannot close"
+msgstr "Nem lehet pozicionálni"
+
+#, fuzzy
+msgid "Cannot dup"
+msgstr "%s: a következő függvény meghiúsult: %s"
+
+msgid "tar (child)"
+msgstr ""
+
+msgid "tar (grandchild)"
+msgstr ""
+
+msgid "Exiting with failure status due to previous errors"
+msgstr "Kilépés hibaállapottal a korábbi hibák miatt"
+
+msgid "Malformed extended header: missing length"
+msgstr "Rosszul formázott kiterjesztett fejléc: a hossz hiányzik"
+
+msgid "Extended header length is out of allowed range"
+msgstr "A kiterjesztett fejléc hossza kívül esik a tartományon"
+
+#, c-format
+msgid "Extended header length %*s is out of range"
+msgstr "A kiterjesztett fejléc %*s hossza kívül esik a tartományon"
+
+msgid "Malformed extended header: missing blank after length"
+msgstr ""
+"Rosszul formázott kiterjesztett fejléc: a hossz után hiányzik egy üres hely "
+"karakter"
+
+msgid "Malformed extended header: missing equal sign"
+msgstr "A kiterjesztett fejléc hibás: egy egyenlőségjel hiányzik"
+
+msgid "Malformed extended header: missing newline"
+msgstr "Rosszul formázott kiterjesztett fejléc: az újsor hiányzik"
+
+#, c-format
+msgid "Ignoring unknown extended header keyword `%s'"
+msgstr ""
+"A(z) „%s” ismeretlen kiterjesztett fejléc kulcsszó figyelmen kívül marad"
+
+#. TRANSLATORS: The first %s is the pax extended header keyword
+#. (atime, gid, etc.).
+#, c-format
+msgid "Extended header %s=%s is out of range %s..%s"
+msgstr "A kiterjesztett fejléc %s=%s értéke túllépi a(z) %s..%s tartományát"
+
+#, c-format
+msgid "Malformed extended header: invalid %s=%s"
+msgstr "Rosszul formázott kiterjesztett fejléc: érvénytelen %s=%s"
+
+#, c-format
+msgid "Malformed extended header: excess %s=%s"
+msgstr "Rosszul formázott kiterjesztett fejléc: többlet %s=%s"
+
+#, c-format
+msgid "Malformed extended header: invalid %s: unexpected delimiter %c"
+msgstr ""
+"Rosszul formázott kiterjesztett fejléc: érvénytelen %s: váratlan határoló (%"
+"c)"
+
+#, c-format
+msgid "Malformed extended header: invalid %s: odd number of values"
+msgstr ""
+"Rosszul formázott kiterjesztett fejléc: érvénytelen %s: az értékek száma "
+"páratlan"

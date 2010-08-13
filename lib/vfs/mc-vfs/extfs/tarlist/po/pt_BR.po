@@ -1,0 +1,292 @@
+# tar: translation to Brazilian Portuguese (pt_BR)
+# Copyright (C) 1995, 2002 Free Software Foundation, Inc.
+# Alexandre Folle de Menezes <afmenez@terra.com.br>, 2002.
+# based on the previous translation to pt_BR (1.13.17) by
+# João Luiz Barbosa Silva <jl@conectiva.com.br>, 1997.
+# based on the translation to Portuguese (pt) by
+# António José Coutinho <ajc@di.uminho.pt>, 1996.
+# Marcus Moreira de Souza <marcusms@frb.br>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: tar 1.13.25\n"
+"Report-Msgid-Bugs-To: http://www.midnight-commander.org/\n"
+"POT-Creation-Date: 2010-08-06 14:07+0400\n"
+"PO-Revision-Date: 2002-11-27 20:30-0300\n"
+"Last-Translator: Alexandre Folle de Menezes <afmenez@terra.com.br>\n"
+"Language-Team: Brazilian Portuguese <ldp-br@bazar.conectiva.com.br>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8-bit\n"
+
+#, c-format
+msgid "invalid argument %s for %s"
+msgstr "argumento %s inválido para %s"
+
+#, c-format
+msgid "ambiguous argument %s for %s"
+msgstr "argumento %s ambíguo para %s"
+
+#, c-format
+msgid "Valid arguments are:"
+msgstr "Os argumentos válidos são:"
+
+msgid "write error"
+msgstr ""
+
+msgid "memory exhausted"
+msgstr "memória esgotada"
+
+#. TRANSLATORS:
+#. Get translations for open and closing quotation marks.
+#.
+#. The message catalog should translate "`" to a left
+#. quotation mark suitable for the locale, and similarly for
+#. "'".  If the catalog has no translation,
+#. locale_quoting_style quotes `like this', and
+#. clocale_quoting_style quotes "like this".
+#.
+#. For example, an American English Unicode locale should
+#. translate "`" to U+201C (LEFT DOUBLE QUOTATION MARK), and
+#. should translate "'" to U+201D (RIGHT DOUBLE QUOTATION
+#. MARK).  A British English Unicode locale should instead
+#. translate these to U+2018 (LEFT SINGLE QUOTATION MARK)
+#. and U+2019 (RIGHT SINGLE QUOTATION MARK), respectively.
+#.
+#. If you don't know what to put here, please see
+#. <http://en.wikipedia.org/wiki/Quotation_mark#Glyphs>
+#. and use glyphs suitable for your language.
+msgid "`"
+msgstr "`"
+
+msgid "'"
+msgstr "'"
+
+#. TRANSLATORS: %s after `Cannot' is a function name, e.g. `Cannot open'.
+#. Directly translating this to another language will not work, first because
+#. %s itself is not translated.
+#. Translate it as `%s: Function %s failed'.
+#, c-format
+msgid "%s: Cannot %s"
+msgstr "%s: Não é possível %s"
+
+#. TRANSLATORS: %s after `Cannot' is a function name, e.g. `Cannot open'.
+#. Directly translating this to another language will not work, first because
+#. %s itself is not translated.
+#. Translate it as `%s: Function %s failed'.
+#, c-format
+msgid "%s: Warning: Cannot %s"
+msgstr "%s: Atenção: Não é possível %s"
+
+#, fuzzy, c-format
+msgid "Removing leading `%s' from member names"
+msgstr "Removendo `%.*s' inicial dos nomes dos membros"
+
+#, fuzzy, c-format
+msgid "Removing leading `%s' from hard link targets"
+msgstr "Removendo `%.*s' inicial dos nomes dos membros"
+
+#, fuzzy
+msgid "Substituting `.' for empty member name"
+msgstr "Removendo `%.*s' inicial dos nomes dos membros"
+
+msgid "Substituting `.' for empty hard link target"
+msgstr ""
+
+msgid "This does not look like a tar archive"
+msgstr "Este não parece ser um arquivo-tar"
+
+msgid "(pipe)"
+msgstr "(pipe)"
+
+msgid "Invalid value for record_size"
+msgstr "Valor inválido para \"record_size\""
+
+msgid "No archive name given"
+msgstr "Nome de arquivo-tar não informado"
+
+#, c-format
+msgid "Archive is compressed. Use %s option"
+msgstr ""
+
+msgid "At beginning of tape, quitting now"
+msgstr "No princípio da fita, encerrando agora"
+
+msgid "Too many errors, quitting"
+msgstr "Muitos erros, encerrando"
+
+#, fuzzy, c-format
+msgid "Unaligned block (%lu byte) in archive"
+msgid_plural "Unaligned block (%lu bytes) in archive"
+msgstr[0] "Bloco desalinhado (%lu bytes) no arquivo-tar"
+msgstr[1] "Bloco desalinhado (%lu bytes) no arquivo-tar"
+
+msgid "rmtlseek not stopped at a record boundary"
+msgstr ""
+
+msgid "Error is not recoverable: exiting now"
+msgstr "Erro não é recuperável: saindo agora"
+
+#, c-format
+msgid "A lone zero block at %s"
+msgstr ""
+
+msgid "Skipping to next header"
+msgstr "Pulando para o próximo cabeçalho"
+
+msgid "Unexpected EOF in archive"
+msgstr "Final-de-arquivo inesperado no arquivo-tar"
+
+#. TRANSLATORS: %s is type of the value (gid_t, uid_t,
+#. etc.)
+#, c-format
+msgid "Blanks in header where numeric %s value expected"
+msgstr "Espaço em branco no cabeçalho onde valor numérico `%s' era esperado"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive octal value %.*s is out of %s range; assuming two's complement"
+msgstr ""
+"O valor octal do arquivo-tar %.*s está fora de faixa %s; assumindo "
+"complemento de dois"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive octal value %.*s is out of %s range"
+msgstr "O valor octal do arquivo-tar %.*s está fora de faixa %s"
+
+msgid "Archive contains obsolescent base-64 headers"
+msgstr "o arquivo-tar contém cabeçalhos base-64 obsoletos"
+
+#, c-format
+msgid "Archive signed base-64 string %s is out of %s range"
+msgstr "A string base-64 assinada do arquivo-tar %s está fora de faixa %s"
+
+#, c-format
+msgid "Archive base-256 value is out of %s range"
+msgstr "O valor base-256 de arquivo-tar está fora da faixa %s"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive contains %.*s where numeric %s value expected"
+msgstr "O arquivo-tar contém %.*s onde valor numérico %s era esperado"
+
+#. TRANSLATORS: Second %s is type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive value %s is out of %s range %s..%s"
+msgstr "o valor do arquivo-tar %s está fora da faixa %s: %s..%s"
+
+#, fuzzy
+msgid "Unexpected long name header"
+msgstr "Fim de arquivo inesperado nos nomes cifrados"
+
+#, c-format
+msgid " link to %s\n"
+msgstr " link para %s\n"
+
+#, c-format
+msgid " unknown file type %s\n"
+msgstr " tipo de arquivo \"%s\" desconhecido\n"
+
+#, c-format
+msgid "--Long Link--\n"
+msgstr ""
+
+#, c-format
+msgid "--Long Name--\n"
+msgstr ""
+
+#, c-format
+msgid "--Volume Header--\n"
+msgstr "--Cabeçalho de volume--\n"
+
+#, c-format
+msgid "--Continued at byte %s--\n"
+msgstr "--Continua no byte %s--\n"
+
+msgid "child process"
+msgstr "processo filho"
+
+msgid "interprocess channel"
+msgstr "canal interprocesso"
+
+#, fuzzy, c-format
+msgid "%s: invalid sparse archive member"
+msgstr "%s: Grupo inválido"
+
+#, c-format
+msgid "%s: numeric overflow in sparse archive member"
+msgstr ""
+
+#, c-format
+msgid "%s: malformed sparse archive member"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Child died with signal %d"
+msgstr "O processo filho morreu com o sinal %d"
+
+#, c-format
+msgid "Child returned status %d"
+msgstr "O processo filho retornou estado %d"
+
+#, fuzzy
+msgid "Cannot close"
+msgstr "Impossível fechar"
+
+msgid "Cannot dup"
+msgstr "Impossível duplicar (\"dup\")"
+
+msgid "tar (child)"
+msgstr "tar (filho)"
+
+msgid "tar (grandchild)"
+msgstr "tar (neto)"
+
+msgid "Exiting with failure status due to previous errors"
+msgstr ""
+
+msgid "Malformed extended header: missing length"
+msgstr ""
+
+msgid "Extended header length is out of allowed range"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Extended header length %*s is out of range"
+msgstr "A string base-64 assinada do arquivo-tar %s está fora de faixa %s"
+
+msgid "Malformed extended header: missing blank after length"
+msgstr ""
+
+msgid "Malformed extended header: missing equal sign"
+msgstr ""
+
+msgid "Malformed extended header: missing newline"
+msgstr ""
+
+#, c-format
+msgid "Ignoring unknown extended header keyword `%s'"
+msgstr ""
+
+#. TRANSLATORS: The first %s is the pax extended header keyword
+#. (atime, gid, etc.).
+#, fuzzy, c-format
+msgid "Extended header %s=%s is out of range %s..%s"
+msgstr "o valor do arquivo-tar %s está fora da faixa %s: %s..%s"
+
+#, c-format
+msgid "Malformed extended header: invalid %s=%s"
+msgstr ""
+
+#, c-format
+msgid "Malformed extended header: excess %s=%s"
+msgstr ""
+
+#, c-format
+msgid "Malformed extended header: invalid %s: unexpected delimiter %c"
+msgstr ""
+
+#, c-format
+msgid "Malformed extended header: invalid %s: odd number of values"
+msgstr ""

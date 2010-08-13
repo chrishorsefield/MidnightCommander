@@ -1,0 +1,290 @@
+# Norwegian messages for GNU tar.  (bokmål dialect)
+# Copyright (C) 1996 Free Software Foundation, Inc.
+# Karl Anders Øygard <Karl.Oygard@fou.telenor.no>, 1996.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: GNU tar 1.12\n"
+"Report-Msgid-Bugs-To: http://www.midnight-commander.org/\n"
+"POT-Creation-Date: 2010-08-06 14:07+0400\n"
+"PO-Revision-Date: 1997-06-05 19:39 MET DST\n"
+"Last-Translator: Espen Skjelnes Johnsen <espejohn@sn.no>\n"
+"Language-Team: Norwegian-bokmål <no@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8-bit\n"
+
+#, fuzzy, c-format
+msgid "invalid argument %s for %s"
+msgstr "Ugyldig datoformat «%s»"
+
+#, fuzzy, c-format
+msgid "ambiguous argument %s for %s"
+msgstr "Tvetydig mønster «%s»"
+
+#, c-format
+msgid "Valid arguments are:"
+msgstr ""
+
+msgid "write error"
+msgstr ""
+
+#, fuzzy
+msgid "memory exhausted"
+msgstr "Minne oppbrukt"
+
+#. TRANSLATORS:
+#. Get translations for open and closing quotation marks.
+#.
+#. The message catalog should translate "`" to a left
+#. quotation mark suitable for the locale, and similarly for
+#. "'".  If the catalog has no translation,
+#. locale_quoting_style quotes `like this', and
+#. clocale_quoting_style quotes "like this".
+#.
+#. For example, an American English Unicode locale should
+#. translate "`" to U+201C (LEFT DOUBLE QUOTATION MARK), and
+#. should translate "'" to U+201D (RIGHT DOUBLE QUOTATION
+#. MARK).  A British English Unicode locale should instead
+#. translate these to U+2018 (LEFT SINGLE QUOTATION MARK)
+#. and U+2019 (RIGHT SINGLE QUOTATION MARK), respectively.
+#.
+#. If you don't know what to put here, please see
+#. <http://en.wikipedia.org/wiki/Quotation_mark#Glyphs>
+#. and use glyphs suitable for your language.
+msgid "`"
+msgstr ""
+
+msgid "'"
+msgstr ""
+
+#. TRANSLATORS: %s after `Cannot' is a function name, e.g. `Cannot open'.
+#. Directly translating this to another language will not work, first because
+#. %s itself is not translated.
+#. Translate it as `%s: Function %s failed'.
+#, fuzzy, c-format
+msgid "%s: Cannot %s"
+msgstr "Kan ikke eksekvere %s"
+
+#. TRANSLATORS: %s after `Cannot' is a function name, e.g. `Cannot open'.
+#. Directly translating this to another language will not work, first because
+#. %s itself is not translated.
+#. Translate it as `%s: Function %s failed'.
+#, c-format
+msgid "%s: Warning: Cannot %s"
+msgstr ""
+
+#
+#, fuzzy, c-format
+msgid "Removing leading `%s' from member names"
+msgstr "Tar bort ledende «/» fra absolutte linker"
+
+#
+#, fuzzy, c-format
+msgid "Removing leading `%s' from hard link targets"
+msgstr "Tar bort ledende «/» fra absolutte linker"
+
+msgid "Substituting `.' for empty member name"
+msgstr ""
+
+msgid "Substituting `.' for empty hard link target"
+msgstr ""
+
+msgid "This does not look like a tar archive"
+msgstr "Dette ser ikke ut som et tar-arkiv"
+
+msgid "(pipe)"
+msgstr ""
+
+msgid "Invalid value for record_size"
+msgstr "Ugyldig verdi for record_size"
+
+#
+msgid "No archive name given"
+msgstr "Arkivnavn er ikke oppgitt"
+
+#, c-format
+msgid "Archive is compressed. Use %s option"
+msgstr ""
+
+msgid "At beginning of tape, quitting now"
+msgstr "På begynnelsen av båndet, avslutter nå"
+
+msgid "Too many errors, quitting"
+msgstr "For mange feil, avslutter"
+
+#, c-format
+msgid "Unaligned block (%lu byte) in archive"
+msgid_plural "Unaligned block (%lu bytes) in archive"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "rmtlseek not stopped at a record boundary"
+msgstr ""
+
+msgid "Error is not recoverable: exiting now"
+msgstr ""
+
+#, c-format
+msgid "A lone zero block at %s"
+msgstr ""
+
+msgid "Skipping to next header"
+msgstr "Hopper til neste startseksjon"
+
+msgid "Unexpected EOF in archive"
+msgstr "Uventet filslutt i arkivet"
+
+#. TRANSLATORS: %s is type of the value (gid_t, uid_t,
+#. etc.)
+#, c-format
+msgid "Blanks in header where numeric %s value expected"
+msgstr ""
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive octal value %.*s is out of %s range; assuming two's complement"
+msgstr ""
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive octal value %.*s is out of %s range"
+msgstr ""
+
+msgid "Archive contains obsolescent base-64 headers"
+msgstr ""
+
+#, c-format
+msgid "Archive signed base-64 string %s is out of %s range"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Archive base-256 value is out of %s range"
+msgstr "Dette volumet kommer ute av rekkefølge"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive contains %.*s where numeric %s value expected"
+msgstr ""
+
+#. TRANSLATORS: Second %s is type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive value %s is out of %s range %s..%s"
+msgstr ""
+
+#, fuzzy
+msgid "Unexpected long name header"
+msgstr "Uventet filslutt i arkivfilen"
+
+#, c-format
+msgid " link to %s\n"
+msgstr " link til %s\n"
+
+#, fuzzy, c-format
+msgid " unknown file type %s\n"
+msgstr " ukjent filtype «%c»\n"
+
+#, c-format
+msgid "--Long Link--\n"
+msgstr ""
+
+#, c-format
+msgid "--Long Name--\n"
+msgstr ""
+
+#, c-format
+msgid "--Volume Header--\n"
+msgstr "--Volumhode--\n"
+
+#, fuzzy, c-format
+msgid "--Continued at byte %s--\n"
+msgstr "--Fortsetter ved byte %ld--\n"
+
+msgid "child process"
+msgstr ""
+
+msgid "interprocess channel"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: invalid sparse archive member"
+msgstr "Ugyldig datoformat «%s»"
+
+#, c-format
+msgid "%s: numeric overflow in sparse archive member"
+msgstr ""
+
+#, c-format
+msgid "%s: malformed sparse archive member"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Child died with signal %d"
+msgstr "Barnet døde med signal %d%s"
+
+#, c-format
+msgid "Child returned status %d"
+msgstr "Barnet avsluttet med status %d"
+
+#, fuzzy
+msgid "Cannot close"
+msgstr "Kan ikke lukke fil #%d"
+
+#, fuzzy
+msgid "Cannot dup"
+msgstr "Kan ikke lage ny prosess med «fork»"
+
+#
+msgid "tar (child)"
+msgstr "tar (barn)"
+
+msgid "tar (grandchild)"
+msgstr "tar (barnebarn)"
+
+msgid "Exiting with failure status due to previous errors"
+msgstr ""
+
+msgid "Malformed extended header: missing length"
+msgstr ""
+
+msgid "Extended header length is out of allowed range"
+msgstr ""
+
+#, c-format
+msgid "Extended header length %*s is out of range"
+msgstr ""
+
+msgid "Malformed extended header: missing blank after length"
+msgstr ""
+
+msgid "Malformed extended header: missing equal sign"
+msgstr ""
+
+msgid "Malformed extended header: missing newline"
+msgstr ""
+
+#, c-format
+msgid "Ignoring unknown extended header keyword `%s'"
+msgstr ""
+
+#. TRANSLATORS: The first %s is the pax extended header keyword
+#. (atime, gid, etc.).
+#, c-format
+msgid "Extended header %s=%s is out of range %s..%s"
+msgstr ""
+
+#, c-format
+msgid "Malformed extended header: invalid %s=%s"
+msgstr ""
+
+#, c-format
+msgid "Malformed extended header: excess %s=%s"
+msgstr ""
+
+#, c-format
+msgid "Malformed extended header: invalid %s: unexpected delimiter %c"
+msgstr ""
+
+#, c-format
+msgid "Malformed extended header: invalid %s: odd number of values"
+msgstr ""

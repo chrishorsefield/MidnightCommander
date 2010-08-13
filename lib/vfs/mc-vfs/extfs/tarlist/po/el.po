@@ -1,0 +1,294 @@
+# Greek translation of tar
+# Copyright (C) 2003, 2004 Free Software Foundation, Inc.
+# Μπαλάσκας Ευάγγελος (Balaskas Euaggelos) <ebalaskas@cs.teiath.gr>, 2004.
+# Simos Xenitellis <simos74@gmx.net>, 2004.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: tar 1.13.25 \n"
+"Report-Msgid-Bugs-To: http://www.midnight-commander.org/\n"
+"POT-Creation-Date: 2010-08-06 14:07+0400\n"
+"PO-Revision-Date: 2004-03-08 14:44+0200\n"
+"Last-Translator: Μπαλάσκας Ευάγγελος (Balaskas Euaggelos) <ebalaskas@cs."
+"teiath.gr>\n"
+"Language-Team: Greek <nls@tux.hellug.gr>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.0.2\n"
+
+#, c-format
+msgid "invalid argument %s for %s"
+msgstr "άκυρο όρισμα %s για %s"
+
+#, c-format
+msgid "ambiguous argument %s for %s"
+msgstr "αμφιλεγόμενο όρισμα %s για %s"
+
+#, c-format
+msgid "Valid arguments are:"
+msgstr "Έγκυρα ορίσματα είναι:"
+
+msgid "write error"
+msgstr ""
+
+msgid "memory exhausted"
+msgstr "η μνήμη εξαντλήθηκε"
+
+#. TRANSLATORS:
+#. Get translations for open and closing quotation marks.
+#.
+#. The message catalog should translate "`" to a left
+#. quotation mark suitable for the locale, and similarly for
+#. "'".  If the catalog has no translation,
+#. locale_quoting_style quotes `like this', and
+#. clocale_quoting_style quotes "like this".
+#.
+#. For example, an American English Unicode locale should
+#. translate "`" to U+201C (LEFT DOUBLE QUOTATION MARK), and
+#. should translate "'" to U+201D (RIGHT DOUBLE QUOTATION
+#. MARK).  A British English Unicode locale should instead
+#. translate these to U+2018 (LEFT SINGLE QUOTATION MARK)
+#. and U+2019 (RIGHT SINGLE QUOTATION MARK), respectively.
+#.
+#. If you don't know what to put here, please see
+#. <http://en.wikipedia.org/wiki/Quotation_mark#Glyphs>
+#. and use glyphs suitable for your language.
+msgid "`"
+msgstr "`"
+
+msgid "'"
+msgstr "'"
+
+#. TRANSLATORS: %s after `Cannot' is a function name, e.g. `Cannot open'.
+#. Directly translating this to another language will not work, first because
+#. %s itself is not translated.
+#. Translate it as `%s: Function %s failed'.
+#, c-format
+msgid "%s: Cannot %s"
+msgstr "%s: Δεν είναι δυνατή %s"
+
+#. TRANSLATORS: %s after `Cannot' is a function name, e.g. `Cannot open'.
+#. Directly translating this to another language will not work, first because
+#. %s itself is not translated.
+#. Translate it as `%s: Function %s failed'.
+#, c-format
+msgid "%s: Warning: Cannot %s"
+msgstr "%s: Προειδοποίηση: Δεν είναι δυνατή %s"
+
+#, fuzzy, c-format
+msgid "Removing leading `%s' from member names"
+msgstr "Απομακρύνονται τα αρχικά `%.*s' από τα ονόματα των μελών"
+
+#, fuzzy, c-format
+msgid "Removing leading `%s' from hard link targets"
+msgstr "Απομακρύνονται τα αρχικά `%.*s' από τα ονόματα των μελών"
+
+#, fuzzy
+msgid "Substituting `.' for empty member name"
+msgstr "Απομακρύνονται τα αρχικά `%.*s' από τα ονόματα των μελών"
+
+msgid "Substituting `.' for empty hard link target"
+msgstr ""
+
+msgid "This does not look like a tar archive"
+msgstr "Αυτό δεν φαίνεται ως αρχειοθήκη tar"
+
+msgid "(pipe)"
+msgstr "(σωλήνωση)"
+
+msgid "Invalid value for record_size"
+msgstr "Άκυρη τιμή για record_size"
+
+msgid "No archive name given"
+msgstr "Δεν δόθηκε όνομα αρχειοθήκης"
+
+#, c-format
+msgid "Archive is compressed. Use %s option"
+msgstr ""
+
+msgid "At beginning of tape, quitting now"
+msgstr "Στην αρχή της ταινίας, τερματισμός τώρα"
+
+msgid "Too many errors, quitting"
+msgstr "Πάρα πολλά σφάλματα, τερματισμός"
+
+#, fuzzy, c-format
+msgid "Unaligned block (%lu byte) in archive"
+msgid_plural "Unaligned block (%lu bytes) in archive"
+msgstr[0] "Μη ευθυγραμμισμένο μπλοκ (%lu byte) στην αρχειοθήκη"
+msgstr[1] "Μη ευθυγραμμισμένο μπλοκ (%lu byte) στην αρχειοθήκη"
+
+msgid "rmtlseek not stopped at a record boundary"
+msgstr ""
+
+msgid "Error is not recoverable: exiting now"
+msgstr "Το σφάλμα δεν είναι επανορθώσιμο: τερματισμός τώρα"
+
+#, c-format
+msgid "A lone zero block at %s"
+msgstr ""
+
+msgid "Skipping to next header"
+msgstr "Παραλείποντας στην επόμενη επικεφαλίδα"
+
+msgid "Unexpected EOF in archive"
+msgstr "Μη αναμενόμενο EOF (Τέλος Αρχείου) στην αρχειοθήκη"
+
+#. TRANSLATORS: %s is type of the value (gid_t, uid_t,
+#. etc.)
+#, c-format
+msgid "Blanks in header where numeric %s value expected"
+msgstr "Κενά στην επικεφαλίδα ενώ αναμενόταν αριθμητική τιμή %s"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive octal value %.*s is out of %s range; assuming two's complement"
+msgstr ""
+"Αρχειοθήκη οκταδικής τιμής %.*s είναι εκτός του %s εύρους; Υποθέτω δυαδικά "
+"συμπληρώματα"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive octal value %.*s is out of %s range"
+msgstr "Αρχειοθήκη οκταδικής τιμής %.*s είναι εκτός του %s εύρους"
+
+msgid "Archive contains obsolescent base-64 headers"
+msgstr "Η αρχειοθήκη περιέχει απαρχαιωμένες επικεφαλίδες κωδικοποίησης base64"
+
+#, c-format
+msgid "Archive signed base-64 string %s is out of %s range"
+msgstr ""
+"Η αρχειοθήκη είναι υπογεγραμμένη με αλφαριθμητικά base-64 %s είναι εκτός του "
+"%s εύρους"
+
+#, c-format
+msgid "Archive base-256 value is out of %s range"
+msgstr "Η αρχειοθήκη με base-256 τιμές είναι εκτός του %s εύρους"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive contains %.*s where numeric %s value expected"
+msgstr "Η αρχειοθήκη περιέχει %.*s όπου αριθμητικές %s τιμές αναμένονται"
+
+#. TRANSLATORS: Second %s is type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive value %s is out of %s range %s..%s"
+msgstr "Η τιμή της αρχειοθήκης %s είναι εκτός του %s εύρους %s..%s"
+
+#, fuzzy
+msgid "Unexpected long name header"
+msgstr "Μη αναμενόμενο EOF (Τέλος Αρχείου) στα κατακερματισμένα ονόματα"
+
+#, c-format
+msgid " link to %s\n"
+msgstr " σύνδεσμος σε %s\n"
+
+#, c-format
+msgid " unknown file type %s\n"
+msgstr " άγνωστος τύπος αρχείου %s\n"
+
+#, c-format
+msgid "--Long Link--\n"
+msgstr ""
+
+#, c-format
+msgid "--Long Name--\n"
+msgstr ""
+
+#, c-format
+msgid "--Volume Header--\n"
+msgstr "--Επικεφαλίδα Τόμου--\n"
+
+#, c-format
+msgid "--Continued at byte %s--\n"
+msgstr "--Συνέχιση στο byte %s--\n"
+
+msgid "child process"
+msgstr "θυγατρική διεργασία"
+
+msgid "interprocess channel"
+msgstr "κανάλι μεταξύ διεργασιών"
+
+#, fuzzy, c-format
+msgid "%s: invalid sparse archive member"
+msgstr "%s: Άκυρη ομάδα"
+
+#, c-format
+msgid "%s: numeric overflow in sparse archive member"
+msgstr ""
+
+#, c-format
+msgid "%s: malformed sparse archive member"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Child died with signal %d"
+msgstr "Η θυγατρική διεργασία τερματίστηκε με το σήμα %d"
+
+#, c-format
+msgid "Child returned status %d"
+msgstr "Η θυγατρική διεργασία επέστρεψε την κατάσταση %d"
+
+#, fuzzy
+msgid "Cannot close"
+msgstr "Δεν είναι δυνατό το κλείσιμο"
+
+msgid "Cannot dup"
+msgstr "Δεν είναι δυνατή η εκτέλεση της dup"
+
+msgid "tar (child)"
+msgstr "tar (θυγατρική)"
+
+msgid "tar (grandchild)"
+msgstr "tar (εγγόνι)"
+
+msgid "Exiting with failure status due to previous errors"
+msgstr ""
+
+msgid "Malformed extended header: missing length"
+msgstr ""
+
+msgid "Extended header length is out of allowed range"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Extended header length %*s is out of range"
+msgstr ""
+"Η αρχειοθήκη είναι υπογεγραμμένη με αλφαριθμητικά base-64 %s είναι εκτός του "
+"%s εύρους"
+
+msgid "Malformed extended header: missing blank after length"
+msgstr ""
+
+msgid "Malformed extended header: missing equal sign"
+msgstr ""
+
+msgid "Malformed extended header: missing newline"
+msgstr ""
+
+#, c-format
+msgid "Ignoring unknown extended header keyword `%s'"
+msgstr ""
+
+#. TRANSLATORS: The first %s is the pax extended header keyword
+#. (atime, gid, etc.).
+#, fuzzy, c-format
+msgid "Extended header %s=%s is out of range %s..%s"
+msgstr "Η τιμή της αρχειοθήκης %s είναι εκτός του %s εύρους %s..%s"
+
+#, c-format
+msgid "Malformed extended header: invalid %s=%s"
+msgstr ""
+
+#, c-format
+msgid "Malformed extended header: excess %s=%s"
+msgstr ""
+
+#, c-format
+msgid "Malformed extended header: invalid %s: unexpected delimiter %c"
+msgstr ""
+
+#, c-format
+msgid "Malformed extended header: invalid %s: odd number of values"
+msgstr ""

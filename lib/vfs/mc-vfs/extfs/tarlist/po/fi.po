@@ -1,0 +1,300 @@
+# Finnish messages for GNU tar.
+# Copyright © 2002, 2003, 2004, 2006 Free Software Foundation, Inc.
+# Lauri Nurmi <lanurmi@iki.fi>, 2002-2006.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: tar 1.16.1\n"
+"Report-Msgid-Bugs-To: http://www.midnight-commander.org/\n"
+"POT-Creation-Date: 2010-08-06 14:07+0400\n"
+"PO-Revision-Date: 2006-12-09 18:58+0200\n"
+"Last-Translator: Lauri Nurmi <lanurmi@iki.fi>\n"
+"Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#, c-format
+msgid "invalid argument %s for %s"
+msgstr "argumentti %s on virheellinen %s:lle"
+
+#, c-format
+msgid "ambiguous argument %s for %s"
+msgstr "argumentti %s on moniselitteinen %s:lle"
+
+#, c-format
+msgid "Valid arguments are:"
+msgstr "Kelvolliset argumentit ovat:"
+
+msgid "write error"
+msgstr ""
+
+msgid "memory exhausted"
+msgstr "muisti lopussa"
+
+#. TRANSLATORS:
+#. Get translations for open and closing quotation marks.
+#.
+#. The message catalog should translate "`" to a left
+#. quotation mark suitable for the locale, and similarly for
+#. "'".  If the catalog has no translation,
+#. locale_quoting_style quotes `like this', and
+#. clocale_quoting_style quotes "like this".
+#.
+#. For example, an American English Unicode locale should
+#. translate "`" to U+201C (LEFT DOUBLE QUOTATION MARK), and
+#. should translate "'" to U+201D (RIGHT DOUBLE QUOTATION
+#. MARK).  A British English Unicode locale should instead
+#. translate these to U+2018 (LEFT SINGLE QUOTATION MARK)
+#. and U+2019 (RIGHT SINGLE QUOTATION MARK), respectively.
+#.
+#. If you don't know what to put here, please see
+#. <http://en.wikipedia.org/wiki/Quotation_mark#Glyphs>
+#. and use glyphs suitable for your language.
+msgid "`"
+msgstr "”"
+
+msgid "'"
+msgstr "”"
+
+# Onpa taas NIIN hyvin lokalisoitavissa tämä.
+# Käytännössä saattaa esiintyä esim. muodossa 
+# "tar: Cannot mkfifo: File exists"
+#. TRANSLATORS: %s after `Cannot' is a function name, e.g. `Cannot open'.
+#. Directly translating this to another language will not work, first because
+#. %s itself is not translated.
+#. Translate it as `%s: Function %s failed'.
+#, c-format
+msgid "%s: Cannot %s"
+msgstr "%s: Toimintoa %s ei voi suorittaa"
+
+#. TRANSLATORS: %s after `Cannot' is a function name, e.g. `Cannot open'.
+#. Directly translating this to another language will not work, first because
+#. %s itself is not translated.
+#. Translate it as `%s: Function %s failed'.
+#, c-format
+msgid "%s: Warning: Cannot %s"
+msgstr "%s: Varoitus: Toimintoa %s ei voi suorittaa"
+
+#, c-format
+msgid "Removing leading `%s' from member names"
+msgstr "Poistetaan ”%s” tiedostonimien alusta"
+
+#, c-format
+msgid "Removing leading `%s' from hard link targets"
+msgstr "Poistetaan ”%s” kovien linkkien kohdenimien alusta"
+
+msgid "Substituting `.' for empty member name"
+msgstr "Korvataan ”.” tyhjällä tiedostonimellä"
+
+msgid "Substituting `.' for empty hard link target"
+msgstr "Korvataan ”.” tyhjällä kovan linkin kohteella"
+
+msgid "This does not look like a tar archive"
+msgstr "Tämä ei näytä tar-arkistolta"
+
+msgid "(pipe)"
+msgstr "(putki)"
+
+msgid "Invalid value for record_size"
+msgstr "Virheellinen arvo kentälle record_size"
+
+msgid "No archive name given"
+msgstr "Arkiston nimeä ei ole annettu"
+
+#, c-format
+msgid "Archive is compressed. Use %s option"
+msgstr "Arkisto on tiivistetty. Käytä valitsinta %s"
+
+msgid "At beginning of tape, quitting now"
+msgstr "Nauhan alussa, lopetetaan"
+
+msgid "Too many errors, quitting"
+msgstr "Liian monta virhettä, lopetetaan"
+
+#, c-format
+msgid "Unaligned block (%lu byte) in archive"
+msgid_plural "Unaligned block (%lu bytes) in archive"
+msgstr[0] "Kohdistamaton lohko (%lu tavu) arkistossa"
+msgstr[1] "Kohdistamaton lohko (%lu tavua) arkistossa"
+
+msgid "rmtlseek not stopped at a record boundary"
+msgstr "rmtlseek ei pysähtynyt tietueen rajalle"
+
+msgid "Error is not recoverable: exiting now"
+msgstr "Virhe ei ole korjattavissa, poistutaan nyt"
+
+#, c-format
+msgid "A lone zero block at %s"
+msgstr "Yksinäinen nollalohko kohdassa %s"
+
+msgid "Skipping to next header"
+msgstr "Siirrytään seuraavaan otsakkeeseen"
+
+msgid "Unexpected EOF in archive"
+msgstr "Odottamaton tiedoston loppu arkistossa"
+
+#. TRANSLATORS: %s is type of the value (gid_t, uid_t,
+#. etc.)
+#, c-format
+msgid "Blanks in header where numeric %s value expected"
+msgstr "Tyhjiä merkkejä otsakkeessa, odotettiin numeerista %s-arvoa"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive octal value %.*s is out of %s range; assuming two's complement"
+msgstr ""
+"Arkiston oktaaliarvo %.*s on sallitun %s-välin ulkopuolella, oletetaan "
+"kahden komplementiksi"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive octal value %.*s is out of %s range"
+msgstr "Arkiston oktaaliarvo %.*s on sallitun %s-välin ulkopuolella"
+
+msgid "Archive contains obsolescent base-64 headers"
+msgstr "Arkisto sisältää käytöstä poistuvia base-64-otsakkeita"
+
+#, c-format
+msgid "Archive signed base-64 string %s is out of %s range"
+msgstr ""
+"Arkiston etumerkillinen base-64-merkkijono %s on sallitun %s-välin "
+"ulkopuolella"
+
+#, c-format
+msgid "Archive base-256 value is out of %s range"
+msgstr "Arkiston base-256-arvo on sallitun %s-välin ulkopuolella"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive contains %.*s where numeric %s value expected"
+msgstr "Arkisto sisältää merkkijonon %.*s, odotettiin numeerista %s-arvoa"
+
+#. TRANSLATORS: Second %s is type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive value %s is out of %s range %s..%s"
+msgstr "Arkiston arvo %s on sallitun %s-välin %s..%s ulkopuolella"
+
+#, fuzzy
+msgid "Unexpected long name header"
+msgstr "Odottamaton tiedoston loppu sovitetuissa nimissä"
+
+#, c-format
+msgid " link to %s\n"
+msgstr " linkki tiedostoon %s\n"
+
+#, c-format
+msgid " unknown file type %s\n"
+msgstr " tuntematon tiedostotyyppi %s\n"
+
+#, c-format
+msgid "--Long Link--\n"
+msgstr "--Pitkä linkki--\n"
+
+#, c-format
+msgid "--Long Name--\n"
+msgstr "--Pitkä nimi--\n"
+
+#, c-format
+msgid "--Volume Header--\n"
+msgstr "--Arkiston osan otsake--\n"
+
+#, c-format
+msgid "--Continued at byte %s--\n"
+msgstr "--Jatkuu tavusta %s--\n"
+
+msgid "child process"
+msgstr "lapsiprosessi"
+
+msgid "interprocess channel"
+msgstr "prosessienvälinen kanava"
+
+#, fuzzy, c-format
+msgid "%s: invalid sparse archive member"
+msgstr "%s: Virheellinen arkistomuoto"
+
+#, c-format
+msgid "%s: numeric overflow in sparse archive member"
+msgstr ""
+
+#, c-format
+msgid "%s: malformed sparse archive member"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Child died with signal %d"
+msgstr "Lapsiprosessi kuoli signaalilla %d"
+
+#, c-format
+msgid "Child returned status %d"
+msgstr "Lapsiprosessi palautti tilan %d"
+
+msgid "Cannot close"
+msgstr "Ei voi sulkea"
+
+msgid "Cannot dup"
+msgstr "Tiedostokahvaa ei voi kopioida"
+
+msgid "tar (child)"
+msgstr "tar (lapsiprosessi)"
+
+msgid "tar (grandchild)"
+msgstr "tar (lapsenlapsiprosessi)"
+
+msgid "Exiting with failure status due to previous errors"
+msgstr ""
+
+#, fuzzy
+msgid "Malformed extended header: missing length"
+msgstr "Väärän muotoinen laajennettu otsake: yhtäsuuruusmerkki puuttuu"
+
+#, fuzzy
+msgid "Extended header length is out of allowed range"
+msgstr ""
+"Arkiston etumerkillinen base-64-merkkijono %s on sallitun %s-välin "
+"ulkopuolella"
+
+#, fuzzy, c-format
+msgid "Extended header length %*s is out of range"
+msgstr ""
+"Arkiston etumerkillinen base-64-merkkijono %s on sallitun %s-välin "
+"ulkopuolella"
+
+#, fuzzy
+msgid "Malformed extended header: missing blank after length"
+msgstr "Väärän muotoinen laajennettu otsake: tyhje puuttuu pituuden jälkeen"
+
+msgid "Malformed extended header: missing equal sign"
+msgstr "Väärän muotoinen laajennettu otsake: yhtäsuuruusmerkki puuttuu"
+
+#, fuzzy
+msgid "Malformed extended header: missing newline"
+msgstr "Väärän muotoinen laajennettu otsake: yhtäsuuruusmerkki puuttuu"
+
+#, c-format
+msgid "Ignoring unknown extended header keyword `%s'"
+msgstr ""
+
+#. TRANSLATORS: The first %s is the pax extended header keyword
+#. (atime, gid, etc.).
+#, c-format
+msgid "Extended header %s=%s is out of range %s..%s"
+msgstr "Laajennettu otsake %s=%s on sallitun välin %s..%s ulkopuolella"
+
+#, c-format
+msgid "Malformed extended header: invalid %s=%s"
+msgstr "Väärän muotoinen laajennettu otsake: virheellinen %s=%s"
+
+#, fuzzy, c-format
+msgid "Malformed extended header: excess %s=%s"
+msgstr "Väärän muotoinen laajennettu otsake: yhtäsuuruusmerkki puuttuu"
+
+#, c-format
+msgid "Malformed extended header: invalid %s: unexpected delimiter %c"
+msgstr ""
+"Väärän muotoinen laajennettu otsake: virheellinen %s: odottamaton rajoitin %c"
+
+#, fuzzy, c-format
+msgid "Malformed extended header: invalid %s: odd number of values"
+msgstr "Väärän muotoinen laajennettu otsake: yhtäsuuruusmerkki puuttuu"

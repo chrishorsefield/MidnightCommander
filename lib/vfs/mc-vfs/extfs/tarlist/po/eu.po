@@ -1,0 +1,292 @@
+# Translation of tar messages to Basque.
+# Copyright (C) 2006 Free Software Foundation, Inc.
+# Mikel Olasagasti <hey_neken@mundurat.net>, 2006.
+# Piarres Beobide <pi@beobide.net>, 2006.
+# This file is distributed under the same license as the tar package.
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: tar-1.15.91-eu\n"
+"Report-Msgid-Bugs-To: http://www.midnight-commander.org/\n"
+"POT-Creation-Date: 2010-08-06 14:07+0400\n"
+"PO-Revision-Date: 2006-12-13 19:52+0100\n"
+"Last-Translator: Mikel Olasagasti <hey_neken@mundurat.net>\n"
+"Language-Team: Basque <translation-team-eu@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#, c-format
+msgid "invalid argument %s for %s"
+msgstr "%s argumentu baliogabea %s-rentzat"
+
+#, c-format
+msgid "ambiguous argument %s for %s"
+msgstr "%s argumentu anbiguoa %s-rentzat"
+
+#, c-format
+msgid "Valid arguments are:"
+msgstr "Argumentu erabilgarriak:"
+
+msgid "write error"
+msgstr ""
+
+msgid "memory exhausted"
+msgstr "memoria askieza"
+
+#. TRANSLATORS:
+#. Get translations for open and closing quotation marks.
+#.
+#. The message catalog should translate "`" to a left
+#. quotation mark suitable for the locale, and similarly for
+#. "'".  If the catalog has no translation,
+#. locale_quoting_style quotes `like this', and
+#. clocale_quoting_style quotes "like this".
+#.
+#. For example, an American English Unicode locale should
+#. translate "`" to U+201C (LEFT DOUBLE QUOTATION MARK), and
+#. should translate "'" to U+201D (RIGHT DOUBLE QUOTATION
+#. MARK).  A British English Unicode locale should instead
+#. translate these to U+2018 (LEFT SINGLE QUOTATION MARK)
+#. and U+2019 (RIGHT SINGLE QUOTATION MARK), respectively.
+#.
+#. If you don't know what to put here, please see
+#. <http://en.wikipedia.org/wiki/Quotation_mark#Glyphs>
+#. and use glyphs suitable for your language.
+msgid "`"
+msgstr "`"
+
+msgid "'"
+msgstr "'"
+
+#. TRANSLATORS: %s after `Cannot' is a function name, e.g. `Cannot open'.
+#. Directly translating this to another language will not work, first because
+#. %s itself is not translated.
+#. Translate it as `%s: Function %s failed'.
+#, c-format
+msgid "%s: Cannot %s"
+msgstr "%s: Ezin da %s"
+
+#. TRANSLATORS: %s after `Cannot' is a function name, e.g. `Cannot open'.
+#. Directly translating this to another language will not work, first because
+#. %s itself is not translated.
+#. Translate it as `%s: Function %s failed'.
+#, c-format
+msgid "%s: Warning: Cannot %s"
+msgstr "%s: Oharra: Ezin da %s"
+
+#, c-format
+msgid "Removing leading `%s' from member names"
+msgstr ""
+
+#, c-format
+msgid "Removing leading `%s' from hard link targets"
+msgstr ""
+
+msgid "Substituting `.' for empty member name"
+msgstr "`.' partaide izen hutsagatik aldatzen"
+
+msgid "Substituting `.' for empty hard link target"
+msgstr "`.' lotura gogor helburu hutsegatik aldatzen"
+
+msgid "This does not look like a tar archive"
+msgstr "Honek ez dirudi tar pakete bat"
+
+msgid "(pipe)"
+msgstr "(tutua)"
+
+msgid "Invalid value for record_size"
+msgstr "balio baliogabea record_size-rentzat"
+
+msgid "No archive name given"
+msgstr "Ez da fitxategi izenik eman"
+
+#, c-format
+msgid "Archive is compressed. Use %s option"
+msgstr "Fitxategia konprimiturik dago. %s aukera erabili"
+
+msgid "At beginning of tape, quitting now"
+msgstr "Zintaren hasieran, uzten"
+
+msgid "Too many errors, quitting"
+msgstr "Errore gehiegi, uzten"
+
+#, c-format
+msgid "Unaligned block (%lu byte) in archive"
+msgid_plural "Unaligned block (%lu bytes) in archive"
+msgstr[0] "Alineatu gabeko blokea (byte %lu) paketean"
+msgstr[1] "Alineatu gabeko blokea (%lu byte) paketean"
+
+msgid "rmtlseek not stopped at a record boundary"
+msgstr ""
+
+msgid "Error is not recoverable: exiting now"
+msgstr "Errorea berreskura ezina da: irteten"
+
+#, c-format
+msgid "A lone zero block at %s"
+msgstr ""
+
+msgid "Skipping to next header"
+msgstr "Hurrengoa burura salto egiten"
+
+msgid "Unexpected EOF in archive"
+msgstr "Esperogabeko Fitxategi amaiaera paketean"
+
+#. TRANSLATORS: %s is type of the value (gid_t, uid_t,
+#. etc.)
+#, c-format
+msgid "Blanks in header where numeric %s value expected"
+msgstr "Zuriunea buruan zenbakizko %s balioa espero zenean"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive octal value %.*s is out of %s range; assuming two's complement"
+msgstr ""
+"Paketearen zortzitar %.*s balioa %s eremutik kanpo dago, biak bateragarriak "
+"direla pentsatuko da"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive octal value %.*s is out of %s range"
+msgstr "Paketearen zortzitar %.*s balioa %s eremutik kanpo dago"
+
+msgid "Archive contains obsolescent base-64 headers"
+msgstr "Paketeak zaharkituriko base-64 buruak ditu"
+
+#, c-format
+msgid "Archive signed base-64 string %s is out of %s range"
+msgstr ""
+
+#, c-format
+msgid "Archive base-256 value is out of %s range"
+msgstr ""
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive contains %.*s where numeric %s value expected"
+msgstr "Paketeak %.*s du zenbakizko %s balioa espero zenean "
+
+#. TRANSLATORS: Second %s is type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive value %s is out of %s range %s..%s"
+msgstr "Pakete %s balioa %s eremutik kanpo dago %s.. %s"
+
+msgid "Unexpected long name header"
+msgstr "Buru izen luzera esperogabea"
+
+#, c-format
+msgid " link to %s\n"
+msgstr " %s-ra lotu\n"
+
+#, c-format
+msgid " unknown file type %s\n"
+msgstr " %s fitxategi mota ezezaguna\n"
+
+#, c-format
+msgid "--Long Link--\n"
+msgstr "--Lotura Luzea--\n"
+
+#, c-format
+msgid "--Long Name--\n"
+msgstr "--Izen Luzea--\n"
+
+#, c-format
+msgid "--Volume Header--\n"
+msgstr "--Bolumen Burua--\n"
+
+#, c-format
+msgid "--Continued at byte %s--\n"
+msgstr "--%s byte-an jarraitzen du--\n"
+
+msgid "child process"
+msgstr "ume prozesua"
+
+msgid "interprocess channel"
+msgstr "prozesu arteko kanala"
+
+#, fuzzy, c-format
+msgid "%s: invalid sparse archive member"
+msgstr "%s: Pakete formatu baliogabea"
+
+#, c-format
+msgid "%s: numeric overflow in sparse archive member"
+msgstr ""
+
+#, c-format
+msgid "%s: malformed sparse archive member"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Child died with signal %d"
+msgstr "Komandoa %d egoerarekin huts egin du\n"
+
+#, c-format
+msgid "Child returned status %d"
+msgstr ""
+
+#, fuzzy
+msgid "Cannot close"
+msgstr "%s: Ezin da %s-ra seek egin"
+
+#, fuzzy
+msgid "Cannot dup"
+msgstr "%s: Ezin da %s"
+
+msgid "tar (child)"
+msgstr ""
+
+msgid "tar (grandchild)"
+msgstr ""
+
+msgid "Exiting with failure status due to previous errors"
+msgstr ""
+
+msgid "Malformed extended header: missing length"
+msgstr "Gaizki eratutako buru luzapena: luzera falta da"
+
+#, fuzzy
+msgid "Extended header length is out of allowed range"
+msgstr " %*s buru luzapen luzera eremuz kanpo dago"
+
+#, c-format
+msgid "Extended header length %*s is out of range"
+msgstr " %*s buru luzapen luzera eremuz kanpo dago"
+
+msgid "Malformed extended header: missing blank after length"
+msgstr "Gaizki eratutako buru luzapena: luzera ondoren hutsunea falta da"
+
+msgid "Malformed extended header: missing equal sign"
+msgstr "Gaizki eratutako buru luzapena: berdin ikurra falta da"
+
+msgid "Malformed extended header: missing newline"
+msgstr "Gaizki eratutako buru luzapena: lerro berria falta da"
+
+#, c-format
+msgid "Ignoring unknown extended header keyword `%s'"
+msgstr "alde batetara utzi gako buru luzapen ezezaguna `%s'"
+
+#. TRANSLATORS: The first %s is the pax extended header keyword
+#. (atime, gid, etc.).
+#, c-format
+msgid "Extended header %s=%s is out of range %s..%s"
+msgstr "buru luzapena %s=%s eremuz kanpo dago %s..%s"
+
+#, c-format
+msgid "Malformed extended header: invalid %s=%s"
+msgstr "Gaizki eratutako buru luzapena: baliogabea %s=%s"
+
+#, c-format
+msgid "Malformed extended header: excess %s=%s"
+msgstr "Gaizki eratutako buru luzapena: gehiegizkoa %s=%s"
+
+#, c-format
+msgid "Malformed extended header: invalid %s: unexpected delimiter %c"
+msgstr ""
+"Gaizki eratutako buru luzapena: %s baliogabea: %c mugatzaile esperodageba"
+
+#, c-format
+msgid "Malformed extended header: invalid %s: odd number of values"
+msgstr "Gaizki eratutako buru luzapena: %s baliogabea: balio kopuru bitxia"

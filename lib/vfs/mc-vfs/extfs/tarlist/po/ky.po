@@ -1,0 +1,300 @@
+# Translation of tar-1.18 messages to Kirghiz/Kyrgyz
+# Copyright (C) 2007 Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# Azilet Beishenaliev <aziletb@gmail.com>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: tar 1.18\n"
+"Report-Msgid-Bugs-To: http://www.midnight-commander.org/\n"
+"POT-Creation-Date: 2010-08-06 14:07+0400\n"
+"PO-Revision-Date: 2007-09-01 01:06+0100\n"
+"Last-Translator: Azilet Beishenaliev <aziletb@gmail.com>\n"
+"Language-Team: Kirghiz <i18n-team-ky-kyrgyz@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Poedit-Language: Kyrgyz\n"
+"X-Poedit-Country: KYRGYZSTAN\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#, c-format
+msgid "invalid argument %s for %s"
+msgstr "%2$s үчүн %1$s аргументи жарабайт"
+
+#, c-format
+msgid "ambiguous argument %s for %s"
+msgstr "%2$s үчүн %1$s аргументи так эмес"
+
+#, c-format
+msgid "Valid arguments are:"
+msgstr "Жарактуу аргументтер мындай:"
+
+msgid "write error"
+msgstr ""
+
+# Памятты эмне дейбиз яя? ;)
+msgid "memory exhausted"
+msgstr "Память жетпей калды"
+
+#. TRANSLATORS:
+#. Get translations for open and closing quotation marks.
+#.
+#. The message catalog should translate "`" to a left
+#. quotation mark suitable for the locale, and similarly for
+#. "'".  If the catalog has no translation,
+#. locale_quoting_style quotes `like this', and
+#. clocale_quoting_style quotes "like this".
+#.
+#. For example, an American English Unicode locale should
+#. translate "`" to U+201C (LEFT DOUBLE QUOTATION MARK), and
+#. should translate "'" to U+201D (RIGHT DOUBLE QUOTATION
+#. MARK).  A British English Unicode locale should instead
+#. translate these to U+2018 (LEFT SINGLE QUOTATION MARK)
+#. and U+2019 (RIGHT SINGLE QUOTATION MARK), respectively.
+#.
+#. If you don't know what to put here, please see
+#. <http://en.wikipedia.org/wiki/Quotation_mark#Glyphs>
+#. and use glyphs suitable for your language.
+msgid "`"
+msgstr "„"
+
+msgid "'"
+msgstr "“"
+
+#. TRANSLATORS: %s after `Cannot' is a function name, e.g. `Cannot open'.
+#. Directly translating this to another language will not work, first because
+#. %s itself is not translated.
+#. Translate it as `%s: Function %s failed'.
+#, c-format
+msgid "%s: Cannot %s"
+msgstr "%s: %s кылалбайтат"
+
+#. TRANSLATORS: %s after `Cannot' is a function name, e.g. `Cannot open'.
+#. Directly translating this to another language will not work, first because
+#. %s itself is not translated.
+#. Translate it as `%s: Function %s failed'.
+#, c-format
+msgid "%s: Warning: Cannot %s"
+msgstr "%s: Эскертүү: %s кылалбайтат"
+
+#, c-format
+msgid "Removing leading `%s' from member names"
+msgstr "Мүчө аттарынын башындагы `%s' алынып салды"
+
+#, c-format
+msgid "Removing leading `%s' from hard link targets"
+msgstr "Түз шилтемелер көрсөтүп турган файлдардын башындагы `%s' алынып салды"
+
+msgid "Substituting `.' for empty member name"
+msgstr "Бош болгон мүчө аттын ордуна `.' коюлду"
+
+msgid "Substituting `.' for empty hard link target"
+msgstr "Түз шилтеме көрсөтүп турган бош файлдын ордуна `.' коюлду"
+
+msgid "This does not look like a tar archive"
+msgstr "Бул tar-архиви эмес окшойт"
+
+msgid "(pipe)"
+msgstr "(канал)"
+
+msgid "Invalid value for record_size"
+msgstr "record_size мааниси жарабайт"
+
+msgid "No archive name given"
+msgstr "Архивдин аты берилген жок"
+
+#, c-format
+msgid "Archive is compressed. Use %s option"
+msgstr "Архив кысыштырылган абалда. %s опциясын колдонгула"
+
+msgid "At beginning of tape, quitting now"
+msgstr "Лентанын башына келди, иш бүттү"
+
+msgid "Too many errors, quitting"
+msgstr "Өтө көп ката бар, иш бүттү"
+
+#, c-format
+msgid "Unaligned block (%lu byte) in archive"
+msgid_plural "Unaligned block (%lu bytes) in archive"
+msgstr[0] "Архивде түз жайлашпаган блок бар (%lu байт)"
+
+msgid "rmtlseek not stopped at a record boundary"
+msgstr "rmtlseek маалыматтын чегинде токтогон жок"
+
+msgid "Error is not recoverable: exiting now"
+msgstr "Оңолбогон ката: иш бүттү "
+
+#, c-format
+msgid "A lone zero block at %s"
+msgstr "%s болгон жерде нөлдүк блок бар"
+
+msgid "Skipping to next header"
+msgstr "Эмики башкы-маалыматка өттү"
+
+msgid "Unexpected EOF in archive"
+msgstr "Архивде күтүлбөгөн жерде файлдын соңу бар"
+
+#. TRANSLATORS: %s is type of the value (gid_t, uid_t,
+#. etc.)
+#, c-format
+msgid "Blanks in header where numeric %s value expected"
+msgstr "Башкы-маалыматта сан түрүндө %s болотурган жерде бош жерлер бар"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive octal value %.*s is out of %s range; assuming two's complement"
+msgstr ""
+"Архивдин сегиздик системадагы мааниси болгон %.*s %s диапазонунун тышында; "
+"экилик системадагы терси алынды"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive octal value %.*s is out of %s range"
+msgstr ""
+"Архивдин сегиздик системадагы мааниси болгон %.*s %s диапазонунун тышында"
+
+msgid "Archive contains obsolescent base-64 headers"
+msgstr "Архивде эски түрдөгү base-64 башкы-маалымат бар"
+
+#, c-format
+msgid "Archive signed base-64 string %s is out of %s range"
+msgstr "Архивдеги base-64 түрүндөгү %s сөзү %s диапазонунун тышында"
+
+#, c-format
+msgid "Archive base-256 value is out of %s range"
+msgstr "Архивдин base-256 мааниси %s диапазонунун тышында"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive contains %.*s where numeric %s value expected"
+msgstr ""
+"Архивдин ичинде %.*s бар, алардын ордунда сан түрүндө %s болушу керек эле"
+
+#. TRANSLATORS: Second %s is type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive value %s is out of %s range %s..%s"
+msgstr "Архивдин %s мааниси %s түрүнүн %s..%s диапазонунда эмес"
+
+msgid "Unexpected long name header"
+msgstr "Башкы-маалымат узун"
+
+#, c-format
+msgid " link to %s\n"
+msgstr " %s жака шилтеме\n"
+
+#, c-format
+msgid " unknown file type %s\n"
+msgstr " белгисиз файл түрү %s\n"
+
+#, c-format
+msgid "--Long Link--\n"
+msgstr "--Узун шилтеме--\n"
+
+#, c-format
+msgid "--Long Name--\n"
+msgstr "--Узун ат--\n"
+
+#, c-format
+msgid "--Volume Header--\n"
+msgstr "--Томдун башкы-маалыматы--\n"
+
+#, c-format
+msgid "--Continued at byte %s--\n"
+msgstr "--%s-байттан баштап уланды--\n"
+
+#  орусчада дочерный процесс, бир процесс өз ичинен жаңы бир
+#  процесс жаратканда ошол чайлд процесс болот. Биз эмне дейбиз?
+#  Мен туулган процесс дейм.
+msgid "child process"
+msgstr "туулган процесс"
+
+msgid "interprocess channel"
+msgstr "процесс-аралык канал"
+
+#, fuzzy, c-format
+msgid "%s: invalid sparse archive member"
+msgstr "%s: Архивдин форматы жарабайт"
+
+#, c-format
+msgid "%s: numeric overflow in sparse archive member"
+msgstr ""
+
+#, c-format
+msgid "%s: malformed sparse archive member"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Child died with signal %d"
+msgstr "Команда %d статусу менен аткарылбай калды\n"
+
+#, c-format
+msgid "Child returned status %d"
+msgstr ""
+
+#, fuzzy
+msgid "Cannot close"
+msgstr "издөө болбой калды"
+
+#, fuzzy
+msgid "Cannot dup"
+msgstr "%s: %s кылалбайтат"
+
+msgid "tar (child)"
+msgstr ""
+
+msgid "tar (grandchild)"
+msgstr ""
+
+msgid "Exiting with failure status due to previous errors"
+msgstr ""
+
+msgid "Malformed extended header: missing length"
+msgstr "Кеңейтилген башкы-маалымат бузук: узундук жок"
+
+msgid "Extended header length is out of allowed range"
+msgstr "Кеңейтилген башкы-маалыматтын узундугу жарактуу маанилердин тышында"
+
+#, c-format
+msgid "Extended header length %*s is out of range"
+msgstr "Кеңейтилген башкы-маалыматтын узундугу - %*s - диапазондун тышында"
+
+msgid "Malformed extended header: missing blank after length"
+msgstr ""
+"Кеңейтилген башкы-маалымат бузук: узундуктан кийин бош жер (пробел) жок"
+
+msgid "Malformed extended header: missing equal sign"
+msgstr "Кеңейтилген башкы-маалымат бузук: барабар символу жок"
+
+# newline эмне болот?
+msgid "Malformed extended header: missing newline"
+msgstr "Кеңейтилген башкы-маалымат бузук: жаңы сап жок"
+
+#, c-format
+msgid "Ignoring unknown extended header keyword `%s'"
+msgstr "Кеңейтилген башкы-маалыматта белгисиз `%s' сөзү каралбайт"
+
+#. TRANSLATORS: The first %s is the pax extended header keyword
+#. (atime, gid, etc.).
+#, c-format
+msgid "Extended header %s=%s is out of range %s..%s"
+msgstr "%s=%s түрүндөгү кеңейтилген башкы-маалымат %s..%s диапазондун тышында"
+
+#, c-format
+msgid "Malformed extended header: invalid %s=%s"
+msgstr "Кеңейтилген башкы-маалымат бузук: %s=%s туура эмес"
+
+#, c-format
+msgid "Malformed extended header: excess %s=%s"
+msgstr "Кеңейтилген башкы-маалымат бузук: %s=%s ашыкча көп"
+
+#, c-format
+msgid "Malformed extended header: invalid %s: unexpected delimiter %c"
+msgstr ""
+"Кеңейтилген башкы-маалымат бузук: туура эмес %s: күтүлбөгөн жерде бул - %c - "
+"бөлүүчү символ бар"
+
+#, c-format
+msgid "Malformed extended header: invalid %s: odd number of values"
+msgstr "Кеңейтилген башкы-маалымат бузук: туура эмес %s: так санда маани бар"

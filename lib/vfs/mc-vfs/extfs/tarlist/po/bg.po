@@ -1,0 +1,298 @@
+# Bulgarian translation of GNU tar
+# Message catalog for coreutils
+# Copyright (C) 2006 Free Software Foundation, Inc.
+# This file is distributed under the same license as GNU tar.
+# Anton Zinoviev <zinoviev@debian.org>, 2000,2006.
+#
+# WARNING: Everywhere NUMBER is translated as N rather than as БРОЙ or ЧИСЛО
+#
+# This file should be sent to translation@iro.umontreal.ca with the
+# following subject line: TP-Robot tar-1.16.bg.po 
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: tar 1.16\n"
+"Report-Msgid-Bugs-To: http://www.midnight-commander.org/\n"
+"POT-Creation-Date: 2010-08-06 14:07+0400\n"
+"PO-Revision-Date: 2006-11-23 22:40+0200\n"
+"Last-Translator: Anton Zinoviev <zinoviev@debian.org>\n"
+"Language-Team: Bulgarian <dict@fsa-bg.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#, c-format
+msgid "invalid argument %s for %s"
+msgstr "неправилен аргумент %s за %s"
+
+#, c-format
+msgid "ambiguous argument %s for %s"
+msgstr "двусмислен аргумент %s за %s"
+
+#, c-format
+msgid "Valid arguments are:"
+msgstr "Допустими аргументи са:"
+
+msgid "write error"
+msgstr ""
+
+msgid "memory exhausted"
+msgstr "паметта е изчерпана"
+
+#. TRANSLATORS:
+#. Get translations for open and closing quotation marks.
+#.
+#. The message catalog should translate "`" to a left
+#. quotation mark suitable for the locale, and similarly for
+#. "'".  If the catalog has no translation,
+#. locale_quoting_style quotes `like this', and
+#. clocale_quoting_style quotes "like this".
+#.
+#. For example, an American English Unicode locale should
+#. translate "`" to U+201C (LEFT DOUBLE QUOTATION MARK), and
+#. should translate "'" to U+201D (RIGHT DOUBLE QUOTATION
+#. MARK).  A British English Unicode locale should instead
+#. translate these to U+2018 (LEFT SINGLE QUOTATION MARK)
+#. and U+2019 (RIGHT SINGLE QUOTATION MARK), respectively.
+#.
+#. If you don't know what to put here, please see
+#. <http://en.wikipedia.org/wiki/Quotation_mark#Glyphs>
+#. and use glyphs suitable for your language.
+msgid "`"
+msgstr "„"
+
+msgid "'"
+msgstr "“"
+
+#. TRANSLATORS: %s after `Cannot' is a function name, e.g. `Cannot open'.
+#. Directly translating this to another language will not work, first because
+#. %s itself is not translated.
+#. Translate it as `%s: Function %s failed'.
+#, c-format
+msgid "%s: Cannot %s"
+msgstr "%s: Функцията %s не успя"
+
+#. TRANSLATORS: %s after `Cannot' is a function name, e.g. `Cannot open'.
+#. Directly translating this to another language will not work, first because
+#. %s itself is not translated.
+#. Translate it as `%s: Function %s failed'.
+#, c-format
+msgid "%s: Warning: Cannot %s"
+msgstr "%s: Внимание: Функцията %s не успя"
+
+#, c-format
+msgid "Removing leading `%s' from member names"
+msgstr "Премахва се началното „%s“ от имената на членове"
+
+#, c-format
+msgid "Removing leading `%s' from hard link targets"
+msgstr "Премахва се началното „%s“ от целите на твърдите връзки"
+
+msgid "Substituting `.' for empty member name"
+msgstr "Полага се „.“ вместо празно име на член"
+
+msgid "Substituting `.' for empty hard link target"
+msgstr "Полага се „.“ вместо празна цел на твърда връзка"
+
+msgid "This does not look like a tar archive"
+msgstr "Това не прилича на tar-архив"
+
+msgid "(pipe)"
+msgstr "(канал)"
+
+msgid "Invalid value for record_size"
+msgstr "Неправилна стойност на record_size"
+
+msgid "No archive name given"
+msgstr "Не е посочено име на архив"
+
+#, c-format
+msgid "Archive is compressed. Use %s option"
+msgstr "Архивът е компресиран.  Използвайте опцията %s"
+
+msgid "At beginning of tape, quitting now"
+msgstr "В началото на лентата, край на изпълнението"
+
+msgid "Too many errors, quitting"
+msgstr "Твърде много грешки, край на изпълнението"
+
+#, c-format
+msgid "Unaligned block (%lu byte) in archive"
+msgid_plural "Unaligned block (%lu bytes) in archive"
+msgstr[0] "Неподравнен блок (%lu байт) в архива"
+msgstr[1] "Неподравнен блок (%lu байта) в архива"
+
+msgid "rmtlseek not stopped at a record boundary"
+msgstr "rmtlseek не завърши при граница на запис"
+
+msgid "Error is not recoverable: exiting now"
+msgstr "Грешката е непоправима: край на изпълнението"
+
+#, c-format
+msgid "A lone zero block at %s"
+msgstr "Изолиран блок от нули при %s"
+
+msgid "Skipping to next header"
+msgstr "Пропуска се до следващия заглавен запис"
+
+msgid "Unexpected EOF in archive"
+msgstr "Неочакван знак за край (EOF) в архива"
+
+#. TRANSLATORS: %s is type of the value (gid_t, uid_t,
+#. etc.)
+#, c-format
+msgid "Blanks in header where numeric %s value expected"
+msgstr "Интервали в заглавен запис вместо числова стойност на %s"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive octal value %.*s is out of %s range; assuming two's complement"
+msgstr ""
+"Осмичната стойност %.*s в архива е извън диапазона за %s; предполага се, че "
+"е допълнение до две"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive octal value %.*s is out of %s range"
+msgstr "Осмичната стойност %.*s в архива е извън диапазона за %s"
+
+msgid "Archive contains obsolescent base-64 headers"
+msgstr "Архивът съдържа архаични заглавни записи по модул 64 (6 битови)"
+
+#, c-format
+msgid "Archive signed base-64 string %s is out of %s range"
+msgstr ""
+"Архивът е подписан с низ по модул 64 %s, който е е извън диапазона за %s"
+
+#, c-format
+msgid "Archive base-256 value is out of %s range"
+msgstr "Стойността по модул 256 в архива е извън диапазона %s"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive contains %.*s where numeric %s value expected"
+msgstr "Архивът съдържа %.*s, вместо това се очаква числова стойност на %s"
+
+#. TRANSLATORS: Second %s is type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive value %s is out of %s range %s..%s"
+msgstr "Стойността %s в архива е извън допустимия диапазон за %s (%s..%s)"
+
+msgid "Unexpected long name header"
+msgstr "Неочаквано дълъг заглавен запис"
+
+#, c-format
+msgid " link to %s\n"
+msgstr " връзка към %s\n"
+
+#, c-format
+msgid " unknown file type %s\n"
+msgstr " непознат файлов тип %s\n"
+
+#, c-format
+msgid "--Long Link--\n"
+msgstr "--Дълга връзка--\n"
+
+#, c-format
+msgid "--Long Name--\n"
+msgstr "--Дълго име--\n"
+
+#, c-format
+msgid "--Volume Header--\n"
+msgstr "--Заглавен запис на тома--\n"
+
+#, c-format
+msgid "--Continued at byte %s--\n"
+msgstr "--Продължава при байт %s--\n"
+
+msgid "child process"
+msgstr "породен процес"
+
+msgid "interprocess channel"
+msgstr "междупроцесен канал"
+
+#, fuzzy, c-format
+msgid "%s: invalid sparse archive member"
+msgstr "%s: Неправилен архивен формат"
+
+#, c-format
+msgid "%s: numeric overflow in sparse archive member"
+msgstr ""
+
+#, c-format
+msgid "%s: malformed sparse archive member"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Child died with signal %d"
+msgstr "Потомъкът е прекратен чрез сигнал %d%s"
+
+#, c-format
+msgid "Child returned status %d"
+msgstr ""
+
+#, fuzzy
+msgid "Cannot close"
+msgstr "Не може да се затвори файл #%d"
+
+#, fuzzy
+msgid "Cannot dup"
+msgstr "Не може да се породи процес"
+
+msgid "tar (child)"
+msgstr "tar (потомък)"
+
+msgid "tar (grandchild)"
+msgstr "tar (подпотомък)"
+
+msgid "Exiting with failure status due to previous errors"
+msgstr ""
+
+msgid "Malformed extended header: missing length"
+msgstr "Лошо формиран разширен заглавен запис: не е посочена дължина"
+
+msgid "Extended header length is out of allowed range"
+msgstr "Дължината на разширен заглавен запис е извън допустимия диапазон"
+
+#, c-format
+msgid "Extended header length %*s is out of range"
+msgstr "Дължината %*s на разширен заглавен запис е извън допустимия диапазон"
+
+msgid "Malformed extended header: missing blank after length"
+msgstr "Лошо формиран разширен заглавен запис: липсва интервал след дължината"
+
+msgid "Malformed extended header: missing equal sign"
+msgstr "Лошо формиран разширен заглавен запис: липсва знак за равенство"
+
+msgid "Malformed extended header: missing newline"
+msgstr "Лошо формиран разширен заглавен запис: липсва знак за нов ред"
+
+#, c-format
+msgid "Ignoring unknown extended header keyword `%s'"
+msgstr ""
+"Пренебрегва се непознатата ключова дума „%s“ за разширен заглавен запис"
+
+#. TRANSLATORS: The first %s is the pax extended header keyword
+#. (atime, gid, etc.).
+#, c-format
+msgid "Extended header %s=%s is out of range %s..%s"
+msgstr "Разширеният заглавен запис %s=%s е извън диапазона %s..%s"
+
+#, c-format
+msgid "Malformed extended header: invalid %s=%s"
+msgstr "Неправилно формиран разширен заглавен запис: неправилен %s=%s"
+
+#, c-format
+msgid "Malformed extended header: excess %s=%s"
+msgstr "Неправилно формиран разширен заглавен запис: прекомерен %s=%s"
+
+#, c-format
+msgid "Malformed extended header: invalid %s: unexpected delimiter %c"
+msgstr ""
+"Лошо формиран разширен заглавен запис: неправилен %s; очаква се разделител %c"
+
+#, c-format
+msgid "Malformed extended header: invalid %s: odd number of values"
+msgstr ""
+"Лошо формиран разширен заглавен запис: неправилен %s; нечетен брой стойности"

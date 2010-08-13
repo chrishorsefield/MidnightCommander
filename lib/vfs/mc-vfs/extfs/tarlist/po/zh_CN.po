@@ -1,0 +1,287 @@
+# Chinese (simplified) translation for tar.
+# Copyright (C) 2008 Free Software Foundation, Inc. 
+# This file is distributed under the same license as the tar package.
+# Wang Li <charles@linux.net.cn>, 2002.
+# Rongjun Mu <rongjunmu+i18n@gmail.com>, 2004.
+# Ji ZhengYu <zhengyuji@gmail.com>, 2008, 2009, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: tar 1.22.91\n"
+"Report-Msgid-Bugs-To: http://www.midnight-commander.org/\n"
+"POT-Creation-Date: 2010-08-06 14:07+0400\n"
+"PO-Revision-Date: 2010-02-16 14:27+0800\n"
+"Last-Translator: Ji ZhengYu <zhengyuji@gmail.com>\n"
+"Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8-bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#, c-format
+msgid "invalid argument %s for %s"
+msgstr "%2$s 的参数 %1$s 无效"
+
+#, c-format
+msgid "ambiguous argument %s for %s"
+msgstr "%2$s 的参数 %1$s 具有歧义"
+
+#, c-format
+msgid "Valid arguments are:"
+msgstr "有效的参数为："
+
+msgid "write error"
+msgstr "写错误"
+
+msgid "memory exhausted"
+msgstr "内存耗尽"
+
+#. TRANSLATORS:
+#. Get translations for open and closing quotation marks.
+#.
+#. The message catalog should translate "`" to a left
+#. quotation mark suitable for the locale, and similarly for
+#. "'".  If the catalog has no translation,
+#. locale_quoting_style quotes `like this', and
+#. clocale_quoting_style quotes "like this".
+#.
+#. For example, an American English Unicode locale should
+#. translate "`" to U+201C (LEFT DOUBLE QUOTATION MARK), and
+#. should translate "'" to U+201D (RIGHT DOUBLE QUOTATION
+#. MARK).  A British English Unicode locale should instead
+#. translate these to U+2018 (LEFT SINGLE QUOTATION MARK)
+#. and U+2019 (RIGHT SINGLE QUOTATION MARK), respectively.
+#.
+#. If you don't know what to put here, please see
+#. <http://en.wikipedia.org/wiki/Quotation_mark#Glyphs>
+#. and use glyphs suitable for your language.
+msgid "`"
+msgstr "“"
+
+msgid "'"
+msgstr "”"
+
+#. TRANSLATORS: %s after `Cannot' is a function name, e.g. `Cannot open'.
+#. Directly translating this to another language will not work, first because
+#. %s itself is not translated.
+#. Translate it as `%s: Function %s failed'.
+#, c-format
+msgid "%s: Cannot %s"
+msgstr "%s：无法 %s"
+
+#. TRANSLATORS: %s after `Cannot' is a function name, e.g. `Cannot open'.
+#. Directly translating this to another language will not work, first because
+#. %s itself is not translated.
+#. Translate it as `%s: Function %s failed'.
+#, c-format
+msgid "%s: Warning: Cannot %s"
+msgstr "%s：警告：无法 %s"
+
+#, c-format
+msgid "Removing leading `%s' from member names"
+msgstr "从成员名中删除开头的“%s”"
+
+#, c-format
+msgid "Removing leading `%s' from hard link targets"
+msgstr "从硬连接目标中删除开头的“%s”"
+
+msgid "Substituting `.' for empty member name"
+msgstr "为空成员名替换“.”"
+
+msgid "Substituting `.' for empty hard link target"
+msgstr "为空的硬连接替换“.”"
+
+msgid "This does not look like a tar archive"
+msgstr "它似乎不像是一个 tar 归档文件"
+
+msgid "(pipe)"
+msgstr "(管道)"
+
+msgid "Invalid value for record_size"
+msgstr "record_size 的无效值"
+
+msgid "No archive name given"
+msgstr "未给出归档文件名"
+
+#, c-format
+msgid "Archive is compressed. Use %s option"
+msgstr "归档被压缩。使用 %s 选项"
+
+msgid "At beginning of tape, quitting now"
+msgstr "处于磁带的起点，现在退出"
+
+msgid "Too many errors, quitting"
+msgstr "错误过多，退出"
+
+#, c-format
+msgid "Unaligned block (%lu byte) in archive"
+msgid_plural "Unaligned block (%lu bytes) in archive"
+msgstr[0] "归档中未对齐的块 (%lu 字节)s"
+
+msgid "rmtlseek not stopped at a record boundary"
+msgstr "rmtlseek 未停在记录边界处"
+
+msgid "Error is not recoverable: exiting now"
+msgstr "错误不可恢复：现在退出"
+
+#, c-format
+msgid "A lone zero block at %s"
+msgstr "在 %s 处一个单独的零块"
+
+msgid "Skipping to next header"
+msgstr "跳转到下一个头"
+
+msgid "Unexpected EOF in archive"
+msgstr "归档文件中异常的 EOF"
+
+#. TRANSLATORS: %s is type of the value (gid_t, uid_t,
+#. etc.)
+#, c-format
+msgid "Blanks in header where numeric %s value expected"
+msgstr "头中需要数值 %s 处为空白符"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive octal value %.*s is out of %s range; assuming two's complement"
+msgstr "归档的八进制值 %.*s 超出范围 %s；假定为其二进制补码"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive octal value %.*s is out of %s range"
+msgstr "归档八进制值 %.*s 超出 %s 的范围"
+
+msgid "Archive contains obsolescent base-64 headers"
+msgstr "归档包含过时的 base-64 头"
+
+#, c-format
+msgid "Archive signed base-64 string %s is out of %s range"
+msgstr "归档签署的 base-64 字符串 %s 超出范围 %s"
+
+#, c-format
+msgid "Archive base-256 value is out of %s range"
+msgstr "归档的 base-256 值超出范围 %s"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive contains %.*s where numeric %s value expected"
+msgstr "归档包含 %.*s 而需要数字值 %s"
+
+#. TRANSLATORS: Second %s is type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive value %s is out of %s range %s..%s"
+msgstr "归档值 %s 超出 %s 的范围 %s..%s"
+
+msgid "Unexpected long name header"
+msgstr "异常的长名字头部"
+
+#, c-format
+msgid " link to %s\n"
+msgstr " 连接到 %s\n"
+
+#, c-format
+msgid " unknown file type %s\n"
+msgstr " 未知的文件类型 %s\n"
+
+#, c-format
+msgid "--Long Link--\n"
+msgstr "--长连接--\n"
+
+#, c-format
+msgid "--Long Name--\n"
+msgstr "--长名--\n"
+
+#, c-format
+msgid "--Volume Header--\n"
+msgstr "--卷头--\n"
+
+#, c-format
+msgid "--Continued at byte %s--\n"
+msgstr "--从 %s 字节继续--\n"
+
+msgid "child process"
+msgstr "子进程"
+
+msgid "interprocess channel"
+msgstr "进程内通道"
+
+#, fuzzy, c-format
+msgid "%s: invalid sparse archive member"
+msgstr "%s：无效的归档格式"
+
+#, c-format
+msgid "%s: numeric overflow in sparse archive member"
+msgstr ""
+
+#, c-format
+msgid "%s: malformed sparse archive member"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Child died with signal %d"
+msgstr "命令出错，状态 %d\n"
+
+#, c-format
+msgid "Child returned status %d"
+msgstr ""
+
+#, fuzzy
+msgid "Cannot close"
+msgstr "无法定位"
+
+#, fuzzy
+msgid "Cannot dup"
+msgstr "%s：无法 %s"
+
+msgid "tar (child)"
+msgstr ""
+
+msgid "tar (grandchild)"
+msgstr ""
+
+msgid "Exiting with failure status due to previous errors"
+msgstr "由于前次错误，将以上次的错误状态退出"
+
+msgid "Malformed extended header: missing length"
+msgstr "错误的扩展头: 缺少 length"
+
+msgid "Extended header length is out of allowed range"
+msgstr "扩展头长度超出所允许的范围"
+
+#, c-format
+msgid "Extended header length %*s is out of range"
+msgstr "扩展头长度 %*s 超出范围"
+
+msgid "Malformed extended header: missing blank after length"
+msgstr "错误的扩展头: length 后缺少空白符"
+
+msgid "Malformed extended header: missing equal sign"
+msgstr "错误的扩展头: 缺少等于符号"
+
+msgid "Malformed extended header: missing newline"
+msgstr "错误的扩展头: 缺少空行"
+
+#, c-format
+msgid "Ignoring unknown extended header keyword `%s'"
+msgstr "忽略未知的扩展头关键字‘%s’"
+
+#. TRANSLATORS: The first %s is the pax extended header keyword
+#. (atime, gid, etc.).
+#, c-format
+msgid "Extended header %s=%s is out of range %s..%s"
+msgstr "扩展头 %s=%s 超出范围 %s..%s"
+
+#, c-format
+msgid "Malformed extended header: invalid %s=%s"
+msgstr "错误的扩展头: %s=%s 无效"
+
+#, c-format
+msgid "Malformed extended header: excess %s=%s"
+msgstr "错误的扩展头: %s=%s 溢出"
+
+#, c-format
+msgid "Malformed extended header: invalid %s: unexpected delimiter %c"
+msgstr "错误的扩展头: %s 无效: 非预期的分隔符 %c"
+
+#, c-format
+msgid "Malformed extended header: invalid %s: odd number of values"
+msgstr "错误的扩展头: %s 无效: 奇怪的数值"

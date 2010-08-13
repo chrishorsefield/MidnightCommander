@@ -1,0 +1,288 @@
+# Danish messages for GNU tar.
+# Copyright (C) 1996 Free Software Foundation, Inc.
+# This file is distributed under the same license as the tar package.
+# Claus Hindsgaul <claus_h@image.dk>, 2001.
+# Keld Jørn Simonsen <keld@dkuug.dk>, 2000-2001,2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: GNU tar 1.22\n"
+"Report-Msgid-Bugs-To: http://www.midnight-commander.org/\n"
+"POT-Creation-Date: 2010-08-06 14:07+0400\n"
+"PO-Revision-Date: 2009-05-26 13:57+0200\n"
+"Last-Translator: Keld Jørn Simonsen <keld@dkuug.dk>\n"
+"Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#, c-format
+msgid "invalid argument %s for %s"
+msgstr "ugyldigt argument %s for %s"
+
+#, c-format
+msgid "ambiguous argument %s for %s"
+msgstr "flertydigt argument '%s' for %s"
+
+#, c-format
+msgid "Valid arguments are:"
+msgstr "Gyldige argumenter er:"
+
+msgid "write error"
+msgstr "skrivefejl"
+
+msgid "memory exhausted"
+msgstr "hovedlager opbrugt"
+
+#. TRANSLATORS:
+#. Get translations for open and closing quotation marks.
+#.
+#. The message catalog should translate "`" to a left
+#. quotation mark suitable for the locale, and similarly for
+#. "'".  If the catalog has no translation,
+#. locale_quoting_style quotes `like this', and
+#. clocale_quoting_style quotes "like this".
+#.
+#. For example, an American English Unicode locale should
+#. translate "`" to U+201C (LEFT DOUBLE QUOTATION MARK), and
+#. should translate "'" to U+201D (RIGHT DOUBLE QUOTATION
+#. MARK).  A British English Unicode locale should instead
+#. translate these to U+2018 (LEFT SINGLE QUOTATION MARK)
+#. and U+2019 (RIGHT SINGLE QUOTATION MARK), respectively.
+#.
+#. If you don't know what to put here, please see
+#. <http://en.wikipedia.org/wiki/Quotation_mark#Glyphs>
+#. and use glyphs suitable for your language.
+msgid "`"
+msgstr "'"
+
+msgid "'"
+msgstr "'"
+
+#. TRANSLATORS: %s after `Cannot' is a function name, e.g. `Cannot open'.
+#. Directly translating this to another language will not work, first because
+#. %s itself is not translated.
+#. Translate it as `%s: Function %s failed'.
+#, c-format
+msgid "%s: Cannot %s"
+msgstr "%s: Kan ikke %s"
+
+#. TRANSLATORS: %s after `Cannot' is a function name, e.g. `Cannot open'.
+#. Directly translating this to another language will not work, first because
+#. %s itself is not translated.
+#. Translate it as `%s: Function %s failed'.
+#, c-format
+msgid "%s: Warning: Cannot %s"
+msgstr "%s: Advarsel: Kan ikke %s"
+
+#, c-format
+msgid "Removing leading `%s' from member names"
+msgstr "Fjerner indledende '%s' fra medlemsnavne"
+
+#, c-format
+msgid "Removing leading `%s' from hard link targets"
+msgstr "Fjerner indledende '%s' fra absolutte lænkemål"
+
+#, fuzzy
+msgid "Substituting `.' for empty member name"
+msgstr "Fjerner indledende '%.*s' fra medlemsnavne"
+
+msgid "Substituting `.' for empty hard link target"
+msgstr ""
+
+msgid "This does not look like a tar archive"
+msgstr "Dette ligner ikke et tar-arkiv"
+
+msgid "(pipe)"
+msgstr "(datakanal)"
+
+msgid "Invalid value for record_size"
+msgstr "Ugyldig værdi for record_size"
+
+msgid "No archive name given"
+msgstr "Arkivnavn er ikke opgivet"
+
+#, c-format
+msgid "Archive is compressed. Use %s option"
+msgstr ""
+
+msgid "At beginning of tape, quitting now"
+msgstr "Ved begyndelsen af båndet, afslutter nu"
+
+msgid "Too many errors, quitting"
+msgstr "For mange fejl, afslutter"
+
+#, fuzzy, c-format
+msgid "Unaligned block (%lu byte) in archive"
+msgid_plural "Unaligned block (%lu bytes) in archive"
+msgstr[0] "Ikke-justeret blok (%lu byte) i arkiv"
+msgstr[1] "Ikke-justeret blok (%lu byte) i arkiv"
+
+msgid "rmtlseek not stopped at a record boundary"
+msgstr ""
+
+msgid "Error is not recoverable: exiting now"
+msgstr "Fejl kan ikke reddes; afslutter nu"
+
+#, c-format
+msgid "A lone zero block at %s"
+msgstr ""
+
+msgid "Skipping to next header"
+msgstr "Hopper til næste hoved"
+
+msgid "Unexpected EOF in archive"
+msgstr "Uventet filslutning i arkivet"
+
+#. TRANSLATORS: %s is type of the value (gid_t, uid_t,
+#. etc.)
+#, c-format
+msgid "Blanks in header where numeric %s value expected"
+msgstr "Blank-tegn i hovedet hvor numerisk %s værdi var forventet"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive octal value %.*s is out of %s range; assuming two's complement"
+msgstr "Arkiv oktal værdi %.*s er udenfor %s område; antager to-komplement"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive octal value %.*s is out of %s range"
+msgstr "Arkiv oktal værdi %.*s er udenfor %s område"
+
+msgid "Archive contains obsolescent base-64 headers"
+msgstr "Arkiv indeholder forældede base-64 hoveder"
+
+#, c-format
+msgid "Archive signed base-64 string %s is out of %s range"
+msgstr "Arkiv base-64 streng med fortegn %s er uden for %s område"
+
+#, c-format
+msgid "Archive base-256 value is out of %s range"
+msgstr "Arkiv base-256 værdi er uden for %s område"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive contains %.*s where numeric %s value expected"
+msgstr "Arkiv indeholder %.*s hvor numerisk %s værdi var forventet"
+
+#. TRANSLATORS: Second %s is type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive value %s is out of %s range %s..%s"
+msgstr "Arkiv værdi %s er udenfor %s område %s..%s"
+
+#, fuzzy
+msgid "Unexpected long name header"
+msgstr "Uventet filafslutning i ødelagte navne"
+
+#, c-format
+msgid " link to %s\n"
+msgstr " lænke til %s\n"
+
+#, c-format
+msgid " unknown file type %s\n"
+msgstr " ukendt filtype %s\n"
+
+#, c-format
+msgid "--Long Link--\n"
+msgstr ""
+
+#, c-format
+msgid "--Long Name--\n"
+msgstr ""
+
+#, c-format
+msgid "--Volume Header--\n"
+msgstr "--Volumenhoved--\n"
+
+#, c-format
+msgid "--Continued at byte %s--\n"
+msgstr "--Fortsætter ved byte %s--\n"
+
+msgid "child process"
+msgstr "underproces"
+
+msgid "interprocess channel"
+msgstr "mellemproces-kanal"
+
+#, fuzzy, c-format
+msgid "%s: invalid sparse archive member"
+msgstr "%s: ugyldig gruppe"
+
+#, c-format
+msgid "%s: numeric overflow in sparse archive member"
+msgstr ""
+
+#, c-format
+msgid "%s: malformed sparse archive member"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Child died with signal %d"
+msgstr "Underproces døde med signal %d"
+
+#, c-format
+msgid "Child returned status %d"
+msgstr "Underproces afsluttede med status %d"
+
+#, fuzzy
+msgid "Cannot close"
+msgstr "Kan ikke lukke"
+
+msgid "Cannot dup"
+msgstr "Kan ikke starte ny proces med 'dup'"
+
+msgid "tar (child)"
+msgstr "tar (underproces)"
+
+msgid "tar (grandchild)"
+msgstr "tar (under-underproces)"
+
+msgid "Exiting with failure status due to previous errors"
+msgstr ""
+
+msgid "Malformed extended header: missing length"
+msgstr ""
+
+msgid "Extended header length is out of allowed range"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Extended header length %*s is out of range"
+msgstr "Arkiv base-64 streng med fortegn %s er uden for %s område"
+
+msgid "Malformed extended header: missing blank after length"
+msgstr ""
+
+msgid "Malformed extended header: missing equal sign"
+msgstr ""
+
+msgid "Malformed extended header: missing newline"
+msgstr ""
+
+#, c-format
+msgid "Ignoring unknown extended header keyword `%s'"
+msgstr ""
+
+#. TRANSLATORS: The first %s is the pax extended header keyword
+#. (atime, gid, etc.).
+#, fuzzy, c-format
+msgid "Extended header %s=%s is out of range %s..%s"
+msgstr "Arkiv værdi %s er udenfor %s område %s..%s"
+
+#, c-format
+msgid "Malformed extended header: invalid %s=%s"
+msgstr ""
+
+#, c-format
+msgid "Malformed extended header: excess %s=%s"
+msgstr ""
+
+#, c-format
+msgid "Malformed extended header: invalid %s: unexpected delimiter %c"
+msgstr ""
+
+#, c-format
+msgid "Malformed extended header: invalid %s: odd number of values"
+msgstr ""

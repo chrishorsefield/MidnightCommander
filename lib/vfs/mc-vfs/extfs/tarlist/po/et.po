@@ -1,0 +1,286 @@
+# Estonian translations for GNU tar.
+# Copyright (C) 2001 Free Software Foundation, Inc.
+# Toomas Soome <Toomas.Soome@microlink.ee>, 2006.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: GNU tar 1.15.92\n"
+"Report-Msgid-Bugs-To: http://www.midnight-commander.org/\n"
+"POT-Creation-Date: 2010-08-06 14:07+0400\n"
+"PO-Revision-Date: 2006-10-26 14:45+0300\n"
+"Last-Translator: Toomas Soome <Toomas.Soome@microlink.ee>\n"
+"Language-Team: Estonian <et@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-15\n"
+"Content-Transfer-Encoding: 8-bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#, c-format
+msgid "invalid argument %s for %s"
+msgstr "vigane argument %s (`%s')"
+
+#, c-format
+msgid "ambiguous argument %s for %s"
+msgstr "segane argument %s (`%s')"
+
+#, c-format
+msgid "Valid arguments are:"
+msgstr "Lubatud argumendid on:"
+
+msgid "write error"
+msgstr ""
+
+msgid "memory exhausted"
+msgstr "mälu on otsas"
+
+#. TRANSLATORS:
+#. Get translations for open and closing quotation marks.
+#.
+#. The message catalog should translate "`" to a left
+#. quotation mark suitable for the locale, and similarly for
+#. "'".  If the catalog has no translation,
+#. locale_quoting_style quotes `like this', and
+#. clocale_quoting_style quotes "like this".
+#.
+#. For example, an American English Unicode locale should
+#. translate "`" to U+201C (LEFT DOUBLE QUOTATION MARK), and
+#. should translate "'" to U+201D (RIGHT DOUBLE QUOTATION
+#. MARK).  A British English Unicode locale should instead
+#. translate these to U+2018 (LEFT SINGLE QUOTATION MARK)
+#. and U+2019 (RIGHT SINGLE QUOTATION MARK), respectively.
+#.
+#. If you don't know what to put here, please see
+#. <http://en.wikipedia.org/wiki/Quotation_mark#Glyphs>
+#. and use glyphs suitable for your language.
+msgid "`"
+msgstr "`"
+
+msgid "'"
+msgstr "'"
+
+#. TRANSLATORS: %s after `Cannot' is a function name, e.g. `Cannot open'.
+#. Directly translating this to another language will not work, first because
+#. %s itself is not translated.
+#. Translate it as `%s: Function %s failed'.
+#, c-format
+msgid "%s: Cannot %s"
+msgstr "%s: %s ei õnnestu"
+
+#. TRANSLATORS: %s after `Cannot' is a function name, e.g. `Cannot open'.
+#. Directly translating this to another language will not work, first because
+#. %s itself is not translated.
+#. Translate it as `%s: Function %s failed'.
+#, c-format
+msgid "%s: Warning: Cannot %s"
+msgstr "%s: Hoiatus: %s ei õnnestu"
+
+#, c-format
+msgid "Removing leading `%s' from member names"
+msgstr "Eemaldan liikmete nimedelt prefiksi `%s'"
+
+#, c-format
+msgid "Removing leading `%s' from hard link targets"
+msgstr "Eemaldan viidatavate nimedelt prefiksi `%s'"
+
+msgid "Substituting `.' for empty member name"
+msgstr "Kasutan tühjade nimede asemel `.'"
+
+msgid "Substituting `.' for empty hard link target"
+msgstr "Kasutan tühja viidatava nime asemel `.'"
+
+msgid "This does not look like a tar archive"
+msgstr "Hmm.... see ei tundu olema tar arhiiv"
+
+msgid "(pipe)"
+msgstr "(toru)"
+
+msgid "Invalid value for record_size"
+msgstr "Kirje suuruse väärtus on vigane"
+
+msgid "No archive name given"
+msgstr "Arhiivi nime pole"
+
+#, c-format
+msgid "Archive is compressed. Use %s option"
+msgstr "Arhiiv on tihendatud. Kasutage võtit %s"
+
+msgid "At beginning of tape, quitting now"
+msgstr "Lindi alguses, lõpetan töö"
+
+msgid "Too many errors, quitting"
+msgstr "Liig palju vigu, jätan töö pooleli"
+
+#, c-format
+msgid "Unaligned block (%lu byte) in archive"
+msgid_plural "Unaligned block (%lu bytes) in archive"
+msgstr[0] "Joondamata blokk (%lu baiti) arhiivis"
+msgstr[1] "Joondamata blokk (%lu baiti) arhiivis"
+
+msgid "rmtlseek not stopped at a record boundary"
+msgstr "rmtlseek ei peatunud kirje piiril"
+
+msgid "Error is not recoverable: exiting now"
+msgstr "Ületamatu tõrge: lõpetan töö"
+
+#, c-format
+msgid "A lone zero block at %s"
+msgstr "Üksik null blokk kohal %s"
+
+msgid "Skipping to next header"
+msgstr "Hüppan järgmise päiseni"
+
+msgid "Unexpected EOF in archive"
+msgstr "Ootamatu arhiivi lõpp"
+
+#. TRANSLATORS: %s is type of the value (gid_t, uid_t,
+#. etc.)
+#, c-format
+msgid "Blanks in header where numeric %s value expected"
+msgstr "Tühjad väljad päises kohtadel, kus eeldati numbrit %s"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive octal value %.*s is out of %s range; assuming two's complement"
+msgstr ""
+"Arhiivi kaheksandväärtus %.*s on %s piiridest väljas; eeldan kahe täiendit"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive octal value %.*s is out of %s range"
+msgstr "Arhiivi kaheksandväärtus %.*s on %s piiridest väljas"
+
+msgid "Archive contains obsolescent base-64 headers"
+msgstr "Arhiiv sisaldab aegunuid base-64 päiseid"
+
+#, c-format
+msgid "Archive signed base-64 string %s is out of %s range"
+msgstr "Arhiivi märgiga base-64 sõne %s on %s piiridest väljas"
+
+#, c-format
+msgid "Archive base-256 value is out of %s range"
+msgstr "Arhiivi base-256 väärtus on %s piiridest väljas"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive contains %.*s where numeric %s value expected"
+msgstr "Arhiiv sisaldab %.*s, eeldati numbrit %s"
+
+#. TRANSLATORS: Second %s is type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive value %s is out of %s range %s..%s"
+msgstr "Arhiivi väärtus %s on %s piiridest %s..%s väljas"
+
+msgid "Unexpected long name header"
+msgstr "Ootamatu pika nime päis"
+
+#, c-format
+msgid " link to %s\n"
+msgstr " viide %s-le\n"
+
+#, c-format
+msgid " unknown file type %s\n"
+msgstr " tundmatu failitüüp %s\n"
+
+#, c-format
+msgid "--Long Link--\n"
+msgstr "--Pikk viide--\n"
+
+#, c-format
+msgid "--Long Name--\n"
+msgstr "--Pikk nimi--\n"
+
+#, c-format
+msgid "--Volume Header--\n"
+msgstr "--Volüümi päis--\n"
+
+#, c-format
+msgid "--Continued at byte %s--\n"
+msgstr "--Jätkub baidilt %s--\n"
+
+msgid "child process"
+msgstr "alamprotsess"
+
+msgid "interprocess channel"
+msgstr "protsessidevaheline kanal"
+
+#, fuzzy, c-format
+msgid "%s: invalid sparse archive member"
+msgstr "%s: Vigane arhiivi vorming"
+
+#, c-format
+msgid "%s: numeric overflow in sparse archive member"
+msgstr ""
+
+#, c-format
+msgid "%s: malformed sparse archive member"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Child died with signal %d"
+msgstr "Käsk lõpetas veakoodiga %d\n"
+
+#, c-format
+msgid "Child returned status %d"
+msgstr ""
+
+#, fuzzy
+msgid "Cannot close"
+msgstr "%s: Ei õnnestu liikuda positsioonile %s"
+
+#, fuzzy
+msgid "Cannot dup"
+msgstr "%s: %s ei õnnestu"
+
+msgid "tar (child)"
+msgstr ""
+
+msgid "tar (grandchild)"
+msgstr ""
+
+msgid "Exiting with failure status due to previous errors"
+msgstr ""
+
+msgid "Malformed extended header: missing length"
+msgstr "Vigane laiendatud päis: puudub pikkus"
+
+msgid "Extended header length is out of allowed range"
+msgstr "Laiendatud päise pikkus on piiridest väljas"
+
+#, c-format
+msgid "Extended header length %*s is out of range"
+msgstr "Laiendatud päise pikkus %*s on piiridest väljas"
+
+msgid "Malformed extended header: missing blank after length"
+msgstr "Vigane laiendatud päis: pikkuse järel puudub tühik"
+
+msgid "Malformed extended header: missing equal sign"
+msgstr "Vigane laiendatud päis: puudub võrdusmärk"
+
+msgid "Malformed extended header: missing newline"
+msgstr "Vigane laiendatud päis: puudub reavahetus"
+
+#, c-format
+msgid "Ignoring unknown extended header keyword `%s'"
+msgstr "Ignoreerin tundmatud laiendatud päise võtmesõna `%s'"
+
+#. TRANSLATORS: The first %s is the pax extended header keyword
+#. (atime, gid, etc.).
+#, c-format
+msgid "Extended header %s=%s is out of range %s..%s"
+msgstr "Laiendatud päis %s=%s on piiridest %s..%s väljas"
+
+#, c-format
+msgid "Malformed extended header: invalid %s=%s"
+msgstr "Vigane laiendatud päis: %s=%s"
+
+#, c-format
+msgid "Malformed extended header: excess %s=%s"
+msgstr "Vigane laiendatud päis: liigne %s=%s"
+
+#, c-format
+msgid "Malformed extended header: invalid %s: unexpected delimiter %c"
+msgstr "Vigane laiendatud päis: vigane %s: ootamatu eraldaja %c"
+
+#, c-format
+msgid "Malformed extended header: invalid %s: odd number of values"
+msgstr "Vigane laiendatud päis: vigane %s: veider arv väärtuseid"

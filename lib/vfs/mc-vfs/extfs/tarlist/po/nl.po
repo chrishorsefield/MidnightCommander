@@ -1,0 +1,290 @@
+# Dutch translations for tar.
+# Copyright (C) 2004, 2005, 2006, 2007, 2008, 2009 Free Software Foundation, Inc.
+# This file is distributed under the same license as the tar package.
+#
+# Elros Cyriatan <cyriatan@fastmail.fm>, 2004.
+# Benno Schulenberg <benno@vertaalt.nl>, 2005, 2006, 2007, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: tar-1.22\n"
+"Report-Msgid-Bugs-To: http://www.midnight-commander.org/\n"
+"POT-Creation-Date: 2010-08-06 14:07+0400\n"
+"PO-Revision-Date: 2009-03-25 21:42+0100\n"
+"Last-Translator: Erwin Poeze <erwin.poeze@gmail.com>\n"
+"Language-Team: Dutch <vertaling@vrijschrift.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#, c-format
+msgid "invalid argument %s for %s"
+msgstr "ongeldig argument %s van %s"
+
+#, c-format
+msgid "ambiguous argument %s for %s"
+msgstr "argument %s van %s is niet eenduidig"
+
+#, c-format
+msgid "Valid arguments are:"
+msgstr "Geldige argumenten zijn:"
+
+msgid "write error"
+msgstr "schrijffout"
+
+msgid "memory exhausted"
+msgstr "onvoldoende geheugen beschikbaar"
+
+#. TRANSLATORS:
+#. Get translations for open and closing quotation marks.
+#.
+#. The message catalog should translate "`" to a left
+#. quotation mark suitable for the locale, and similarly for
+#. "'".  If the catalog has no translation,
+#. locale_quoting_style quotes `like this', and
+#. clocale_quoting_style quotes "like this".
+#.
+#. For example, an American English Unicode locale should
+#. translate "`" to U+201C (LEFT DOUBLE QUOTATION MARK), and
+#. should translate "'" to U+201D (RIGHT DOUBLE QUOTATION
+#. MARK).  A British English Unicode locale should instead
+#. translate these to U+2018 (LEFT SINGLE QUOTATION MARK)
+#. and U+2019 (RIGHT SINGLE QUOTATION MARK), respectively.
+#.
+#. If you don't know what to put here, please see
+#. <http://en.wikipedia.org/wiki/Quotation_mark#Glyphs>
+#. and use glyphs suitable for your language.
+msgid "`"
+msgstr "‘"
+
+msgid "'"
+msgstr "’"
+
+#. TRANSLATORS: %s after `Cannot' is a function name, e.g. `Cannot open'.
+#. Directly translating this to another language will not work, first because
+#. %s itself is not translated.
+#. Translate it as `%s: Function %s failed'.
+#, c-format
+msgid "%s: Cannot %s"
+msgstr "%s: Functie %s() is mislukt"
+
+#. TRANSLATORS: %s after `Cannot' is a function name, e.g. `Cannot open'.
+#. Directly translating this to another language will not work, first because
+#. %s itself is not translated.
+#. Translate it as `%s: Function %s failed'.
+#, c-format
+msgid "%s: Warning: Cannot %s"
+msgstr "%s: Waarschuwing: functie %s() is mislukt"
+
+#, c-format
+msgid "Removing leading `%s' from member names"
+msgstr "Leidende '%s' wordt uit lidnamen weggelaten"
+
+#, c-format
+msgid "Removing leading `%s' from hard link targets"
+msgstr "Leidende '%s' wordt uit doelen van harde koppelingen weggelaten"
+
+msgid "Substituting `.' for empty member name"
+msgstr "Lege lidnaam wordt vervangen door '.'"
+
+msgid "Substituting `.' for empty hard link target"
+msgstr "Lege doelnaam van harde koppeling wordt vervangen door '.'"
+
+msgid "This does not look like a tar archive"
+msgstr "Dit ziet er niet uit als een tar-archief"
+
+msgid "(pipe)"
+msgstr "(pijp)"
+
+msgid "Invalid value for record_size"
+msgstr "Ongeldige waarde voor recordgrootte"
+
+msgid "No archive name given"
+msgstr "Geen archiefnaam opgegeven"
+
+#, c-format
+msgid "Archive is compressed. Use %s option"
+msgstr "Archief is gecomprimeerd.  Gebruik optie '%s'."
+
+msgid "At beginning of tape, quitting now"
+msgstr "Aan het begin van de band -- tar sluit nu af."
+
+msgid "Too many errors, quitting"
+msgstr "Te veel fouten -- tar sluit nu af."
+
+#, c-format
+msgid "Unaligned block (%lu byte) in archive"
+msgid_plural "Unaligned block (%lu bytes) in archive"
+msgstr[0] "Niet-uitgelijnd blok (%lu byte) in archief"
+msgstr[1] "Niet-uitgelijnd blok (%lu bytes) in archief"
+
+msgid "rmtlseek not stopped at a record boundary"
+msgstr "rmtlseek() is niet gestopt op een recordgrens"
+
+msgid "Error is not recoverable: exiting now"
+msgstr "Fout is niet herstelbaar -- tar sluit nu af."
+
+#, c-format
+msgid "A lone zero block at %s"
+msgstr "Een los blok met nullen op %s"
+
+msgid "Skipping to next header"
+msgstr "Alles tot aan volgende kop wordt overgeslagen"
+
+msgid "Unexpected EOF in archive"
+msgstr "Onverwacht einde-van-bestand in archief"
+
+#. TRANSLATORS: %s is type of the value (gid_t, uid_t,
+#. etc.)
+#, c-format
+msgid "Blanks in header where numeric %s value expected"
+msgstr "Witruimte in kop waar numerieke waarde voor %s werd verwacht"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive octal value %.*s is out of %s range; assuming two's complement"
+msgstr ""
+"Octaalwaarde %.*s in archief valt buiten bereik voor %s; 2-complement wordt "
+"aangenomen"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive octal value %.*s is out of %s range"
+msgstr "Octaalwaarde %.*s in archief valt buiten bereik voor %s"
+
+msgid "Archive contains obsolescent base-64 headers"
+msgstr "Archief bevat ouderwetse grondtal-64 koppen"
+
+#, c-format
+msgid "Archive signed base-64 string %s is out of %s range"
+msgstr "Tekenreeks %s (met grondtal-64-met-teken) valt buiten bereik voor %s"
+
+#, c-format
+msgid "Archive base-256 value is out of %s range"
+msgstr "Grondtal-256 waarde in archief valt buiten bereik voor %s"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive contains %.*s where numeric %s value expected"
+msgstr "Archief bevat %.*s waar numerieke waarde voor %s werd verwacht"
+
+#. TRANSLATORS: Second %s is type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive value %s is out of %s range %s..%s"
+msgstr "Waarde %s in archief valt buiten bereik voor %s (%s..%s)"
+
+msgid "Unexpected long name header"
+msgstr "Onverwachte lange-naamkop"
+
+#, c-format
+msgid " link to %s\n"
+msgstr " koppeling naar %s\n"
+
+#, c-format
+msgid " unknown file type %s\n"
+msgstr " onbekende bestandssoort %s\n"
+
+#, c-format
+msgid "--Long Link--\n"
+msgstr "--Lange koppeling--\n"
+
+#, c-format
+msgid "--Long Name--\n"
+msgstr "--Lange naam--\n"
+
+#, c-format
+msgid "--Volume Header--\n"
+msgstr "--Deelkop--\n"
+
+#, c-format
+msgid "--Continued at byte %s--\n"
+msgstr "--Verder bij byte %s--\n"
+
+msgid "child process"
+msgstr "dochterproces"
+
+msgid "interprocess channel"
+msgstr "interproces-kanaal"
+
+#, fuzzy, c-format
+msgid "%s: invalid sparse archive member"
+msgstr "%s: Ongeldige archiefindeling"
+
+#, c-format
+msgid "%s: numeric overflow in sparse archive member"
+msgstr ""
+
+#, c-format
+msgid "%s: malformed sparse archive member"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Child died with signal %d"
+msgstr "Opdracht is mislukt met afsluitwaarde %d\n"
+
+#, c-format
+msgid "Child returned status %d"
+msgstr ""
+
+#, fuzzy
+msgid "Cannot close"
+msgstr "kan niet springen"
+
+#, fuzzy
+msgid "Cannot dup"
+msgstr "%s: Functie %s() is mislukt"
+
+msgid "tar (child)"
+msgstr ""
+
+msgid "tar (grandchild)"
+msgstr ""
+
+msgid "Exiting with failure status due to previous errors"
+msgstr "Stopt met foutstatus vanwege eerdere fouten"
+
+msgid "Malformed extended header: missing length"
+msgstr "Onjuiste uitgebreide kop: ontbrekende lengte"
+
+msgid "Extended header length is out of allowed range"
+msgstr "Lengte van uitgebreide kop valt buiten bereik"
+
+#, c-format
+msgid "Extended header length %*s is out of range"
+msgstr "Lengte %*s van uitgebreide kop valt buiten bereik"
+
+msgid "Malformed extended header: missing blank after length"
+msgstr "Onjuiste uitgebreide kop: ontbrekende witruimte na de lengte"
+
+msgid "Malformed extended header: missing equal sign"
+msgstr "Onjuiste uitgebreide kop: ontbrekend isgelijkteken"
+
+msgid "Malformed extended header: missing newline"
+msgstr "Onjuiste uitgebreide kop: ontbrekend regeleinde"
+
+#, c-format
+msgid "Ignoring unknown extended header keyword `%s'"
+msgstr "Genegeerd: onbekend sleutelwoord '%s' in uitgebreide kop"
+
+#. TRANSLATORS: The first %s is the pax extended header keyword
+#. (atime, gid, etc.).
+#, c-format
+msgid "Extended header %s=%s is out of range %s..%s"
+msgstr ""
+"Waarde %2$s in uitgebreide kop valt buiten bereik voor %1$s (%3$s..%4$s)"
+
+#, c-format
+msgid "Malformed extended header: invalid %s=%s"
+msgstr "Onjuiste uitgebreide kop: ongeldige %s=%s"
+
+#, c-format
+msgid "Malformed extended header: excess %s=%s"
+msgstr "Onjuiste uitgebreide kop: overtollige %s=%s"
+
+#, c-format
+msgid "Malformed extended header: invalid %s: unexpected delimiter %c"
+msgstr "Onjuiste uitgebreide kop: ongeldige %s: onverwacht scheidingsteken %c"
+
+#, c-format
+msgid "Malformed extended header: invalid %s: odd number of values"
+msgstr "Onjuiste uitgebreide kop: ongeldige %s: oneven aantal waarden"

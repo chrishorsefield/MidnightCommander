@@ -1,0 +1,289 @@
+# Vietnamese translation for Tar.
+# Copyright © 2010 Free Software Foundation, Inc.
+# This file is distributed under the same license as the tar package.
+# Phan Vinh Thinh <teppi82@gmail.com>, 2005.
+# Clytie Siddall <clytie@riverland.net.au>, 2007-2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: tar 1.22.91\n"
+"Report-Msgid-Bugs-To: http://www.midnight-commander.org/\n"
+"POT-Creation-Date: 2010-08-06 14:07+0400\n"
+"PO-Revision-Date: 2010-02-13 17:50+0930\n"
+"Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
+"Language-Team: Vietnamese <vi-VN@googlegroups.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: LocFactoryEditor 1.8\n"
+
+#, c-format
+msgid "invalid argument %s for %s"
+msgstr "tham số không thích hợp %s cho %s"
+
+#, c-format
+msgid "ambiguous argument %s for %s"
+msgstr "tham số không rõ ràng %s cho %s"
+
+#, c-format
+msgid "Valid arguments are:"
+msgstr "Các tham số đúng là:"
+
+msgid "write error"
+msgstr "lỗi ghi"
+
+msgid "memory exhausted"
+msgstr "cạn bộ nhớ"
+
+#. TRANSLATORS:
+#. Get translations for open and closing quotation marks.
+#.
+#. The message catalog should translate "`" to a left
+#. quotation mark suitable for the locale, and similarly for
+#. "'".  If the catalog has no translation,
+#. locale_quoting_style quotes `like this', and
+#. clocale_quoting_style quotes "like this".
+#.
+#. For example, an American English Unicode locale should
+#. translate "`" to U+201C (LEFT DOUBLE QUOTATION MARK), and
+#. should translate "'" to U+201D (RIGHT DOUBLE QUOTATION
+#. MARK).  A British English Unicode locale should instead
+#. translate these to U+2018 (LEFT SINGLE QUOTATION MARK)
+#. and U+2019 (RIGHT SINGLE QUOTATION MARK), respectively.
+#.
+#. If you don't know what to put here, please see
+#. <http://en.wikipedia.org/wiki/Quotation_mark#Glyphs>
+#. and use glyphs suitable for your language.
+msgid "`"
+msgstr "`"
+
+msgid "'"
+msgstr "'"
+
+#. TRANSLATORS: %s after `Cannot' is a function name, e.g. `Cannot open'.
+#. Directly translating this to another language will not work, first because
+#. %s itself is not translated.
+#. Translate it as `%s: Function %s failed'.
+#, c-format
+msgid "%s: Cannot %s"
+msgstr "%s: Không thể %s"
+
+#. TRANSLATORS: %s after `Cannot' is a function name, e.g. `Cannot open'.
+#. Directly translating this to another language will not work, first because
+#. %s itself is not translated.
+#. Translate it as `%s: Function %s failed'.
+#, c-format
+msgid "%s: Warning: Cannot %s"
+msgstr "%s: Cảnh báo: Không thể %s"
+
+#, c-format
+msgid "Removing leading `%s' from member names"
+msgstr "Xóa bỏ phần dẫn đầu `%s' từ tên của các thành viên"
+
+#, c-format
+msgid "Removing leading `%s' from hard link targets"
+msgstr "Xóa bỏ phần dẫn đầu `%s' từ đích đến của các liên kết cứng"
+
+msgid "Substituting `.' for empty member name"
+msgstr "Đang thay thế `.' cho tên rỗng của các thành viên"
+
+msgid "Substituting `.' for empty hard link target"
+msgstr "Đang thay thế `.' cho đích đến rỗng của liên kết cứng"
+
+msgid "This does not look like a tar archive"
+msgstr "Đây có vẻ không phải là một kho lưu tar"
+
+msgid "(pipe)"
+msgstr "(đường ống)"
+
+msgid "Invalid value for record_size"
+msgstr "Giá trị cho record_size không đúng"
+
+msgid "No archive name given"
+msgstr "Không đưa ra tên kho lưu"
+
+#, c-format
+msgid "Archive is compressed. Use %s option"
+msgstr "Kho lưu được nén. Hãy sử dụng tùy chọn %s"
+
+msgid "At beginning of tape, quitting now"
+msgstr "Tại đầu băng ghi âm, thoát ra bây giờ"
+
+msgid "Too many errors, quitting"
+msgstr "Quá nhiều lỗi, đang thoát"
+
+#, c-format
+msgid "Unaligned block (%lu byte) in archive"
+msgid_plural "Unaligned block (%lu bytes) in archive"
+msgstr[0] "Khối chưa sắp hàng (%lu byte) trong kho lưu"
+
+msgid "rmtlseek not stopped at a record boundary"
+msgstr "rmtlseek không dừng lại tại một ranh giới bản ghi"
+
+msgid "Error is not recoverable: exiting now"
+msgstr ""
+
+#, c-format
+msgid "A lone zero block at %s"
+msgstr "Một khối không đơn lẻ tại %s"
+
+msgid "Skipping to next header"
+msgstr "Nhảy tới phần đầu tiếp theo"
+
+msgid "Unexpected EOF in archive"
+msgstr "Kết thúc tập tin không mong đợi trong kho lưu"
+
+#. TRANSLATORS: %s is type of the value (gid_t, uid_t,
+#. etc.)
+#, c-format
+msgid "Blanks in header where numeric %s value expected"
+msgstr "Khoảng trống trong Phần đầu trong khi mong đợi một giá trị số %s"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive octal value %.*s is out of %s range; assuming two's complement"
+msgstr ""
+"Giá trị hệ tám %.*s của kho lưu vượt ra phạm vi %s; coi như phần bù của hai"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive octal value %.*s is out of %s range"
+msgstr "Giá trị hệ tám %.*s của kho lưu vượt ra phạm vi %s"
+
+msgid "Archive contains obsolescent base-64 headers"
+msgstr "Kho lưu chứa phần đầu base-64 không còn dùng nữa"
+
+#, c-format
+msgid "Archive signed base-64 string %s is out of %s range"
+msgstr "Kho lưu ký chuỗi base-64 %s vượt ra ngoài vùng %s"
+
+#, c-format
+msgid "Archive base-256 value is out of %s range"
+msgstr "Giá trị base-256 của kho lưu vượt ra ngoài vùng %s"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive contains %.*s where numeric %s value expected"
+msgstr "Kho lưu chứa %.*s ở chỗ mong đợi giá trị số %s"
+
+#. TRANSLATORS: Second %s is type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive value %s is out of %s range %s..%s"
+msgstr "Giá trị kho lưu %s vượt quá phạm vi %s (%s..%s)"
+
+msgid "Unexpected long name header"
+msgstr "Phần đầu tên dài không mong đợi"
+
+#, c-format
+msgid " link to %s\n"
+msgstr " liên kết tới %s\n"
+
+#, c-format
+msgid " unknown file type %s\n"
+msgstr " dạng tập tin không rõ %s\n"
+
+#, c-format
+msgid "--Long Link--\n"
+msgstr "--Liên kết Dài--\n"
+
+#, c-format
+msgid "--Long Name--\n"
+msgstr "--Tên Dài--\n"
+
+#, c-format
+msgid "--Volume Header--\n"
+msgstr "--Phần đầu Khối--\n"
+
+#, c-format
+msgid "--Continued at byte %s--\n"
+msgstr "--Tiếp tục tại byte %s--\n"
+
+msgid "child process"
+msgstr "tiến trình con"
+
+msgid "interprocess channel"
+msgstr "kênh (channel) giữa các tiến trình"
+
+#, fuzzy, c-format
+msgid "%s: invalid sparse archive member"
+msgstr "%s: Định dạng kho lưu không đúng"
+
+#, c-format
+msgid "%s: numeric overflow in sparse archive member"
+msgstr ""
+
+#, c-format
+msgid "%s: malformed sparse archive member"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Child died with signal %d"
+msgstr "Lệnh bị lỗi với trạng thái %d\n"
+
+#, c-format
+msgid "Child returned status %d"
+msgstr ""
+
+#, fuzzy
+msgid "Cannot close"
+msgstr "không thể tìm nơi"
+
+#, fuzzy
+msgid "Cannot dup"
+msgstr "%s: Không thể %s"
+
+msgid "tar (child)"
+msgstr ""
+
+msgid "tar (grandchild)"
+msgstr ""
+
+msgid "Exiting with failure status due to previous errors"
+msgstr "Đang thoát với trạng thái thất bại do lỗi xảy ra trước"
+
+msgid "Malformed extended header: missing length"
+msgstr "Phần đầu mở rộng dạng sai: thiếu chiều dài"
+
+msgid "Extended header length is out of allowed range"
+msgstr "Chiều dài phần đầu mở rộng ở ngoại phạm vi được phép"
+
+#, c-format
+msgid "Extended header length %*s is out of range"
+msgstr "Chiều dài phần đầu mở rộng %*s ở ngoại phạm vi được phép"
+
+msgid "Malformed extended header: missing blank after length"
+msgstr "Phần đầu mở rộng dạng sai: thiếu khoảng trắng ở sau chiều dài"
+
+msgid "Malformed extended header: missing equal sign"
+msgstr "Phần đầu mở rộng bị lỗi: thiếu dấu bằng"
+
+msgid "Malformed extended header: missing newline"
+msgstr "Phần đầu mở rộng dạng sai: thiếu dòng mới"
+
+#, c-format
+msgid "Ignoring unknown extended header keyword `%s'"
+msgstr "Bỏ qua từ khoá phần đầu mở rộng không rõ « %s »"
+
+#. TRANSLATORS: The first %s is the pax extended header keyword
+#. (atime, gid, etc.).
+#, c-format
+msgid "Extended header %s=%s is out of range %s..%s"
+msgstr "Phần đầu mở rộng %s=%s ở ngoại phạm vi (%s..%s)"
+
+#, c-format
+msgid "Malformed extended header: invalid %s=%s"
+msgstr "Phần đầu mở rộng dạng sai: %s=%s không hợp lệ"
+
+#, c-format
+msgid "Malformed extended header: excess %s=%s"
+msgstr "Phần đầu mở rộng dạng sai: %s=%s thừa"
+
+#, c-format
+msgid "Malformed extended header: invalid %s: unexpected delimiter %c"
+msgstr ""
+"Phần đầu mở rộng dạng sai: %s không hợp lệ: dấu giới hạn không mong đợi %c"
+
+#, c-format
+msgid "Malformed extended header: invalid %s: odd number of values"
+msgstr "Phần đầu mở rộng dạng sai: %s không hợp lệ: số giá trị lẻ"

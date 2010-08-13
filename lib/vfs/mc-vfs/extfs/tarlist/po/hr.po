@@ -1,0 +1,296 @@
+# GNU tar .po message translation file for hr_HR locale
+# Copyright (C) 2002 Free Software Foundation, Inc.
+# Mirsad Todorovac <mtodorov_69@yahoo.com>, 2002.
+#     ... wishes to thank everybody who helped in good faith.
+#
+# Well, in 03:12 hrs (for 1st pass)!! who beats me I owe him a pizza ;-) -- TM
+msgid ""
+msgstr ""
+"Project-Id-Version: tar 1.13.25\n"
+"Report-Msgid-Bugs-To: http://www.midnight-commander.org/\n"
+"POT-Creation-Date: 2010-08-06 14:07+0400\n"
+"PO-Revision-Date: 2002-04-26 10:49+MET(DST)(UTC+2)\n"
+"Last-Translator: Mirsad Todorovac <mtodorov_69@yahoo.com>\n"
+"Language-Team: Croatian <lokalizacija@linux.hr>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-2\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#, c-format
+msgid "invalid argument %s for %s"
+msgstr "pogre¹an argument %s za %s"
+
+#, c-format
+msgid "ambiguous argument %s for %s"
+msgstr "nejednoznaèan argument %s za %s"
+
+#, c-format
+msgid "Valid arguments are:"
+msgstr "Ispravni argumenti su:"
+
+msgid "write error"
+msgstr ""
+
+msgid "memory exhausted"
+msgstr "iscrpljena memorija"
+
+#
+# MT -- FIXME -- for now this is left untranslated, until we
+# come to UTF-8 or something alike (20020412)
+#. TRANSLATORS:
+#. Get translations for open and closing quotation marks.
+#.
+#. The message catalog should translate "`" to a left
+#. quotation mark suitable for the locale, and similarly for
+#. "'".  If the catalog has no translation,
+#. locale_quoting_style quotes `like this', and
+#. clocale_quoting_style quotes "like this".
+#.
+#. For example, an American English Unicode locale should
+#. translate "`" to U+201C (LEFT DOUBLE QUOTATION MARK), and
+#. should translate "'" to U+201D (RIGHT DOUBLE QUOTATION
+#. MARK).  A British English Unicode locale should instead
+#. translate these to U+2018 (LEFT SINGLE QUOTATION MARK)
+#. and U+2019 (RIGHT SINGLE QUOTATION MARK), respectively.
+#.
+#. If you don't know what to put here, please see
+#. <http://en.wikipedia.org/wiki/Quotation_mark#Glyphs>
+#. and use glyphs suitable for your language.
+msgid "`"
+msgstr "`"
+
+msgid "'"
+msgstr "'"
+
+#. TRANSLATORS: %s after `Cannot' is a function name, e.g. `Cannot open'.
+#. Directly translating this to another language will not work, first because
+#. %s itself is not translated.
+#. Translate it as `%s: Function %s failed'.
+#, c-format
+msgid "%s: Cannot %s"
+msgstr "%s: Ne mogu %s"
+
+#. TRANSLATORS: %s after `Cannot' is a function name, e.g. `Cannot open'.
+#. Directly translating this to another language will not work, first because
+#. %s itself is not translated.
+#. Translate it as `%s: Function %s failed'.
+#, c-format
+msgid "%s: Warning: Cannot %s"
+msgstr "%s: Upozorenje: Ne mogu %s"
+
+#, fuzzy, c-format
+msgid "Removing leading `%s' from member names"
+msgstr "Uklanjam vodeæe `%.*s' iz imena èlanova"
+
+#, fuzzy, c-format
+msgid "Removing leading `%s' from hard link targets"
+msgstr "Uklanjam vodeæe `%.*s' iz imena èlanova"
+
+#, fuzzy
+msgid "Substituting `.' for empty member name"
+msgstr "Uklanjam vodeæe `%.*s' iz imena èlanova"
+
+msgid "Substituting `.' for empty hard link target"
+msgstr ""
+
+msgid "This does not look like a tar archive"
+msgstr "Ovo ne izgleda kao tar arhiva"
+
+msgid "(pipe)"
+msgstr "(cjevovod - pipe)"
+
+msgid "Invalid value for record_size"
+msgstr "Pogre¹na vrijednost za record_size"
+
+msgid "No archive name given"
+msgstr "Nije dano ime arhive"
+
+#, c-format
+msgid "Archive is compressed. Use %s option"
+msgstr ""
+
+msgid "At beginning of tape, quitting now"
+msgstr "Poèetak trake, zavr¹avam"
+
+msgid "Too many errors, quitting"
+msgstr "Previ¹e pogre¹aka, zavr¹avam"
+
+#, fuzzy, c-format
+msgid "Unaligned block (%lu byte) in archive"
+msgid_plural "Unaligned block (%lu bytes) in archive"
+msgstr[0] "Neporavnat (unaligned) blok (%lu bajtova) unutar arhive"
+msgstr[1] "Neporavnat (unaligned) blok (%lu bajtova) unutar arhive"
+
+msgid "rmtlseek not stopped at a record boundary"
+msgstr ""
+
+msgid "Error is not recoverable: exiting now"
+msgstr "Gre¹ka iz koje se ne mogu oporaviti: zavr¹avam s radom"
+
+#, c-format
+msgid "A lone zero block at %s"
+msgstr ""
+
+msgid "Skipping to next header"
+msgstr "Preskaèem do slijedeæeg zaglavlja"
+
+msgid "Unexpected EOF in archive"
+msgstr "Neoèekivani EOF u arhivi"
+
+#. TRANSLATORS: %s is type of the value (gid_t, uid_t,
+#. etc.)
+#, c-format
+msgid "Blanks in header where numeric %s value expected"
+msgstr "Razmaci u zaglavlju gdje se oèekuje numerièka %s vrijednost"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive octal value %.*s is out of %s range; assuming two's complement"
+msgstr ""
+"Oktalna vrijednost %.*s iz arhive je izvan %s opsega; pretpostavljam dvojni "
+"komplement"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive octal value %.*s is out of %s range"
+msgstr "Oktalna vrijednost iz arhive %.*s je izvan %s opsega"
+
+# FIXME -- obsolescent -- TM
+msgid "Archive contains obsolescent base-64 headers"
+msgstr "Arhiva sadr¾i base-64 zaglavlja zastarjelog formata"
+
+# FIXME??
+#, c-format
+msgid "Archive signed base-64 string %s is out of %s range"
+msgstr "Base-64 vrijednost s predznakom %s iz arhive je izvan %s opsega"
+
+#, c-format
+msgid "Archive base-256 value is out of %s range"
+msgstr "Base-256 vrijednost iz arhive je izvan %s opsega"
+
+#. TRANSLATORS: Second %s is a type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive contains %.*s where numeric %s value expected"
+msgstr "Arhiva sadr¾i %.*s gdje je oèekivana numerièka %s vrijednost"
+
+#. TRANSLATORS: Second %s is type name (gid_t,uid_t,etc.)
+#, c-format
+msgid "Archive value %s is out of %s range %s..%s"
+msgstr "Vrijednost %s iz arhive je izvan %s opsega %s..%s"
+
+#, fuzzy
+msgid "Unexpected long name header"
+msgstr "Neoèekivan EOF u mangliranim imenima"
+
+#, c-format
+msgid " link to %s\n"
+msgstr " link do %s\n"
+
+#, c-format
+msgid " unknown file type %s\n"
+msgstr " nepoznat tip datoteke %s\n"
+
+#, c-format
+msgid "--Long Link--\n"
+msgstr ""
+
+#, c-format
+msgid "--Long Name--\n"
+msgstr ""
+
+#, c-format
+msgid "--Volume Header--\n"
+msgstr "--Zaglavlje dijela arhive--\n"
+
+# FIXME -- clarify against source -- TM
+#, c-format
+msgid "--Continued at byte %s--\n"
+msgstr "--Nastavljeno s bajtom %s--\n"
+
+msgid "child process"
+msgstr "podproces"
+
+msgid "interprocess channel"
+msgstr "meðuprocesni kanal"
+
+#, fuzzy, c-format
+msgid "%s: invalid sparse archive member"
+msgstr "%s: Pogre¹na grupa"
+
+#, c-format
+msgid "%s: numeric overflow in sparse archive member"
+msgstr ""
+
+#, c-format
+msgid "%s: malformed sparse archive member"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Child died with signal %d"
+msgstr "Potproces zavr¹io uz signal %d"
+
+#, c-format
+msgid "Child returned status %d"
+msgstr "Podproces zavr¹io uz status %d"
+
+#, fuzzy
+msgid "Cannot close"
+msgstr "Ne mogu zatvoriti"
+
+msgid "Cannot dup"
+msgstr "Neuspjeli dup"
+
+msgid "tar (child)"
+msgstr "tar (podproces)"
+
+msgid "tar (grandchild)"
+msgstr "tar (pod-podproces)"
+
+msgid "Exiting with failure status due to previous errors"
+msgstr ""
+
+msgid "Malformed extended header: missing length"
+msgstr ""
+
+msgid "Extended header length is out of allowed range"
+msgstr ""
+
+# FIXME??
+#, fuzzy, c-format
+msgid "Extended header length %*s is out of range"
+msgstr "Base-64 vrijednost s predznakom %s iz arhive je izvan %s opsega"
+
+msgid "Malformed extended header: missing blank after length"
+msgstr ""
+
+msgid "Malformed extended header: missing equal sign"
+msgstr ""
+
+msgid "Malformed extended header: missing newline"
+msgstr ""
+
+#, c-format
+msgid "Ignoring unknown extended header keyword `%s'"
+msgstr ""
+
+#. TRANSLATORS: The first %s is the pax extended header keyword
+#. (atime, gid, etc.).
+#, fuzzy, c-format
+msgid "Extended header %s=%s is out of range %s..%s"
+msgstr "Vrijednost %s iz arhive je izvan %s opsega %s..%s"
+
+#, c-format
+msgid "Malformed extended header: invalid %s=%s"
+msgstr ""
+
+#, c-format
+msgid "Malformed extended header: excess %s=%s"
+msgstr ""
+
+#, c-format
+msgid "Malformed extended header: invalid %s: unexpected delimiter %c"
+msgstr ""
+
+#, c-format
+msgid "Malformed extended header: invalid %s: odd number of values"
+msgstr ""
