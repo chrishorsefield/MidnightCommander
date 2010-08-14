@@ -94,7 +94,7 @@ struct vfs_s_super
             int ctl_connection_busy;
         } ftp;
 #endif /* ENABLE_VFS_FTP */
-#if defined(ENABLE_VFS_CPIO) || defined(ENABLE_VFS_TAR)
+#ifdef ENABLE_VFS_CPIO
         struct
         {
             int fd;
@@ -102,7 +102,7 @@ struct vfs_s_super
             int type;                     /* Type of the archive */
             struct defer_inode *deferred; /* List of inodes for which another entries may appear */
         } arch;
-#endif /* ENABLE_VFS_CPIO || ENABLE_VFS_TAR */
+#endif /* ENABLE_VFS_CPIO */
     } u;
 };
 
@@ -160,7 +160,7 @@ struct vfs_s_fh
 };
 
 /*
- * One of our subclasses (tar, cpio, fish, ftpfs) with data and methods.
+ * One of our subclasses (cpio, fish, ftpfs) with data and methods.
  * Extends vfs_class.  Stored in the "data" field of vfs_class.
  */
 struct vfs_s_subclass

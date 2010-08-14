@@ -25,7 +25,6 @@ BASICFILES = \
 	local.c local.h
 
 CPIOFILES = cpio.c
-TARFILES = tar.c
 SFSFILES = sfs.c
 EXTFSFILES = extfs.c
 UNDELFILES = undelfs.c
@@ -39,9 +38,6 @@ SMBFILES = smbfs.c smbfs.h
 libvfs_mc_la_SOURCES = $(BASICFILES)
 if ENABLE_VFS_CPIO
 libvfs_mc_la_SOURCES += $(CPIOFILES)
-endif
-if ENABLE_VFS_TAR
-libvfs_mc_la_SOURCES += $(TARFILES)
 endif
 if ENABLE_VFS_SFS
 libvfs_mc_la_SOURCES += $(SFSFILES)
@@ -68,7 +64,6 @@ endif
 EXTRA_DIST = HACKING README \
 	$(BASICFILES) \
 	$(CPIOFILES) \
-	$(TARFILES) \
 	$(SFSFILES) \
 	$(EXTFSFILES) \
 	$(UNDELFILES) \

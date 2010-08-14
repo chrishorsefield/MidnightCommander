@@ -1318,9 +1318,6 @@ vfs_init (void)
 #ifdef ENABLE_VFS_CPIO
     init_cpiofs ();
 #endif /* ENABLE_VFS_CPIO */
-#ifdef ENABLE_VFS_TAR
-    init_tarfs ();
-#endif /* ENABLE_VFS_TAR */
 #ifdef ENABLE_VFS_SFS
     init_sfs ();
 #endif /* ENABLE_VFS_SFS */

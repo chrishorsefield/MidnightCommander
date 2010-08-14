@@ -114,9 +114,6 @@ vfsid vfs_getid (struct vfs_class *vclass, const char *dir);
 #ifdef ENABLE_VFS_CPIO
 void init_cpiofs (void);
 #endif
-#ifdef ENABLE_VFS_TAR
-void init_tarfs (void);
-#endif
 #ifdef ENABLE_VFS_SFS
 void init_sfs (void);
 #endif
