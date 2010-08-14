@@ -21,8 +21,8 @@
 
 AC_INIT([tarlist], [1.23], [mc-devel@gnome.org])
 AC_CONFIG_SRCDIR([src/tar.c])
-AC_CONFIG_MACRO_DIR([m4])
-AC_CONFIG_AUX_DIR([config])
+AC_CONFIG_MACRO_DIR([../../../../../m4])
+AC_CONFIG_AUX_DIR([../../../../../config])
 AC_CONFIG_HEADERS([config.h])
 AC_PREREQ([2.60])
 AM_INIT_AUTOMAKE([tarlist], [1.23], [gnits std-options nostdinc no-dist])
@@ -117,15 +117,14 @@ AC_CHECK_TYPE(iconv_t,:,
 ])
 
 # Gettext.
-AM_GNU_GETTEXT([no-libtool], [need-ngettext])
+AM_GNU_GETTEXT([external], [need-ngettext], [../../../../../intl])
 AM_GNU_GETTEXT_VERSION([0.16])
 
 if test "x$USE_INCLUDED_LIBINTL" = xyes; then
-    CPPFLAGS="$CPPFLAGS -I\$(top_builddir)/intl -I\$(top_srcdir)/intl"
+    CPPFLAGS="$CPPFLAGS -I\$(top_builddir)/intl -I\$(top_srcdir)/intl -I../../../../../intl"
 fi
 
 AC_OUTPUT([Makefile\
-           intl/Makefile \
            gnu/Makefile\
            lib/Makefile\
            po/Makefile.in\

@@ -18,5 +18,5 @@
 ## Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 ## 02110-1301, USA.
 
-ACLOCAL_AMFLAGS = -I m4
-SUBDIRS = gnu intl lib src po
+ACLOCAL_AMFLAGS = -I ../../../../../m4
+SUBDIRS = gnu lib src po
