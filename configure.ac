@@ -96,7 +96,7 @@ dnl
 dnl Internationalization
 dnl
 AM_GNU_GETTEXT(no-libtool, need-ngettext)
-AM_GNU_GETTEXT_VERSION(0.14.3)
+AM_GNU_GETTEXT_VERSION(0.16)
 
 if test "x$USE_INCLUDED_LIBINTL" = xyes; then
     CPPFLAGS="$CPPFLAGS -I\$(top_builddir)/intl -I\$(top_srcdir)/intl"
