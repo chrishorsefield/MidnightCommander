@@ -64,7 +64,7 @@ EXTFS_OUT = 			\
 	uzip			\
 	uzoo
 
-if ENABLE_VFS
+if ENABLE_VFS_EXTFS
 extfs_DATA = $(EXTFS_MISC)
 extfs_SCRIPTS = $(EXTFS_CONST) $(EXTFS_OUT)
 
@@ -73,3 +73,5 @@ extfsconf_DATA = $(EXTFSCONFFILES)
 endif
 
 EXTRA_DIST = $(EXTFS_MISC) $(EXTFS_CONST) $(EXTFSCONFFILES)
+
+include tarlist-files-include.am

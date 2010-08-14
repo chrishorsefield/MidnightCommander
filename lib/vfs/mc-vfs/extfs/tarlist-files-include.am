@@ -1,0 +1,212 @@
+if ENABLE_VFS_TAR
+SUBDIRS = tarlist
+endif
+
+DIST_SUBDIRS = .
+
+TARLIST_DIST =				\
+	ABOUT-NLS			\
+	AUTHORS				\
+	ChangeLog			\
+	COPYING				\
+	INSTALL				\
+	Makefile.am			\
+	Makefile.in			\
+	NEWS				\
+	README				\
+	THANKS				\
+	acinclude.m4			\
+	config.h.in			\
+	configure			\
+	configure.ac			\
+	gnu/Makefile.am			\
+	gnu/Makefile.in			\
+	gnu/argmatch.c			\
+	gnu/argmatch.h			\
+	gnu/basename.c			\
+	gnu/basename-lgpl.c		\
+	gnu/bitrotate.h			\
+	gnu/closeout.c			\
+	gnu/closeout.h			\
+	gnu/close-stream.c		\
+	gnu/close-stream.h		\
+	gnu/config.charset		\
+	gnu/dirname.c			\
+	gnu/dirname.h			\
+	gnu/dirname-lgpl.c		\
+	gnu/exitfail.c			\
+	gnu/exitfail.h			\
+	gnu/fpending.c			\
+	gnu/fpending.h			\
+	gnu/full-write.c		\
+	gnu/full-write.h		\
+	gnu/gettext.h			\
+	gnu/gettime.c			\
+	gnu/hash.c			\
+	gnu/hash.h			\
+	gnu/imaxtostr.c			\
+	gnu/intprops.h			\
+	gnu/inttostr.c			\
+	gnu/inttostr.h			\
+	gnu/localcharset.c		\
+	gnu/localcharset.h		\
+	gnu/obstack.c			\
+	gnu/obstack.h			\
+	gnu/offtostr.c			\
+	gnu/progname.c			\
+	gnu/progname.h			\
+	gnu/quotearg.c			\
+	gnu/quotearg.h			\
+	gnu/quote.c			\
+	gnu/quote.h			\
+	gnu/ref-add.sin			\
+	gnu/ref-del.sin			\
+	gnu/safe-read.c			\
+	gnu/safe-read.h			\
+	gnu/safe-write.c		\
+	gnu/safe-write.h		\
+	gnu/stripslash.c		\
+	gnu/timespec.h			\
+	gnu/uinttostr.c			\
+	gnu/umaxtostr.c			\
+	gnu/verify.h			\
+	gnu/xalloc.h			\
+	gnu/xmalloc.c			\
+	gnu/xstrndup.c			\
+	gnu/xstrndup.h			\
+	lib/Makefile.am			\
+	lib/Makefile.in			\
+	lib/paxerror.c			\
+	lib/paxexit.c			\
+	lib/paxlib.h			\
+	lib/paxnames.c			\
+	lib/rmt.h			\
+	lib/stdopen.c			\
+	lib/stdopen.h			\
+	lib/system.h			\
+	m4.gnu/00gnulib.m4		\
+	m4.gnu/argmatch.m4		\
+	m4.gnu/clock_time.m4		\
+	m4.gnu/closeout.m4		\
+	m4.gnu/close-stream.m4		\
+	m4.gnu/dirname.m4		\
+	m4.gnu/dos.m4			\
+	m4.gnu/double-slash-root.m4	\
+	m4.gnu/extensions.m4		\
+	m4.gnu/fcntl-o.m4		\
+	m4.gnu/fpending.m4		\
+	m4.gnu/gettime.m4		\
+	m4.gnu/glibc21.m4		\
+	m4.gnu/gnulib-common.m4		\
+	m4.gnu/gnulib-comp.m4		\
+	m4.gnu/hash.m4			\
+	m4.gnu/include_next.m4		\
+	m4.gnu/inline.m4		\
+	m4.gnu/inttostr.m4		\
+	m4.gnu/localcharset.m4		\
+	m4.gnu/multiarch.m4		\
+	m4.gnu/quotearg.m4		\
+	m4.gnu/quote.m4			\
+	m4.gnu/safe-read.m4		\
+	m4.gnu/safe-write.m4		\
+	m4.gnu/size_max.m4		\
+	m4.gnu/ssize_t.m4		\
+	m4.gnu/stdbool.m4		\
+	m4.gnu/stdint.m4		\
+	m4.gnu/system.m4		\
+	m4.gnu/timespec.m4		\
+	m4.gnu/xalloc.m4		\
+	m4.gnu/xstrndup.m4		\
+	po/LINGUAS			\
+	po/Makefile.in.in		\
+	po/Makevars			\
+	po/POTFILES.in			\
+	po/remove-potcdate.sin		\
+	po/bg.po			\
+	po/cs.po			\
+	po/da.po			\
+	po/de.po			\
+	po/el.po			\
+	po/es.po			\
+	po/et.po			\
+	po/eu.po			\
+	po/fi.po			\
+	po/fr.po			\
+	po/ga.po			\
+	po/gl.po			\
+	po/hr.po			\
+	po/hu.po			\
+	po/id.po			\
+	po/it.po			\
+	po/ja.po			\
+	po/ko.po			\
+	po/ky.po			\
+	po/ms.po			\
+	po/nb.po			\
+	po/nl.po			\
+	po/pl.po			\
+	po/pt_BR.po			\
+	po/pt.po			\
+	po/ro.po			\
+	po/ru.po			\
+	po/sk.po			\
+	po/sl.po			\
+	po/sv.po			\
+	po/tr.po			\
+	po/uk.po			\
+	po/vi.po			\
+	po/zh_CN.po			\
+	po/zh_TW.po			\
+	src/Makefile.am			\
+	src/Makefile.in			\
+	src/arith.h			\
+	src/buffer.c			\
+	src/common.h			\
+	src/exit.c			\
+	src/list.c			\
+	src/misc.c			\
+	src/sparse.c			\
+	src/suffix.c			\
+	src/system.c			\
+	src/tar.c			\
+	src/tar.h			\
+	src/transform.c			\
+	src/utf8.c			\
+	src/warning.c			\
+	src/xheader.c
+
+dist-hook:
+	$(mkinstalldirs) $(distdir)/tarlist
+	$(mkinstalldirs) $(distdir)/tarlist/gnu
+	$(mkinstalldirs) $(distdir)/tarlist/lib
+	$(mkinstalldirs) $(distdir)/tarlist/m4.gnu
+	$(mkinstalldirs) $(distdir)/tarlist/po
+	$(mkinstalldirs) $(distdir)/tarlist/src
+	for I in $(TARLIST_DIST); do \
+	    cp -p $(srcdir)/tarlist/$$I $(distdir)/tarlist/$$I || exit 1; \
+	done
+
+mostlyclean-local:
+	if test -f tarlist/Makefile; then \
+	    (cd tarlist && $(MAKE) mostlyclean) \
+	else :; fi
+
+clean-local:
+	if test -f tarlist/Makefile; then \
+	    (cd tarlist && $(MAKE) clean) \
+	else :; fi
+
+distclean-local:
+	if test -f tarlist/Makefile; then \
+	    cd tarlist && $(MAKE) distclean) \
+	else :; fi
+
+# install/uninstall tarlist utility here
+if ENABLE_VFS_TAR
+install-exec-hook:
+	$(mkinstalldirs) $(DESTDIR)$(extfsdir)/misc
+	${INSTALL_PROGRAM} tarlist/src/tarlist $(DESTDIR)$(extfsdir)/misc
+
+uninstall-hook:
+	rm -rf $(DESTDIR)$(extfsdir)/misc
+endif
