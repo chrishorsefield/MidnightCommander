@@ -14,8 +14,7 @@ set -e
 : ${XGETTEXT=xgettext}
 
 srcdir=`dirname $0`
-test -z "$srcdir" && srcdir=.
-
+test -z "${srcdir}" -o "${srcdir}" = '.' && srcdir=`pwd`
 
 (
 # Some shells don't propagate "set -e" to subshells.
@@ -29,7 +28,7 @@ fi
 cd "$srcdir"
 
 # The autoconf cache (version after 2.52) is not reliable yet.
-rm -rf autom4te.cache lib/vfs/mc-vfs/samba/autom4te.cache
+rm -rf autom4te.cache lib/vfs/mc-vfs/samba/autom4te.cache lib/vfs/mc-vfs/extfs/tarlist/autom4te.cache
 
 if test ! -d config; then
   mkdir config
@@ -72,7 +71,50 @@ $AUTOMAKE -a
 test -f Makefile.in || \
   { echo "automake failed to generate Makefile.in" >&2; exit 1; }
 
-cd lib/vfs/mc-vfs/samba
+
+cd ${srcdir}/lib/vfs/mc-vfs/extfs/tarlist
+date -u > stamp-h.in
+
+$AUTOPOINT --force || exit 1
+
+# Generate po/POTFILES.in
+$XGETTEXT --keyword=_ --keyword=N_ --keyword=Q_ --output=- \
+	`find . -name '*.[ch]'` | sed -ne '/^#:/{s/#://;s/:[0-9]*/\
+/g;s/ //g;p;}' | \
+	grep -v '^$' | sort | uniq | grep -v 'regex.c' >po/POTFILES.in
+
+$LIBTOOLIZE
+
+ACLOCAL_INCLUDES="-I ../../../../../m4"
+
+# Some old version of GNU build tools fail to set error codes.
+# Check that they generate some of the files they should.
+
+$ACLOCAL $ACLOCAL_INCLUDES $ACLOCAL_FLAGS
+test -f aclocal.m4 || \
+  { echo "aclocal failed to generate lib/vfs/mc-vfs/extfs/tarlist/aclocal.m4" >&2; exit 1; }
+
+$AUTOHEADER
+test -f config.h.in || \
+  { echo "autoheader failed to generate lib/vfs/mc-vfs/extfs/tarlist/config.h.in" >&2; exit 1; }
+
+$AUTOCONF
+test -f configure || \
+  { echo "autoconf failed to generate lib/vfs/mc-vfs/extfs/tarlist/configure" >&2; exit 1; }
+
+# Workaround for Automake 1.5 to ensure that depcomp is distributed.
+if test "`$AUTOMAKE --version|awk '{print $NF;exit}'`" = '1.5' ; then
+    $AUTOMAKE -a src/Makefile
+fi
+
+# hack:
+ln -sf ../../../../../ABOUT-NLS ABOUT-NLS
+
+$AUTOMAKE -a
+test -f Makefile.in || \
+  { echo "automake failed to generate lib/vfs/mc-vfs/extfs/tarlist/Makefile.in" >&2; exit 1; }
+
+cd  ${srcdir}/lib/vfs/mc-vfs/samba
 date -u >include/stamp-h.in
 
 $AUTOHEADER
@@ -82,6 +124,8 @@ test -f include/config.h.in || \
 $AUTOCONF
 test -f configure || \
   { echo "autoconf failed to generate lib/vfs/mc-vfs/samba/configure" >&2; exit 1; }
+
+cd ${srcdir}
 ) || exit 1
 
 $srcdir/maint/version.sh "$srcdir"
