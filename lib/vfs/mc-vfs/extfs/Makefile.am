@@ -64,6 +64,11 @@ EXTFS_OUT = 			\
 	uzip			\
 	uzoo
 
+if ENABLE_VFS_TAR
+EXTFS_IN  += utar.in
+EXTFS_OUT += utar
+endif
+
 if ENABLE_VFS_EXTFS
 extfs_DATA = $(EXTFS_MISC)
 extfs_SCRIPTS = $(EXTFS_CONST) $(EXTFS_OUT)
@@ -75,3 +80,11 @@ endif
 EXTRA_DIST = $(EXTFS_MISC) $(EXTFS_CONST) $(EXTFSCONFFILES)
 
 include tarlist-files-include.am
+
+# modify utar plugin to set correct path
+if ENABLE_VFS_TAR
+install-data-hook:
+	sed -e "s|@EXTFSDIR@|$(extfsdir)|" $(DESTDIR)$(extfsdir)/utar > $(DESTDIR)$(extfsdir)/utar.tmp
+	mv -f $(DESTDIR)$(extfsdir)/utar.tmp $(DESTDIR)$(extfsdir)/utar
+	chmod 0755 $(DESTDIR)$(extfsdir)/utar
+endif

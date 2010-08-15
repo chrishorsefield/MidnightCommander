@@ -1,0 +1,64 @@
+#! /bin/sh
+
+TAR=tar
+
+TARLIST=@EXTFSDIR@/misc/tarlist
+
+mctarfs_list ()
+{
+    $TARLIST "$1" |
+    @AWK@ \
+    '{
+        # remove trailing slash from directory name
+        if ($1 ~ /^d.*/)
+            sub ("/$", "")
+
+        # we expect 7 or 9 columns in $TARLIST output
+        if (NF == 7)
+        {
+            # directory or file name
+
+            if ($1 ~ /^[cb].*/)
+            {
+                # block or character device
+                printf "%s 1 %s %s %s %s %s %s\n", \
+                        $1, $2, $3, $4, $5, $6, $7
+            }
+            else
+            {
+                # regular file or directory
+                printf "%s 1 %s %s %d %s %s %s\n", \
+                        $1, $2, $3, $4, $5, $6, $7
+            }
+        }
+        else if (NF == 9)
+        {
+            # link name
+            printf "%s 1 %s %s %d %s %s %s -> %s\n", \
+                    $1, $2, $3, $4, $5, $6, $7, $9
+        }
+        else
+        {
+            # unsupported format
+            exit (1)
+        }
+    }'
+}
+
+mctarfs_copyout ()
+{
+    $TAR -x -O -p -f "$1" "$2" > "$3"
+}
+
+umask 077
+
+cmd="$1"
+shift
+
+case "$cmd" in
+  list) mctarfs_list "$@" ;;
+  copyout) mctarfs_copyout "$@" ;;
+  *) exit 1 ;;
+esac
+
+exit 0

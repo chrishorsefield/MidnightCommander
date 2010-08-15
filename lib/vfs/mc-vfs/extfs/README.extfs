@@ -2,6 +2,7 @@
 # Trailing plus means that the filesystem is not tied to a certain file.
 
 # Popular PC archivers
+utar
 uzip
 uzoo
 ulha

@@ -596,6 +596,7 @@ lib/vfs/mc-vfs/extfs/uc1541
 lib/vfs/mc-vfs/extfs/uha
 lib/vfs/mc-vfs/extfs/ulha
 lib/vfs/mc-vfs/extfs/urar
+lib/vfs/mc-vfs/extfs/utar
 lib/vfs/mc-vfs/extfs/uzip
 lib/vfs/mc-vfs/extfs/uzoo
 
