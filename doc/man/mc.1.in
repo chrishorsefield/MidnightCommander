@@ -2120,25 +2120,16 @@ The Midnight Commander keeps in memory the information related to some
 of the virtual file systems to speed up the access to the files in the
 file system (for example, directory listings fetched from FTP servers).
 .PP
-Also, in order to access the contents of compressed files (for example,
-compressed tar files) the Midnight Commander needs to create temporary
-uncompressed files on your disk.
+Also, in order to access the contents of compressed files, the Midnight
+Commander needs to create temporary uncompressed files on your disk.
 .PP
 Since both the information in memory and the temporary files on disk
 take up resources, you may want to tune the parameters of the cached
 information to decrease your resource usage or to maximize the speed of
 access to frequently used file systems.
 .PP
-Because of the format of the tar archives, the
-.I Tar filesystem
-needs to read the whole file just to load the file entries.  Since most
-tar files are usually kept compressed (plain tar files are species in
-extinction), the tar file system has to uncompress the file on the disk
-in a temporary location and then access the uncompressed file as a
-regular tar file.
-.PP
-Now, since we all love to browse files and tar files all over the disk,
-it's common that you will leave a tar file and then re\-enter it later.
+Now, since we all love to browse files all over the disk, it's common
+that you will leave an archive file and then re\-enter it later.
 Since decompression is slow, the Midnight Commander will cache the
 information in memory for a limited time.  When the timeout expires, all
 the resources associated with the file system are released.  The default
@@ -3068,8 +3059,6 @@ Systems (VFS): the
 file system, used for accessing the regular Unix file system; the
 .IR ftpfs ,
 used to manipulate files on remote systems with the FTP protocol; the
-.IR tarfs ,
-used to manipulate tar and compressed tar files; the
 .IR undelfs ,
 used to recover deleted files on ext2 file systems (the default file
 system for Linux systems),
@@ -3134,31 +3123,6 @@ Please check the
 Virtual File System
 .\"Virtual FS"
 dialog box for ftpfs options.
-.\"NODE "  Tar File System"
-.SH "  Tar File System"
-The tar file system provides you with read\-only access to your tar
-files and compressed tar files by using the chdir command.  To change
-your directory to a tar file, you change your current directory to the
-tar file by using the following syntax:
-.PP
-.I /filename.tar#utar/[dir\-inside\-tar]
-.PP
-The mc.ext file already provides a shortcut for tar files, this means
-that usually you just point to a tar file and press return to enter
-into the tar file, see the
-.\"LINK2"
-Extension File Edit
-.\"Extension File Edit"
-section for details on how this is done.
-.PP
-Examples:
-.PP
-.nf
-    mc\-3.0.tar.gz#utar/mc\-3.0/vfs
-    /ftp/GCC/gcc\-2.7.0.tar#utar
-.fi
-.PP
-The latter specifies the full path of the tar archive.
 .\"NODE "  FIle transfer over SHell filesystem"
 .SH "  FIle transfer over SHell filesystem"
 The fish file system is a network based file system that allows you to
