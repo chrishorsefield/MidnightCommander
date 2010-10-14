@@ -1045,7 +1045,7 @@ draw_history_button (WInput * in)
 
     c = in->history->next ? (in->history->prev ? '|' : 'v') : '^';
     widget_move (&in->widget, 0, in->field_width - HISTORY_BUTTON_WIDTH);
-    tty_setcolor (disabled ? DISABLED_COLOR : in->color[WINPUTC_HISTORY]);
+    tty_setcolor (disabled ? DISABLED_COLOR : in->colors[WINPUTC_HISTORY]);
 #ifdef LARGE_HISTORY_BUTTON
     {
         Dlg_head *h;
@@ -1154,9 +1154,9 @@ update_input (WInput * in, int clear_first)
     if ((((Widget *) in)->options & W_DISABLED) != 0)
         tty_setcolor (DISABLED_COLOR);
     else if (in->first)
-        tty_setcolor (in->color[WINPUTC_UNCHANGED]);
+        tty_setcolor (in->colors[WINPUTC_UNCHANGED]);
     else
-        tty_setcolor (in->color[WINPUTC_MAIN]);
+        tty_setcolor (in->colors[WINPUTC_MAIN]);
 
     widget_move (&in->widget, 0, 0);
 
@@ -1172,11 +1172,11 @@ update_input (WInput * in, int clear_first)
             long m1, m2;
             if (input_eval_marks (in, &m1, &m2))
             {
-                tty_setcolor (in->color[WINPUTC_MAIN]);
+                tty_setcolor (in->colors[WINPUTC_MAIN]);
                 cp = str_term_substring (in->buffer, in->term_first_shown,
                                          in->field_width - has_history);
                 tty_print_string (cp);
-                tty_setcolor (in->color[WINPUTC_MARK]);
+                tty_setcolor (in->colors[WINPUTC_MARK]);
                 if (m1 < in->term_first_shown)
                 {
                     widget_move (&in->widget, 0, 0);
@@ -1204,7 +1204,7 @@ update_input (WInput * in, int clear_first)
         {
             if (i >= 0)
             {
-                tty_setcolor (in->color[WINPUTC_MAIN]);
+                tty_setcolor (in->colors[WINPUTC_MAIN]);
                 tty_print_char ((cp[0] != '\0') ? '*' : ' ');
             }
             if (cp[0] != '\0')
@@ -2357,26 +2357,10 @@ input_event (Gpm_Event * event, void *data)
     return MOU_NORMAL;
 }
 
-/** Get default colors for WInput widget.
-  * @returns default colors
-  */
-int *
-input_get_default_colors (void)
-{
-    static input_colors_t standart_colors;
-
-    standart_colors[WINPUTC_MAIN] = INPUT_COLOR;
-    standart_colors[WINPUTC_MARK] = INPUT_MARK_COLOR;
-    standart_colors[WINPUTC_UNCHANGED] = INPUT_UNCHANGED_COLOR;
-    standart_colors[WINPUTC_HISTORY] = INPUT_HISTORY_COLOR;
-
-    return standart_colors;
-}
-
 /** Create new instance of WInput object.
   * @param y                    Y coordinate
   * @param x                    X coordinate
-  * @param input_colors         Array of used colors
+  * @param colors               Array of used colors
   * @param width                Widget width
   * @param def_text             Default text filled in widget
   * @param histname             Name of history
@@ -2384,7 +2368,7 @@ input_get_default_colors (void)
   * @returns                    WInput object
   */
 WInput *
-input_new (int y, int x, int *input_colors, int width, const char *def_text,
+input_new (int y, int x, input_colors_t colors, int width, const char *def_text,
            const char *histname, INPUT_COMPLETE_FLAGS completion_flags)
 {
     WInput *in = g_new (WInput, 1);
@@ -2418,7 +2402,15 @@ input_new (int y, int x, int *input_colors, int width, const char *def_text,
     in->current_max_size = initial_buffer_len;
     in->buffer = g_new (char, initial_buffer_len);
 
-    memmove (in->color, input_colors, sizeof (input_colors_t));
+    if (colors != USE_DEFAULT_COLORS)
+        memmove (in->colors, colors, sizeof (input_colors_t));
+    else
+    {
+        in->colors[WINPUTC_MAIN] = INPUT_COLOR;
+        in->colors[WINPUTC_MARK] = INPUT_MARK_COLOR;
+        in->colors[WINPUTC_UNCHANGED] = INPUT_UNCHANGED_COLOR;
+        in->colors[WINPUTC_HISTORY] = INPUT_HISTORY_COLOR;
+    }
 
     in->field_width = width;
     in->first = TRUE;

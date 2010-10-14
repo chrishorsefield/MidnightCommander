@@ -176,7 +176,7 @@ init_panelize (void)
                                 panelize_but[i].flags, panelize_but[i].text, 0));
 
     pname =
-        input_new (UY + 14, UX, input_get_default_colors(),
+        input_new (UY + 14, UX, USE_DEFAULT_COLORS,
                    panelize_dlg->cols - 10, "", "in", INPUT_COMPLETE_DEFAULT);
     add_widget (panelize_dlg, pname);
 

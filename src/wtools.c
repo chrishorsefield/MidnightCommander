@@ -410,7 +410,7 @@ quick_dialog_skip (QuickDialog * qd, int nskip)
             break;
 
         case quick_input:
-            in = input_new (ypos, xpos, input_get_default_colors(),
+            in = input_new (ypos, xpos, USE_DEFAULT_COLORS,
                             qw->u.input.len, qw->u.input.text, qw->u.input.histname,
                             INPUT_COMPLETE_DEFAULT);
             in->is_password = (qw->u.input.flags == 1);
