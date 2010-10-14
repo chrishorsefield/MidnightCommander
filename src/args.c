@@ -327,22 +327,25 @@ mc_args_new_color_group (void)
                                                    _("--colors KEYWORD={FORE},{BACK}\n\n"
                                                      "{FORE} and {BACK} can be omitted, and the default will be used\n"
                                                      "\n" "Keywords:\n"
-                                                     "   Global:       errors, disabled, reverse, gauge, viewunderline\n"
-                                                     "                 input, inputmark, inputunchanged, commandlinemark\n"
+                                                     "   Global:       disabled, errors, input, inputmark, inputunchanged,\n"
+                                                     "                 commandlinemark, reverse, gauge, header, inputhistory,\n"
+                                                     "                 commandhistory\n"
                                                      "   File display: normal, selected, marked, markselect\n"
-                                                     "   Dialog boxes: dnormal, dfocus, dhotnormal, dhotfocus, errdhotnormal,\n"
-                                                     "                 errdhotfocus\n"
+                                                     "   Dialog boxes: dnormal, dfocus, dhotnormal, dhotfocus, , dtitle,\n"
+                                                     "                 errdfocus, errdhotnormal, errdhotfocus, errdtitle\n"
                                                      "   Menus:        menunormal, menuhot, menusel, menuhotsel, menuinactive\n"
                                                      "   Editor:       editnormal, editbold, editmarked, editwhitespace,\n"
                                                      "                 editlinestate\n"),
                                                    /* TRANSLATORS: don't translate keywords and names of colors */
                                                    _
-                                                   ("   Help:         helpnormal, helpitalic, helpbold, helplink, helpslink\n"
+                                                   (
+                                                    "   Viewer:       viewbold, viewunderline, viewselected\n"
+                                                    "   Help:         helpnormal, helpitalic, helpbold, helplink, helpslink,\n"
+                                                    "                 helptitle\n"
                                                     "\n" "Colors:\n"
                                                     "   black, gray, red, brightred, green, brightgreen, brown,\n"
                                                     "   yellow, blue, brightblue, magenta, brightmagenta, cyan,\n"
                                                     "   brightcyan, lightgray and white\n\n"));
-
     return g_option_group_new ("color", mc_args__loc__colors_string,
                                _("Color options"), NULL, NULL);
 
@@ -424,7 +427,7 @@ mc_setup_by_args (int argc, char *argv[])
              */
             char *end, *p;
 
-            end = tmp + strlen (tmp);\
+            end = tmp + strlen (tmp);
             p = end;
 
             if (p > tmp && p[-1] == ':')
