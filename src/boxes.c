@@ -570,7 +570,7 @@ static WLabel *cplabel;
 static WCheck *inpcheck;
 
 static int
-sel_charset_button (WButton *button, int action)
+sel_charset_button (WButton * button, int action)
 {
     int new_dcp;
 
@@ -738,24 +738,24 @@ confvfs_callback (Dlg_head * h, Widget * sender, dlg_msg_t msg, int parm, void *
 {
     switch (msg)
     {
-        case DLG_ACTION:
-            if (sender->id == 6)
-            {
-                /* message from "Always use ftp proxy" checkbutton */
-                const gboolean not_use = !(((WCheck *) sender)->state & C_BOOL);
-                Widget *w;
+    case DLG_ACTION:
+        if (sender->id == 6)
+        {
+            /* message from "Always use ftp proxy" checkbutton */
+            const gboolean not_use = !(((WCheck *) sender)->state & C_BOOL);
+            Widget *w;
 
-                /* input */
-                w = dlg_find_by_id (h, sender->id - 1);
-                widget_disable (*w, not_use);
-                send_message (w, WIDGET_DRAW, 0);
+            /* input */
+            w = dlg_find_by_id (h, sender->id - 1);
+            widget_disable (*w, not_use);
+            send_message (w, WIDGET_DRAW, 0);
 
-                return MSG_HANDLED;
-            }
-            return MSG_NOT_HANDLED;
+            return MSG_HANDLED;
+        }
+        return MSG_NOT_HANDLED;
 
-        default:
-            return default_dlg_callback (h, sender, msg, parm, data);
+    default:
+        return default_dlg_callback (h, sender, msg, parm, data);
     }
 }
 #endif /* ENABLE_VFS_FTP */
@@ -939,7 +939,7 @@ jobs_fill_listbox (void)
 }
 
 static int
-task_cb (WButton *button, int action)
+task_cb (WButton * button, int action)
 {
     TaskList *tl;
     int sig = 0;
@@ -952,7 +952,7 @@ task_cb (WButton *button, int action)
     /* Get this instance information */
     listbox_get_current (bg_list, NULL, (void **) &tl);
 
-#  ifdef SIGTSTP
+#ifdef SIGTSTP
     if (action == B_STOP)
     {
         sig = SIGSTOP;
@@ -964,7 +964,7 @@ task_cb (WButton *button, int action)
         tl->state = Task_Running;
     }
     else
-#  endif
+#endif
     if (action == B_KILL)
     {
         sig = SIGKILL;
@@ -1072,8 +1072,7 @@ vfs_smb_get_authinfo (const char *host, const char *share, const char *domain, c
     Dlg_head *auth_dlg;
     struct smb_authinfo *return_value = NULL;
 
-    const int input_colors[3] =
-    {
+    const int input_colors[3] = {
         INPUT_COLOR,
         INPUT_UNCHANGED_COLOR,
         INPUT_MARK_COLOR
@@ -1127,18 +1126,21 @@ vfs_smb_get_authinfo (const char *host, const char *share, const char *domain, c
 
     g_free (title);
 
-    in_user = input_new (5, istart, USE_DEFAULT_COLORS, ilen, user, "auth_name", INPUT_COMPLETE_DEFAULT);
+    in_user =
+        input_new (5, istart, USE_DEFAULT_COLORS, ilen, user, "auth_name", INPUT_COMPLETE_DEFAULT);
     add_widget (auth_dlg, in_user);
 
     in_domain =
-        input_new (3, istart, USE_DEFAULT_COLORS, ilen, domain, "auth_domain", INPUT_COMPLETE_DEFAULT);
+        input_new (3, istart, USE_DEFAULT_COLORS, ilen, domain, "auth_domain",
+                   INPUT_COMPLETE_DEFAULT);
 
     add_widget (auth_dlg, in_domain);
     add_widget (auth_dlg, button_new (9, b2, B_CANCEL, NORMAL_BUTTON, buts[1], 0));
     add_widget (auth_dlg, button_new (9, b0, B_ENTER, DEFPUSH_BUTTON, buts[0], 0));
 
-    in_password  =
-            input_new (7, istart, USE_DEFAULT_COLORS, ilen, "", "auth_password", INPUT_COMPLETE_DEFAULT);
+    in_password =
+        input_new (7, istart, USE_DEFAULT_COLORS, ilen, "", "auth_password",
+                   INPUT_COMPLETE_DEFAULT);
 
     in_password->completion_flags = 0;
     in_password->is_password = 1;

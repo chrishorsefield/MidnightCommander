@@ -1135,7 +1135,7 @@ find_callback (struct Dlg_head *h, Widget * sender, dlg_msg_t msg, int parm, voi
 
 /* Handles the Stop/Start button in the find window */
 static int
-start_stop (WButton *button, int action)
+start_stop (WButton * button, int action)
 {
     (void) button;
     (void) action;
@@ -1152,7 +1152,7 @@ start_stop (WButton *button, int action)
 
 /* Handle view command, when invoked as a button */
 static int
-find_do_view_file (WButton *button, int action)
+find_do_view_file (WButton * button, int action)
 {
     (void) button;
     (void) action;
@@ -1163,7 +1163,7 @@ find_do_view_file (WButton *button, int action)
 
 /* Handle edit command, when invoked as a button */
 static int
-find_do_edit_file (WButton *button, int action)
+find_do_edit_file (WButton * button, int action)
 {
     (void) button;
     (void) action;
@@ -1232,7 +1232,8 @@ setup_gui (void)
                 button_new (FIND2_Y - 3, fbuts[6].x, B_VIEW, NORMAL_BUTTON,
                             fbuts[6].text, find_do_view_file));
     add_widget (find_dlg,
-                button_new (FIND2_Y - 3, fbuts[5].x, B_PANELIZE, NORMAL_BUTTON, fbuts[5].text, NULL));
+                button_new (FIND2_Y - 3, fbuts[5].x, B_PANELIZE, NORMAL_BUTTON, fbuts[5].text,
+                            NULL));
 
     add_widget (find_dlg,
                 button_new (FIND2_Y - 4, fbuts[4].x, B_CANCEL, NORMAL_BUTTON, fbuts[4].text, NULL));
