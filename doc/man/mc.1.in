@@ -3430,8 +3430,8 @@ markselect, errors, input, inputmark, inputunchanged, commandlinemark,
 reverse, gauge, header, inputhistory, commandhistory.  Menu colors are: menunormal,
 menusel, menuhot, menuhotsel, menuinactive. Dialog colors are: dnormal, dfocus,
 dhotnormal, dhotfocus, dtitle. Error dialog colors are: errdfocus, errdhotnormal,
-errdhotfocus, errdtitle.  Help colors are: helpnormal, helpitalic, helpbold,
-helplink, helpslink, helptitle.  Viewer color are: viewbold, viewunderline, viewselected.
+errdhotfocus, errdtitle. Help colors are: helpnormal, helpitalic, helpbold,
+helplink, helpslink, helptitle. Viewer color are: viewbold, viewunderline, viewselected.
 Editor colors are: editnormal, editbold, editmarked.
 .PP
 .I input

@@ -2790,13 +2790,16 @@ A színmeghatározás formátuma:
   <kulcsszó>=<előtérszín>,<háttérszín>:<kulcsszó>= ...
 .fi
 .PP
-A színek opcionálisak, a kulcsszavak a következők: normal, selected,
-marked, markselect, errors, input, reverse, gauge; A menü színek: menunormal,
-menusel, menuhot, menuhotsel, menuinactive; A dialog színek: dnormal, dfocus,
-dhotnormal, dhotfocus; Súgó színek: helpnormal, helpitalic, helpbold,
-helplink, helpslink; Fájlnéző színek: viewunderline; Speciális kijelölés
-színei: executable, directory, link, stalelink, device, special, core;
-Szerkesztő színei: editnormal, editbold, editmarked.
+A színek opcionálisak, a kulcsszavak a következők: normal, selected, disabled,
+marked, markselect, errors, input, inputmark, inputunchanged, commandlinemark,
+reverse, gauge, header, inputhistory, commandhistory; A menü színek:
+menunormal, menusel, menuhot, menuhotsel, menuinactive; A dialog színek:
+dnormal, dfocus, dhotnormal, dhotfocus, dtitle; Error dialog colors are:
+errdfocus, errdhotnormal, errdhotfocus, errdtitle; Súgó színek: helpnormal,
+helpitalic, helpbold, helplink, helpslink, helptitle; Fájlnéző színek:
+viewbold, viewunderline, viewselected; Szerkesztő színei: editnormal, editbold,
+editmarked.
+
 .PP
 .I input
 maghatározza a beviteli sorok színét a dialogus ablakora vonatkozóan.

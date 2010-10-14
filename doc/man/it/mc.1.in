@@ -2828,15 +2828,15 @@ Il formato della definizione dei colori è:
   <parolachiave>=<coloreprimopiano>,<coloresfondo>:<parolachiave>= ...
 .fi
 .PP
-I colori sono opzionali e le parolechiave sono: normal, selected, marked,
-markselect, errors, input, reverse, gauge. I colori dei menu sono: menunormal,
-menusel, menuhot, menuhotsel, menuinactive. I colori delle finestre di
-dialogo sono: dnormal, dfocus, dhotnormal, dhotfocus. I colori dell'aiuto
-sono: helpnormal, helpitalic, helpbold, helplink, helpslink.
-Il colore del visualizzatore è: viewunderline.
-Colori speciali di evidenziazione: executable, directory, link, device, 
-special, core.
-I colori dell'editor sono: editnormal, editbold, editmarked.
+I colori sono opzionali e le parolechiave sono: normal, selected, disabled,
+marked, markselect, errors, input, inputmark, inputunchanged, commandlinemark,
+reverse, gauge, header, inputhistory, commandhistory. I colori dei menu sono:
+menunormal, menusel, menuhot, menuhotsel, menuinactive. I colori delle finestre
+di dialogo sono: dnormal, dfocus, dhotnormal, dhotfocus, dtitle. Error dialog
+colors are: errdfocus, errdhotnormal, errdhotfocus, errdtitle. I colori
+dell'aiuto sono: helpnormal, helpitalic, helpbold, helplink, helpslink,
+helptitle. Il colori del visualizzatore è: viewbold, viewunderline,
+viewselected. I colori dell'editor sono: editnormal, editbold, editmarked.
 .PP
 .I input 
 determina il colore delle righe di input usate delle finestre di dialogo.

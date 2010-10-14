@@ -2960,13 +2960,14 @@ xterm=menu=magenta:marked=,magenta:markselect=,red
   <кључнареч>=<бојатекста>,<бојапозадине>:<кључнареч>= ...
 .fi
 .PP
-Боје су необавезне, док кључне речи могу бити: normal, selected,
-marked, markselect, errors, input, reverse, gauge. Боје менија су:
+Боје су необавезне, док кључне речи могу бити: normal, selected, disabled,
+marked, markselect, errors, input, inputmark, inputunchanged, commandlinemark,
+reverse, gauge, header, inputhistory, commandhistory. Боје менија су:
 menunormal, menusel, menuhot, menuhotsel, menuinactive. Боје дијалога су:
-dnormal, dfocus, dhotnormal, dhotfocus. Боје помоћи су: helpnormal, helpitalic,
-helpbold, helplink, helpslink. Боја прегледача је: viewunderline.
-Посебне боје за истицање су: executable, directory, link, stalelink,
-device, special, core. Боје уређивача су: editnormal, editbold,
+dnormal, dfocus, dhotnormal, dhotfocus, dtitle. Error dialog colors are:
+errdfocus, errdhotnormal, errdhotfocus, errdtitle.Боје помоћи су: helpnormal,
+helpitalic, helpbold, helplink, helpslink, helptitle. Боја прегледача је:
+viewbold, viewunderline, viewselected. Боје уређивача су: editnormal, editbold,
 editmarked.
 .PP
 .I input
