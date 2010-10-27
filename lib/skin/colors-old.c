@@ -87,7 +87,7 @@ static const mc_skin_colors_old_t old_colors[] = {
     {"helpbold", "help", "helpbold"},
     {"helplink", "help", "helplink"},
     {"helpslink", "help", "helpslink"},
-    {"helptitle", "error", "helptitle"},
+    {"helptitle", "help", "helptitle"},
 
     {"viewbold", "viewer", "viewbold"},
     {"viewunderline", "viewer", "viewunderline"},
