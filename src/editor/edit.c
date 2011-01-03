@@ -480,7 +480,7 @@ edit_load_file (WEdit * edit)
         if (*edit->filename)
         {
             edit->undo_stack_disable = 1;
-            if (!edit_insert_file (edit, edit->filename))
+            if (edit_insert_file (edit, edit->filename) == 0)
             {
                 edit_clean (edit);
                 return 1;
@@ -1676,6 +1676,7 @@ user_menu (WEdit * edit)
     char *block_file;
     int nomark;
     long start_mark, end_mark;
+    long ins_len;
     struct stat status;
 
     block_file = concat_dir_and_file (home_dir, EDIT_BLOCK_FILE);
@@ -1699,8 +1700,11 @@ user_menu (WEdit * edit)
         }
 
         if (rc == 0)
-            edit_insert_file (edit, block_file);
-
+        {
+            ins_len = edit_insert_file (edit, block_file);
+            if (nomark == 0)
+                edit_set_markers (edit, start_mark, start_mark + ins_len, 0, 0);
+        }
         /* truncate block file */
         fd = fopen (block_file, "w");
         if (fd != NULL)
@@ -2012,11 +2016,12 @@ edit_write_stream (WEdit * edit, FILE * f)
 }
 
 /* --------------------------------------------------------------------------------------------- */
-/** inserts a file at the cursor, returns 1 on success */
-int
+/** inserts a file at the cursor, returns count of inserted bytes on success */
+long
 edit_insert_file (WEdit * edit, const char *filename)
 {
     char *p;
+    long ins_len = 0;
 
     p = edit_get_filter (filename);
     if (p != NULL)
@@ -2027,6 +2032,7 @@ edit_insert_file (WEdit * edit, const char *filename)
         if (f != NULL)
         {
             edit_insert_stream (edit, f);
+            ins_len = edit->curs1 - current;
             edit_cursor_move (edit, current - edit->curs1);
             if (pclose (f) > 0)
             {
@@ -2062,25 +2068,32 @@ edit_insert_file (WEdit * edit, const char *filename)
         blocklen = mc_read (file, buf, sizeof (VERTICAL_MAGIC));
         if (blocklen > 0)
         {
-            /* if contain signature VERTICAL_MAGIC tnen it vertical block */
+            /* if contain signature VERTICAL_MAGIC then it vertical block */
             if (memcmp (buf, VERTICAL_MAGIC, sizeof (VERTICAL_MAGIC)) == 0)
                 vertical_insertion = 1;
             else
                 mc_lseek (file, 0, SEEK_SET);
         }
         if (vertical_insertion)
+        {
             blocklen = edit_insert_column_of_text_from_file (edit, file);
+        }
         else
+        {
             while ((blocklen = mc_read (file, (char *) buf, TEMP_BUF_LEN)) > 0)
+            {
                 for (i = 0; i < blocklen; i++)
                     edit_insert (edit, buf[i]);
+            }
+        }
+        ins_len = edit->curs1 - current;
         edit_cursor_move (edit, current - edit->curs1);
         g_free (buf);
         mc_close (file);
         if (blocklen != 0)
             return 0;
     }
-    return 1;
+    return ins_len;
 }
 
 /* --------------------------------------------------------------------------------------------- */
