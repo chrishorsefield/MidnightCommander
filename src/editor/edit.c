@@ -1676,7 +1676,6 @@ user_menu (WEdit * edit)
     char *block_file;
     int nomark;
     long start_mark, end_mark;
-    long ins_len;
     struct stat status;
 
     block_file = concat_dir_and_file (home_dir, EDIT_BLOCK_FILE);
@@ -1701,6 +1700,8 @@ user_menu (WEdit * edit)
 
         if (rc == 0)
         {
+            long ins_len;
+
             ins_len = edit_insert_file (edit, block_file);
             if (nomark == 0)
                 edit_set_markers (edit, start_mark, start_mark + ins_len, 0, 0);
