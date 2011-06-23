@@ -221,16 +221,6 @@ typedef enum
     ALTL_PRESSED = (1 << 3)
 } mod_pressed_t;
 
-typedef struct key_def
-{
-    char ch;                    /* Holds the matching char code */
-    int code;                   /* The code returned, valid if child == NULL */
-    struct key_def *next;
-    struct key_def *child;      /* sequence continuation */
-    int action;                 /* optional action to be done. Now used only
-                                   to mark that we are just after the first
-                                   Escape */
-} key_def;
 
 typedef struct
 {
@@ -505,7 +495,7 @@ static key_define_t qansi_key_defines[] = {
 int old_esc_mode_timeout = 1000000;     /* settable via env */
 
 /* This holds all the key definitions */
-static key_def *keys = NULL;
+static key_def_t *keys = NULL;
 
 static int input_fd;
 static int disabled_channels = 0;       /* Disable channels checking */
@@ -622,14 +612,14 @@ try_channels (int set_timeout)
 
 /* --------------------------------------------------------------------------------------------- */
 
-static key_def *
+static key_def_t *
 create_sequence (const char *seq, int code, int action)
 {
-    key_def *base, *p, *attach;
+    key_def_t *base, *p, *attach;
 
     for (base = attach = NULL; *seq; seq++)
     {
-        p = g_new (key_def, 1);
+        p = g_new (key_def_t, 1);
         if (base == NULL)
             base = p;
         if (attach != NULL)
@@ -1123,19 +1113,6 @@ learn_store_key (char *buffer, char **p, int c)
 /* --------------------------------------------------------------------------------------------- */
 
 static void
-k_dispose (key_def * k)
-{
-    if (k != NULL)
-    {
-        k_dispose (k->child);
-        k_dispose (k->next);
-        g_free (k);
-    }
-}
-
-/* --------------------------------------------------------------------------------------------- */
-
-static void
 s_dispose (SelectList * sel)
 {
     if (sel != NULL)
@@ -1324,7 +1301,7 @@ init_key_input_fd (void)
 void
 done_key (void)
 {
-    k_dispose (keys);
+    key_def_free (keys);
     s_dispose (select_list);
 
 #ifdef HAVE_TEXTMODE_X11_SUPPORT
@@ -1601,7 +1578,7 @@ lookup_key_by_code (const int keycode)
 gboolean
 define_sequence (int code, const char *seq, int action)
 {
-    key_def *base;
+    key_def_t *base;
 
     if (strlen (seq) > SEQ_BUFFER_LEN - 1)
         return FALSE;
@@ -1679,7 +1656,7 @@ int
 get_key_code (int no_delay)
 {
     int c;
-    static key_def *this = NULL, *parent;
+    static key_def_t *this = NULL, *parent;
     static struct timeval esctime = { -1, -1 };
     static int lastnodelay = -1;
 
@@ -2123,3 +2100,17 @@ application_keypad_mode (void)
 }
 
 /* --------------------------------------------------------------------------------------------- */
+
+void
+key_def_free (key_def_t * k)
+{
+    if (k != NULL)
+    {
+        key_def_free (k->child);
+        key_def_free (k->next);
+        g_free (k);
+    }
+}
+
+/* --------------------------------------------------------------------------------------------- */
+

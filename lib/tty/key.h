@@ -47,6 +47,18 @@ typedef struct
 
 struct Gpm_Event;
 
+typedef struct key_def
+{
+    char ch;                    /* Holds the matching char code */
+    int code;                   /* The code returned, valid if child == NULL */
+    struct key_def *next;
+    struct key_def *child;      /* sequence continuation */
+    int action;                 /* optional action to be done. Now used only
+                                   to mark that we are just after the first
+                                   Escape */
+} key_def_t;
+
+
 /*** global variables defined in .c file *********************************************************/
 
 extern const key_code_name_t key_name_conv_tab[];
@@ -98,6 +110,8 @@ int get_key_code (int nodelay);
 /* Set keypad mode (xterm and linux console only) */
 void numeric_keypad_mode (void);
 void application_keypad_mode (void);
+
+void key_def_free (key_def_t * k);
 
 /*** inline functions ****************************************************************************/
 
