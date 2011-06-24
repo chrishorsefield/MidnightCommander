@@ -221,14 +221,6 @@ typedef enum
     ALTL_PRESSED = (1 << 3)
 } mod_pressed_t;
 
-
-typedef struct
-{
-    int code;
-    const char *seq;
-    int action;
-} key_define_t;
-
 /* File descriptor monitoring add/remove routines */
 typedef struct SelectList
 {
@@ -520,7 +512,9 @@ static Window x11_window;
 
 static KeySortType has_been_sorted = KEY_NOSORT;
 
+/* *INDENT-OFF* */
 static const size_t key_conv_tab_size = G_N_ELEMENTS (key_name_conv_tab) - 1;
+/* *INDENT-ON* */
 
 static const key_code_name_t *key_conv_tab_sorted[G_N_ELEMENTS (key_name_conv_tab) - 1];
 
@@ -642,10 +636,7 @@ create_sequence (const char *seq, int code, int action)
 static void
 define_sequences (const key_define_t * kd)
 {
-    int i;
-
-    for (i = 0; kd[i].code != 0; i++)
-        define_sequence (kd[i].code, kd[i].seq, kd[i].action);
+    key_def_define_sequences (&keys, kd);
 }
 
 /* --------------------------------------------------------------------------------------------- */
@@ -1301,7 +1292,7 @@ init_key_input_fd (void)
 void
 done_key (void)
 {
-    key_def_free (keys);
+    key_def_free (&keys);
     s_dispose (select_list);
 
 #ifdef HAVE_TEXTMODE_X11_SUPPORT
@@ -1457,8 +1448,7 @@ lookup_key (const char *name, char **label)
         }
         else if (k < 128)
         {
-            if ((k >= 'A') || (lc_index < 0)
-                || (key_conv_tab_sorted[lc_index]->shortcut == NULL))
+            if ((k >= 'A') || (lc_index < 0) || (key_conv_tab_sorted[lc_index]->shortcut == NULL))
                 g_string_append_c (s, (gchar) g_ascii_tolower ((gchar) k));
             else
                 g_string_append (s, key_conv_tab_sorted[lc_index]->shortcut);
@@ -1554,8 +1544,7 @@ lookup_key_by_code (const int keycode)
         }
         else if (k < 128)
         {
-            if ((k >= 'A') || (key_idx < 0)
-                || (key_conv_tab_sorted[key_idx]->name == NULL))
+            if ((k >= 'A') || (key_idx < 0) || (key_conv_tab_sorted[key_idx]->name == NULL))
                 g_string_append_c (s, (gchar) k);
             else
                 g_string_append (s, key_conv_tab_sorted[key_idx]->name);
@@ -1576,14 +1565,14 @@ lookup_key_by_code (const int keycode)
  */
 
 gboolean
-define_sequence (int code, const char *seq, int action)
+key_def_define_sequence (key_def_t ** k, int code, const char *seq, int action)
 {
     key_def_t *base;
 
     if (strlen (seq) > SEQ_BUFFER_LEN - 1)
         return FALSE;
 
-    for (base = keys; (base != NULL) && (*seq != '\0');)
+    for (base = *k; (base != NULL) && (*seq != '\0');)
         if (*seq == base->ch)
         {
             if (base->child == 0)
@@ -1619,11 +1608,19 @@ define_sequence (int code, const char *seq, int action)
         return FALSE;
     }
 
-    keys = create_sequence (seq, code, action);
+    *k = create_sequence (seq, code, action);
     return TRUE;
 }
 
 /* --------------------------------------------------------------------------------------------- */
+gboolean
+define_sequence (int code, const char *seq, int action)
+{
+    return key_def_define_sequence (&keys, code, seq, action);
+}
+
+/* --------------------------------------------------------------------------------------------- */
+
 /**
  * Check if we are idle, i.e. there are no pending keyboard or mouse
  * events.  Return 1 is idle, 0 is there are pending events.
@@ -2102,15 +2099,26 @@ application_keypad_mode (void)
 /* --------------------------------------------------------------------------------------------- */
 
 void
-key_def_free (key_def_t * k)
+key_def_free (key_def_t ** k)
 {
-    if (k != NULL)
+    if (*k != NULL)
     {
-        key_def_free (k->child);
-        key_def_free (k->next);
-        g_free (k);
+        key_def_free (&(*k)->child);
+        key_def_free (&(*k)->next);
+        g_free (*k);
+        *k = NULL;
     }
 }
 
 /* --------------------------------------------------------------------------------------------- */
 
+void
+key_def_define_sequences (key_def_t ** k, const key_define_t * kd)
+{
+    int i;
+
+    for (i = 0; kd[i].code != 0; i++)
+        key_def_define_sequence (k, kd[i].code, kd[i].seq, kd[i].action);
+}
+
+/* --------------------------------------------------------------------------------------------- */

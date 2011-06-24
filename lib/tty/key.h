@@ -58,6 +58,12 @@ typedef struct key_def
                                    Escape */
 } key_def_t;
 
+typedef struct
+{
+    int code;
+    const char *seq;
+    int action;
+} key_define_t;
 
 /*** global variables defined in .c file *********************************************************/
 
@@ -111,7 +117,9 @@ int get_key_code (int nodelay);
 void numeric_keypad_mode (void);
 void application_keypad_mode (void);
 
-void key_def_free (key_def_t * k);
+gboolean key_def_define_sequence (key_def_t ** k, int code, const char *seq, int action);
+void key_def_define_sequences (key_def_t ** k, const key_define_t * kd);
+void key_def_free (key_def_t ** k);
 
 /*** inline functions ****************************************************************************/
 
