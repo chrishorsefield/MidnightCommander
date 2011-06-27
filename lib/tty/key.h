@@ -120,6 +120,9 @@ void application_keypad_mode (void);
 gboolean key_def_define_sequence (key_def_t ** k, int code, const char *seq, int action);
 void key_def_define_sequences (key_def_t ** k, const key_define_t * kd);
 void key_def_free (key_def_t ** k);
+int key_def_search_by_sequence (key_def_t * k, const char *seq, size_t length);
+int key_search_by_sequence (const char *seq, size_t length);
+
 
 /*** inline functions ****************************************************************************/
 

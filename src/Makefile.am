@@ -59,6 +59,7 @@ mc_SOURCES = \
 	main.c main.h \
 	setup.c setup.h \
 	subshell.c subshell.h \
+	subshell_sync_command.c subshell_sync_command.h \
 	textconf.c textconf.h \
 	util.c util.h
 

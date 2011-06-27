@@ -60,6 +60,8 @@
 #include "filemanager/midnight.h"       /* current_panel */
 
 #include "consaver/cons.saver.h"        /* handle_console() */
+#include "subshell_sync_command.h"
+
 #include "subshell.h"
 
 /*** global variables ****************************************************************************/
@@ -117,16 +119,10 @@ enum
     WRITE = 1
 };
 
-/* Subshell type (gleaned from the SHELL environment variable, if available) */
-static enum
-{
-    BASH,
-    TCSH,
-    ZSH,
-    FISH
-} subshell_type;
-
 /*** file scope variables ************************************************************************/
+
+/* Subshell type (gleaned from the SHELL environment variable, if available) */
+static subshell_type_t subshell_type;
 
 /* tcsh closes all non-standard file descriptors, so we have to use a pipe */
 static char tcsh_fifo[128];
@@ -529,7 +525,11 @@ feed_subshell (int how, int fail_on_error)
             }
 
             if (how == VISIBLY)
+            {
                 write_all (STDOUT_FILENO, pty_buffer, bytes);
+                if (subshell_ready)
+                    subshell_sync_to_command_end (pty_buffer, bytes);
+            }
         }
 
         else if (FD_ISSET (subshell_pipe[READ], &read_set))
@@ -567,6 +567,9 @@ feed_subshell (int how, int fail_on_error)
                          "read (STDIN_FILENO, pty_buffer...): %s\r\n", unix_error_string (errno));
                 exit (EXIT_FAILURE);
             }
+
+            if (subshell_ready)
+                subshell_sync_to_command_start (pty_buffer, bytes);
 
             for (i = 0; i < bytes; ++i)
                 if (pty_buffer[i] == subshell_switch_key)
@@ -908,6 +911,10 @@ init_subshell (void)
     tty_disable_interrupt_key ();
     if (!subshell_alive)
         mc_global.tty.use_subshell = FALSE;     /* Subshell died instantly, so don't use it */
+
+    if (mc_global.tty.use_subshell)
+        subshell_sync_command_init (subshell_type);
+
 }
 
 /* --------------------------------------------------------------------------------------------- */
@@ -1062,6 +1069,7 @@ exit_subshell (void)
         g_free (subshell_prompt);
         subshell_prompt = NULL;
         pty_buffer[0] = '\0';
+        subshell_sync_command_deinit ();
     }
 
     return subshell_quit;

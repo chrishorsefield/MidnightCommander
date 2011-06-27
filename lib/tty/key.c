@@ -2122,3 +2122,41 @@ key_def_define_sequences (key_def_t ** k, const key_define_t * kd)
 }
 
 /* --------------------------------------------------------------------------------------------- */
+
+int
+key_def_search_by_sequence (key_def_t * k, const char *seq, size_t length)
+{
+    key_def_t *base = k;
+
+    if (length == 0)
+        length = strlen(seq);
+
+    if (length > SEQ_BUFFER_LEN - 1)
+        return 0;
+
+    while ( (base != NULL) && (*seq != '\0') && (length != 0))
+    {
+        if (*seq == base->ch)
+        {
+            if ((*(seq + 1) == '\0') || (length == 1))
+                return base->code;
+
+            base = base->child;
+            seq++;
+            length--;
+            continue;
+        }
+        base = base->next;
+    }
+    return 0;
+}
+
+/* --------------------------------------------------------------------------------------------- */
+
+int
+key_search_by_sequence (const char *seq, size_t length)
+{
+    return key_def_search_by_sequence (keys, seq, length);
+}
+
+/* --------------------------------------------------------------------------------------------- */

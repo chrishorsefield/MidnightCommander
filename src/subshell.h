@@ -31,6 +31,15 @@ enum
     VISIBLY
 };
 
+/* Subshell type */
+typedef enum
+{
+    BASH,
+    TCSH,
+    ZSH,
+    FISH
+} subshell_type_t;
+
 /*** structures declarations (and typedefs of structures)*****************************************/
 
 /*** global variables defined in .c file *********************************************************/
