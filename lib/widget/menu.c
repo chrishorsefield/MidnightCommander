@@ -38,6 +38,8 @@
 
 /*** global variables ****************************************************************************/
 
+const global_keymap_t *menubar_map;
+
 /*** file scope macro definitions ****************************************************************/
 
 /*** file scope type declarations ****************************************************************/
@@ -399,25 +401,61 @@ menubar_last (WMenuBar * menubar)
     menubar_paint_idx (menubar, menu->selected, MENU_SELECTED_COLOR);
 }
 
+
 /* --------------------------------------------------------------------------------------------- */
 
-static int
-menubar_handle_key (WMenuBar * menubar, int key)
+static cb_ret_t
+menubar_try_drop_menu (WMenuBar * menubar, int hotkey)
 {
-    /* Lowercase */
-    if (isascii (key))
-        key = g_ascii_tolower (key);
 
-    if (is_abort_char (key))
+    GList *i;
+
+    for (i = menubar->menu; i != NULL; i = g_list_next (i))
     {
-        menubar_finish (menubar);
-        return 1;
+        Menu *menu = i->data;
+
+        if ((menu->text.hotkey != NULL) && (hotkey == g_ascii_tolower (menu->text.hotkey[0])))
+        {
+            menubar_drop (menubar, g_list_position (menubar->menu, i));
+            return MSG_HANDLED;
+        }
     }
+    return MSG_NOT_HANDLED;
+}
 
-    /* menubar help or menubar navigation */
-    switch (key)
+/* --------------------------------------------------------------------------------------------- */
+
+static cb_ret_t
+menubar_try_exec_menu (WMenuBar * menubar, int hotkey)
+{
+    Menu *menu = g_list_nth_data (menubar->menu, menubar->selected);
+    GList *i;
+
+    for (i = menu->entries; i != NULL; i = g_list_next (i))
     {
-    case KEY_F (1):
+        const menu_entry_t *entry = i->data;
+
+        if ((entry != NULL) && (entry->text.hotkey != NULL)
+            && (hotkey == g_ascii_tolower (entry->text.hotkey[0])))
+        {
+            menu->selected = g_list_position (menu->entries, i);
+            menubar_execute (menubar);
+            return MSG_HANDLED;
+        }
+    }
+    return MSG_NOT_HANDLED;
+}
+
+/* --------------------------------------------------------------------------------------------- */
+
+static cb_ret_t
+menubar_execute_cmd (WMenuBar * menubar, unsigned long command, int key)
+{
+    cb_ret_t ret = MSG_HANDLED;
+
+    switch (command)
+    {
+    case CK_Help:
         {
             ev_help_t event_data = { NULL, NULL };
 
@@ -429,91 +467,62 @@ menubar_handle_key (WMenuBar * menubar, int key)
 
             mc_event_raise (MCEVENT_GROUP_CORE, "help", &event_data);
             menubar_draw (menubar);
-            return 1;
         }
-    case KEY_LEFT:
-    case XCTRL ('b'):
+        break;
+    case CK_Left:
         menubar_left (menubar);
-        return 1;
-
-    case KEY_RIGHT:
-    case XCTRL ('f'):
+        break;
+    case CK_Right:
         menubar_right (menubar);
-        return 1;
-    }
-
-    if (!menubar->is_dropped)
-    {
-        GList *i;
-
-        /* drop menu by hotkey */
-        for (i = menubar->menu; i != NULL; i = g_list_next (i))
-        {
-            Menu *menu = i->data;
-
-            if ((menu->text.hotkey != NULL) && (key == g_ascii_tolower (menu->text.hotkey[0])))
-            {
-                menubar_drop (menubar, g_list_position (menubar->menu, i));
-                return 1;
-            }
-        }
-
-        /* drop menu by Enter or Dowwn key */
-        if (key == KEY_ENTER || key == XCTRL ('n') || key == KEY_DOWN || key == '\n')
-            menubar_drop (menubar, menubar->selected);
-
-        return 1;
-    }
-
-    {
-        Menu *menu = g_list_nth_data (menubar->menu, menubar->selected);
-        GList *i;
-
-        /* execute menu command by hotkey */
-        for (i = menu->entries; i != NULL; i = g_list_next (i))
-        {
-            const menu_entry_t *entry = i->data;
-
-            if ((entry != NULL) && (entry->command != CK_IgnoreKey)
-                && (entry->text.hotkey != NULL) && (key == g_ascii_tolower (entry->text.hotkey[0])))
-            {
-                menu->selected = g_list_position (menu->entries, i);
-                menubar_execute (menubar);
-                return 1;
-            }
-        }
-
-        /* menu execute by Enter or menu navigation */
-        switch (key)
-        {
-        case KEY_ENTER:
-        case '\n':
+        break;
+    case CK_Enter:
+        if (menubar->is_dropped)
             menubar_execute (menubar);
-            return 1;
-
-        case KEY_HOME:
-        case ALT ('<'):
-            menubar_first (menubar);
-            break;
-
-        case KEY_END:
-        case ALT ('>'):
-            menubar_last (menubar);
-            break;
-
-        case KEY_DOWN:
-        case XCTRL ('n'):
+        else
+            menubar_drop (menubar, menubar->selected);
+        break;
+    case CK_Home:
+        menubar_first (menubar);
+        break;
+    case CK_End:
+        menubar_last (menubar);
+        break;
+    case CK_Up:
+        menubar_up (menubar);
+        break;
+    case CK_Down:
+        if (menubar->is_dropped)
             menubar_down (menubar);
-            break;
-
-        case KEY_UP:
-        case XCTRL ('p'):
-            menubar_up (menubar);
-            break;
-        }
+        else
+            menubar_drop (menubar, menubar->selected);
+        break;
+    case CK_Quit:
+        /* don't close help due to SIGINT */
+        menubar_finish (menubar);
+        break;
+    default:
+        if (menubar->is_dropped)
+            ret = menubar_try_exec_menu (menubar, key);
+        else
+            ret = menubar_try_drop_menu (menubar, key);
     }
 
-    return 0;
+    return ret;
+}
+
+/* --------------------------------------------------------------------------------------------- */
+
+static int
+menubar_handle_key (WMenuBar * menubar, int key)
+{
+    unsigned long cmd;
+
+    cmd = keybind_lookup_keymap_command (menubar_map, key);
+    if ((cmd == CK_IgnoreKey) || (menubar_execute_cmd (menubar, cmd, key) == MSG_NOT_HANDLED))
+        return MSG_NOT_HANDLED;
+
+    return MSG_HANDLED;
+
 }
 
 /* --------------------------------------------------------------------------------------------- */
