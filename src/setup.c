@@ -1175,6 +1175,9 @@ load_keymap_defs (gboolean load_from_file)
         help_keymap = g_array_new (TRUE, FALSE, sizeof (global_keymap_t));
         load_keymap_from_section (KEYMAP_SECTION_HELP, help_keymap, mc_global_keymap);
 
+        menu_keymap = g_array_new (TRUE, FALSE, sizeof (global_keymap_t));
+        load_keymap_from_section (KEYMAP_SECTION_MENU, menu_keymap, mc_global_keymap);
+
 #ifdef USE_INTERNAL_EDIT
         editor_keymap = g_array_new (TRUE, FALSE, sizeof (global_keymap_t));
         load_keymap_from_section (KEYMAP_SECTION_EDITOR, editor_keymap, mc_global_keymap);
@@ -1203,6 +1206,7 @@ load_keymap_defs (gboolean load_from_file)
     listbox_map = (global_keymap_t *) listbox_keymap->data;
     tree_map = (global_keymap_t *) tree_keymap->data;
     help_map = (global_keymap_t *) help_keymap->data;
+    menu_map = (global_keymap_t *) menu_keymap->data;
 #ifdef USE_INTERNAL_EDIT
     editor_map = (global_keymap_t *) editor_keymap->data;
     editor_x_map = (global_keymap_t *) editor_x_keymap->data;

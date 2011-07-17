@@ -32,13 +32,14 @@
 #include "lib/skin.h"
 #include "lib/tty/mouse.h"
 #include "lib/tty/key.h"        /* key macros */
+#include "lib/keybind.h"        /* global_keymap_t */
 #include "lib/strutil.h"
 #include "lib/widget.h"
 #include "lib/event.h"          /* mc_event_raise() */
 
 /*** global variables ****************************************************************************/
 
-const global_keymap_t *menubar_map;
+const global_keymap_t *menu_map;
 
 /*** file scope macro definitions ****************************************************************/
 
@@ -448,6 +449,36 @@ menubar_try_exec_menu (WMenuBar * menubar, int hotkey)
 
 /* --------------------------------------------------------------------------------------------- */
 
+static int
+menubar_get_char (WMenuBar * menubar, int c_code)
+{
+    int res;
+
+    if (c_code == -1)
+        return 0;
+
+    if (menubar->charpoint >= MB_LEN_MAX)
+        return 0;
+
+    menubar->charbuf[menubar->charpoint] = c_code;
+    menubar->charpoint++;
+
+    res = str_is_valid_char (menubar->charbuf, menubar->charpoint);
+    if (res < 0)
+    {
+        if (res != -2)
+            menubar->charpoint = 0;  /* broken multibyte char, skip */
+        return 0;
+    }
+    else
+        return res;
+
+    menubar->charpoint = 0;
+    return 0;
+}
+
+/* --------------------------------------------------------------------------------------------- */
+
 static cb_ret_t
 menubar_execute_cmd (WMenuBar * menubar, unsigned long command, int key)
 {
@@ -482,13 +513,16 @@ menubar_execute_cmd (WMenuBar * menubar, unsigned long command, int key)
             menubar_drop (menubar, menubar->selected);
         break;
     case CK_Home:
-        menubar_first (menubar);
+        if (menubar->is_dropped)
+            menubar_first (menubar);
         break;
     case CK_End:
-        menubar_last (menubar);
+        if (menubar->is_dropped)
+            menubar_last (menubar);
         break;
     case CK_Up:
-        menubar_up (menubar);
+        if (menubar->is_dropped)
+            menubar_up (menubar);
         break;
     case CK_Down:
         if (menubar->is_dropped)
@@ -497,7 +531,6 @@ menubar_execute_cmd (WMenuBar * menubar, unsigned long command, int key)
             menubar_drop (menubar, menubar->selected);
         break;
     case CK_Quit:
-        /* don't close help due to SIGINT */
         menubar_finish (menubar);
         break;
     default:
@@ -516,8 +549,7 @@ static int
 menubar_handle_key (WMenuBar * menubar, int key)
 {
     unsigned long cmd;
-
-    cmd = keybind_lookup_keymap_command (menubar_map, key);
+    cmd = keybind_lookup_keymap_command (menu_map, key);
     if ((cmd == CK_IgnoreKey) || (menubar_execute_cmd (menubar, cmd, key) == MSG_NOT_HANDLED))
         return MSG_NOT_HANDLED;
 

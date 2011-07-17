@@ -17,6 +17,7 @@
 #define KEYMAP_SECTION_LISTBOX "listbox"
 #define KEYMAP_SECTION_TREE "tree"
 #define KEYMAP_SECTION_HELP "help"
+#define KEYMAP_SECTION_MENU "menu"
 #define KEYMAP_SECTION_EDITOR "editor"
 #define KEYMAP_SECTION_EDITOR_EXT "editor:xmap"
 #define KEYMAP_SECTION_VIEWER "viewer"

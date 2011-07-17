@@ -61,6 +61,8 @@ typedef struct WMenuBar
     GList *menu;                /* The actual menus */
     size_t selected;            /* Selected menu on the top bar */
     int previous_widget;        /* Selected widget ID before activating menu */
+    char charbuf[MB_LEN_MAX];   /* buffer for multibytes characters */
+    int charpoint;
 } WMenuBar;
 
 /*** global variables defined in .c file *********************************************************/

@@ -39,6 +39,7 @@ GArray *input_keymap = NULL;
 GArray *listbox_keymap = NULL;
 GArray *tree_keymap = NULL;
 GArray *help_keymap = NULL;
+GArray *menu_keymap = NULL;
 #ifdef USE_INTERNAL_EDIT
 GArray *editor_keymap = NULL;
 GArray *editor_x_keymap = NULL;
@@ -57,6 +58,7 @@ const global_keymap_t *input_map = NULL;
 const global_keymap_t *listbox_map = NULL;
 const global_keymap_t *tree_map = NULL;
 const global_keymap_t *help_map = NULL;
+const global_keymap_t *menu_map = NULL;
 
 #ifdef USE_INTERNAL_EDIT
 const global_keymap_t *editor_map = NULL;
@@ -536,6 +538,19 @@ static const global_keymap_ini_t default_diff_keymap[] = {
 };
 #endif
 
+/* menubar */
+static const global_keymap_ini_t default_menu_keymap[] = {
+    {"Help", "f1"},
+    {"Quit", "f10; ctrl-g; esc"},
+    {"Home", "ctrl-a"},
+    {"End", "ctrl-e"},
+    {"Left", "left; ctrl-b"},
+    {"Right", "right; ctrl-f"},
+    {"Up", "up; ctrl-p"},
+    {"Down", "down; enter; ctrl-n"},
+    {NULL, NULL}
+};
+
 /*** file scope macro definitions ****************************************************************/
 
 /*** file scope type declarations ****************************************************************/
@@ -574,6 +589,7 @@ create_default_keymap (void)
     create_default_keymap_section (keymap, KEYMAP_SECTION_LISTBOX, default_listbox_keymap);
     create_default_keymap_section (keymap, KEYMAP_SECTION_TREE, default_tree_keymap);
     create_default_keymap_section (keymap, KEYMAP_SECTION_HELP, default_help_keymap);
+    create_default_keymap_section (keymap, KEYMAP_SECTION_MENU, default_menu_keymap);
 #ifdef USE_INTERNAL_EDIT
     create_default_keymap_section (keymap, KEYMAP_SECTION_EDITOR, default_editor_keymap);
     create_default_keymap_section (keymap, KEYMAP_SECTION_EDITOR_EXT, default_editor_x_keymap);
