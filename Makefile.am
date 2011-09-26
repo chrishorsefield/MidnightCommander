@@ -1,7 +1,7 @@
 ## Process this file with automake to create Makefile.in.
 AUTOMAKE_OPTIONS = 1.5
 
-SUBDIRS = intl po lib src doc contrib misc
+SUBDIRS = . intl po lib src doc contrib misc
 
 if HAVE_TESTS
     SUBDIRS += tests
@@ -15,7 +15,7 @@ dist_noinst_HEADERS = $(top_srcdir)/version.h
 
 ACLOCAL_AMFLAGS = -I m4
 
-CONFIG_STATUS_DEPENDENCIES = $(top_srcdir)/version.h
+noinst_SCRIPTS = update-version
 
 .PHONY: update-version
 
