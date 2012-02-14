@@ -52,6 +52,7 @@ ConnectFish =
 ConnectFtp =
 ConnectSmb =
 Undelete =
+EditorHistory = alt-shift-e
 ExtendedKeyMap = ctrl-x
 
 [main:xmap]

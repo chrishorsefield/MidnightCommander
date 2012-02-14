@@ -93,6 +93,7 @@ static name_keymap_t command_names[] = {
 #ifdef HAVE_CHARSET
     {"SelectCodepage", CK_SelectCodepage},
 #endif
+    {"EditorHistory", CK_EditorHistory},
     {"History", CK_History},
     {"HistoryNext", CK_HistoryNext},
     {"HistoryPrev", CK_HistoryPrev},
