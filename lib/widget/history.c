@@ -59,6 +59,9 @@ int num_history_items_recorded = 60;
 
 /*** file scope macro definitions ****************************************************************/
 
+#define B_VIEW          (B_USER + 1)
+#define B_EDIT          (B_USER + 2)
+
 /*** file scope type declarations ****************************************************************/
 
 typedef struct
@@ -116,6 +119,27 @@ history_dlg_reposition (Dlg_head * dlg_head)
 
 /* --------------------------------------------------------------------------------------------- */
 
+static inline cb_ret_t
+history_handle_key (Dlg_head * h, int key)
+{
+    switch (key)
+    {
+    case KEY_F (3):
+        h->ret_value = B_VIEW;
+        dlg_stop (h);
+        return MSG_HANDLED;
+
+    case KEY_F (4):
+        h->ret_value = B_EDIT;
+        dlg_stop (h);
+        return MSG_HANDLED;
+    default:
+        return MSG_NOT_HANDLED;
+    }
+}
+
+/* --------------------------------------------------------------------------------------------- */
+
 static cb_ret_t
 history_dlg_callback (Dlg_head * h, Widget * sender, dlg_msg_t msg, int parm, void *data)
 {
@@ -123,6 +147,9 @@ history_dlg_callback (Dlg_head * h, Widget * sender, dlg_msg_t msg, int parm, vo
     {
     case DLG_RESIZE:
         return history_dlg_reposition (h);
+
+    case DLG_UNHANDLED_KEY:
+        return history_handle_key (h, parm);
 
     default:
         return default_dlg_callback (h, sender, msg, parm, data);
@@ -287,7 +314,7 @@ history_save (struct mc_config_t *cfg, const char *name, GList * h)
 /* --------------------------------------------------------------------------------------------- */
 
 char *
-history_show (GList ** history, Widget * widget)
+history_show (GList ** history, Widget * widget, int *param)
 {
     GList *z, *hlist = NULL, *hi;
     size_t maxlen, i, count = 0;
@@ -295,6 +322,7 @@ history_show (GList ** history, Widget * widget)
     Dlg_head *query_dlg;
     WListbox *query_list;
     history_dlg_data hist_data;
+    int dlg_ret;
 
     if (*history == NULL)
         return NULL;
@@ -352,10 +380,25 @@ history_show (GList ** history, Widget * widget)
         listbox_set_list (query_list, hlist);
     }
 
-    if (run_dlg (query_dlg) != B_CANCEL)
+    dlg_ret = run_dlg (query_dlg);
+    if (dlg_ret != B_CANCEL)
     {
         char *q;
 
+        if (param != NULL)
+        {
+            switch (dlg_ret)
+            {
+            case B_EDIT:
+                *param = CK_Edit;
+                break;
+            case B_VIEW:
+                *param = CK_View;
+                break;
+            default:
+                *param = CK_CdChild;
+            }
+        }
         listbox_get_current (query_list, &q, NULL);
         r = g_strdup (q);
     }
