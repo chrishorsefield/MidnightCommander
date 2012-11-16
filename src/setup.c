@@ -348,6 +348,7 @@ static const struct
     { "editor_cursor_beyond_eol", &option_cursor_beyond_eol },
     { "editor_visible_tabs", &visible_tabs },
     { "editor_visible_spaces", &visible_tws },
+    { "editor_visualize_tags", &visualize_tags },
     { "editor_line_state", &option_line_state },
     { "editor_simple_statusbar", &simple_statusbar },
     { "editor_check_new_line", &option_check_nl_at_eof },

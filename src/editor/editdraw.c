@@ -607,6 +607,14 @@ edit_draw_this_line (WEdit * edit, off_t b, long row, long start_col, long end_c
                 if (q >= edit->found_start && q < (off_t) (edit->found_start + edit->found_len))
                     p->style |= MOD_BOLD;
 
+                if (visualize_tags)
+                {
+                    if (q >= edit->start_tag && q < (off_t) (edit->start_tag + edit->start_tag_len))
+                        p->style |= MOD_WHITESPACE;
+                    if (q >= edit->end_tag && q < (off_t) (edit->end_tag + edit->end_tag_len))
+                        p->style |= MOD_WHITESPACE;
+                }
+
 #ifdef HAVE_CHARSET
                 if (edit->utf8)
                 {

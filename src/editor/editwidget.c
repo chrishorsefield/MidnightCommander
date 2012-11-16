@@ -568,6 +568,7 @@ edit_event (Gpm_Event * event, void *data)
 
           update:
             edit_find_bracket (edit);
+            edit_find_end_tag (edit);
             edit->force |= REDRAW_COMPLETELY;
             edit_update_curs_row (edit);
             edit_update_curs_col (edit);

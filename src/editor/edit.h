@@ -51,6 +51,7 @@ extern int edit_confirm_save;
 
 extern int visible_tabs;
 extern int visible_tws;
+extern gboolean visualize_tags;
 
 extern int simple_statusbar;
 extern int option_check_nl_at_eof;

@@ -129,6 +129,11 @@ struct WEdit
     long column2;               /* position of column highlight end */
     off_t bracket;              /* position of a matching bracket */
 
+    off_t start_tag;            /* position of a matching openining tag */
+    off_t end_tag;              /* position of a matching closing tag */
+    int start_tag_len;          /* lenght of a openining tag */
+    int end_tag_len;            /* lenght of a closing tag */
+
     /* cache speedup for line lookups */
     gboolean caches_valid;
     long line_numbers[N_LINE_CACHES];
