@@ -609,9 +609,9 @@ edit_draw_this_line (WEdit * edit, off_t b, long row, long start_col, long end_c
 
                 if (visualize_tags)
                 {
-                    if (q >= edit->start_tag && q < (off_t) (edit->start_tag + edit->start_tag_len))
+                    if (q >= edit->xmltag.open.pos && q < (off_t) (edit->xmltag.open.pos + edit->xmltag.open.len))
                         p->style |= MOD_WHITESPACE;
-                    if (q >= edit->end_tag && q < (off_t) (edit->end_tag + edit->end_tag_len))
+                    if (q >= edit->xmltag.close.pos && q < (off_t) (edit->xmltag.close.pos + edit->xmltag.close.len))
                         p->style |= MOD_WHITESPACE;
                 }
 

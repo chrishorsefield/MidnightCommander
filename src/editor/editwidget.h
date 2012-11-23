@@ -129,10 +129,21 @@ struct WEdit
     long column2;               /* position of column highlight end */
     off_t bracket;              /* position of a matching bracket */
 
-    off_t start_tag;            /* position of a matching openining tag */
-    off_t end_tag;              /* position of a matching closing tag */
-    int start_tag_len;          /* lenght of a openining tag */
-    int end_tag_len;            /* lenght of a closing tag */
+    struct
+    {
+        struct
+        {
+            off_t pos;          /* position of a matching openining tag */
+            size_t len;         /* lenght of a openining tag */
+        } open;
+
+        struct
+        {
+            off_t pos;          /* position of a matching closing tag */
+            size_t len;         /* lenght of a closing tag */
+            off_t last;         /* position of last closing tag */
+        } close;
+    } xmltag;
 
     /* cache speedup for line lookups */
     gboolean caches_valid;

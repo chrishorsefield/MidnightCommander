@@ -203,7 +203,6 @@ off_t edit_eol (const WEdit * edit, off_t current);
 void edit_update_curs_row (WEdit * edit);
 void edit_update_curs_col (WEdit * edit);
 void edit_find_bracket (WEdit * edit);
-void edit_find_end_tag (WEdit * edit);
 gboolean edit_reload_line (WEdit * edit, const vfs_path_t * filename_vpath, long line);
 void edit_set_codeset (WEdit * edit);
 

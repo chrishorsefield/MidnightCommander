@@ -68,6 +68,7 @@
 #include "src/keybind-defaults.h"
 
 #include "edit-impl.h"
+#include "xml-tag.h"
 #include "editwidget.h"
 #ifdef HAVE_ASPELL
 #include "spell.h"
@@ -137,7 +138,6 @@ static const struct edit_filters
 };
 
 static off_t last_bracket = -1;
-static off_t last_end_tag = -1;
 
 /*** file scope functions ************************************************************************/
 /* --------------------------------------------------------------------------------------------- */
@@ -1641,134 +1641,6 @@ edit_get_bracket (WEdit * edit, gboolean in_screen, unsigned long furthest_brack
 
 /* --------------------------------------------------------------------------------------------- */
 
-/** this find the matching bracket in either direction, and sets edit->bracket
- *
- * @param edit editor object
- * @param in_screen seach only on the current screen
- *
- * @return result of searching. TRUE on success
- */
-
-static gboolean
-edit_get_end_tag (WEdit * edit, gboolean in_screen)
-{
-    gsize cut_len = 0;
-    gsize word_len = 0;
-    gsize found_len = 0;
-    off_t word_start = 0;
-    char *match_word = NULL;
-    char *start_tag = NULL;
-    char *end_tag = NULL;
-    mc_search_t *srch_start = NULL;
-    mc_search_t *srch_end = NULL;
-    gboolean result = FALSE;
-
-    if (!visualize_tags)
-        return FALSE;
-
-    edit->start_tag = 0;
-    edit->start_tag_len = 0;
-    edit->end_tag = 0;
-    edit->end_tag_len = 0;
-
-    /* search start of the current word */
-    match_word = edit_get_word_from_pos (edit, edit->curs1, &word_start, &word_len, &cut_len);
-
-    if (word_start > 0 && edit_get_byte (edit, word_start - 1) == '<')
-    {
-        off_t open_start = word_start + word_len;
-        off_t open_end;
-        off_t close_start;
-        off_t close_end;
-        int tags_cnt = 0;
-        gboolean found_tag;
-
-        if (in_screen)
-            /* seach only on the current screen */
-            open_end = edit_move_forward (edit, word_start, WIDGET (edit)->lines, 0);
-        else
-            open_end = edit->last_byte;
-
-        close_start = open_start + 1;
-        close_end = open_end;
-
-        start_tag = g_strconcat ("<", match_word, "*", NULL);
-        end_tag = g_strconcat ("</", match_word, ">", NULL);
-
-        srch_start = mc_search_new (start_tag, -1);
-        srch_start->search_type = MC_SEARCH_T_GLOB;
-        srch_start->search_fn = edit_search_cmd_callback;
-
-        srch_end = mc_search_new (end_tag, -1);
-        srch_end->search_type = MC_SEARCH_T_GLOB;
-        srch_end->search_fn = edit_search_cmd_callback;
-
-        found_tag = mc_search_run (srch_start, (void *) edit, open_start, open_end, &found_len);
-
-        while (found_tag)
-        {
-            tags_cnt++;
-
-            if (tags_cnt == 0 || tags_cnt > 10)
-                break;
-
-            close_end = srch_start->normal_offset;
-
-            while (mc_search_run (srch_end, (void *) edit, close_start, close_end, &found_len))
-            {
-                tags_cnt--;
-                if (tags_cnt == 0)
-                {
-                    edit->start_tag = word_start - 1;
-                    edit->start_tag_len = word_len + 2;
-                    edit->end_tag = (off_t) srch_end->normal_offset;
-                    edit->end_tag_len = found_len;
-                    result = TRUE;
-                    goto done;
-                }
-                else
-                {
-                    close_start = (off_t) srch_end->normal_offset + 1;
-                }
-            }
-            open_start = srch_start->normal_offset + 1;
-            found_tag = mc_search_run (srch_start, (void *) edit, open_start, open_end, &found_len);
-        }
-
-        close_end = open_end;
-        close_start = word_start + word_len;
-
-        found_tag = mc_search_run (srch_end, (void *) edit, close_start, close_end, &found_len);
-
-        while (found_tag)
-        {
-            if (tags_cnt == 0)
-            {
-                edit->start_tag = word_start - 1;
-                edit->start_tag_len = word_len + 2;
-                edit->end_tag = (off_t) srch_end->normal_offset;
-                edit->end_tag_len = found_len;
-                result = TRUE;
-                goto done;
-            }
-            else
-            {
-                close_start = (off_t) srch_end->normal_offset + 1;
-            }
-            found_tag = mc_search_run (srch_end, (void *) edit, close_start, close_end, &found_len);
-            tags_cnt--;
-        }
-      done:
-        mc_search_free (srch_start);
-        mc_search_free (srch_end);
-        g_free (start_tag);
-        g_free (end_tag);
-    }
-    return result;
-}
-
-/* --------------------------------------------------------------------------------------------- */
-
 static inline void
 edit_goto_matching_bracket (WEdit * edit)
 {
@@ -2370,10 +2242,11 @@ edit_init (WEdit * edit, int y, int x, int lines, int cols, const vfs_path_t * f
 
     edit->over_col = 0;
     edit->bracket = -1;
-    edit->start_tag = -1;
-    edit->start_tag_len = -1;
-    edit->end_tag = -1;
-    edit->end_tag_len = -1;
+    edit->xmltag.open.pos = -1;
+    edit->xmltag.open.len = 0;
+    edit->xmltag.close.pos = -1;
+    edit->xmltag.close.len = 0;
+    edit->xmltag.close.last = -1;
     edit->force |= REDRAW_PAGE;
 
     /* set file name before load file */
@@ -3604,19 +3477,6 @@ edit_find_bracket (WEdit * edit)
 }
 
 /* --------------------------------------------------------------------------------------------- */
-
-void
-edit_find_end_tag (WEdit * edit)
-{
-    if (edit_get_end_tag (edit, TRUE))
-    {
-        if (last_end_tag != edit->end_tag)
-            edit->force |= REDRAW_PAGE;
-        last_end_tag = edit->end_tag;
-    }
-}
-
-/* --------------------------------------------------------------------------------------------- */
 /**
  * This executes a command as though the user initiated it through a key
  * press.  Callback with MSG_KEY as a message calls this after
@@ -3827,7 +3687,7 @@ edit_execute_cmd (WEdit * edit, unsigned long command, int char_for_insertion)
         edit->prev_col = edit_get_col (edit);
         edit->search_start = edit->curs1;
         edit_find_bracket (edit);
-        edit_find_end_tag (edit);
+        edit_find_xmlpair (edit);
         return;
     }
 
@@ -4397,7 +4257,7 @@ edit_execute_cmd (WEdit * edit, unsigned long command, int char_for_insertion)
         edit->search_start = edit->curs1;
     }
     edit_find_bracket (edit);
-    edit_find_end_tag (edit);
+    edit_find_xmlpair (edit);
 
     if (option_auto_para_formatting)
     {

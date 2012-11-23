@@ -11,7 +11,9 @@ libedit_la_SOURCES = \
 	editdraw.c editkeys.c \
 	editmenu.c editoptions.c edit-impl.h edit.h \
 	syntax.c wordproc.c \
-	choosesyntax.c etags.c etags.h editcmd_dialogs.c editcmd_dialogs.h
+	choosesyntax.c etags.c etags.h \
+	editcmd_dialogs.c editcmd_dialogs.h \
+	xml-tag.c xml-tag.h
 
 if USE_ASPELL
 if HAVE_GMODULE
