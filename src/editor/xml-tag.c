@@ -127,10 +127,10 @@ xmltag_init_struct (WEdit * edit, xmltag_info_t * info, xmltag_match_word_t matc
 /* --------------------------------------------------------------------------------------------- */
 
 static void
-xmltag_deinit_struct (xmltag_info_t info)
+xmltag_deinit_struct (xmltag_info_t * info)
 {
-    mc_search_free (info.open.search);
-    mc_search_free (info.close.search);
+    mc_search_free (info->open.search);
+    mc_search_free (info->close.search);
 }
 
 /* --------------------------------------------------------------------------------------------- */
@@ -281,14 +281,14 @@ xmltag_get_pair_tag (WEdit * edit, gboolean in_screen)
     {
         xmltag_init_struct (edit, &info, match_word, FALSE, in_screen);
         result = xmltag_find_forward (edit, match_word, &info);
-        xmltag_deinit_struct (info);
+        xmltag_deinit_struct (&info);
     }
     else if (match_word.start > 1 && edit_get_byte (edit, match_word.start - 2) == '<'
              && edit_get_byte (edit, match_word.start - 1) == '/')
     {
         xmltag_init_struct (edit, &info, match_word, TRUE, in_screen);
         result = xmltag_find_backward (edit, match_word, &info);
-        xmltag_deinit_struct (info);
+        xmltag_deinit_struct (&info);
     }
 
     return result;
