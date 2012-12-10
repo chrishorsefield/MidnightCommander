@@ -28,6 +28,7 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 #include "xml-tag.h"
 
@@ -250,6 +251,20 @@ xmltag_find_forward (WEdit * edit, xmltag_match_word_t * match_word, xmltag_info
 }
 
 /* --------------------------------------------------------------------------------------------- */
+/**
+ * Function for recognize border of names of the XML tags
+ *
+ * @param c input symbol
+ *
+ * @return TRUE if input symbol is a break char, FALSE otherwise
+ */
+static gboolean
+xmltag_is_break_char (char c)
+{
+    return (isspace (c) || strchr ("{}[]()<>=|/\\!?~+`'\",;#$%^&*", c));
+}
+
+/* --------------------------------------------------------------------------------------------- */
 /** Find the matching bracket in either direction, and sets edit->bracket.
  *
  * @param edit editor object
@@ -272,8 +287,9 @@ xmltag_get_pair_tag (WEdit * edit, gboolean in_screen)
     edit->xmltag.close.len = 0;
 
     /* search start of the current word */
-    match_word.text = edit_get_word_from_pos (edit, edit->curs1, &match_word.start,
-                                              &match_word.len, &cut_len);
+    match_word.text = edit_get_word_from_pos_with_callback (edit, edit->curs1, &match_word.start,
+                                                            &match_word.len, &cut_len,
+                                                            xmltag_is_break_char);
 
     if (match_word.start > 0 && edit_get_byte (edit, match_word.start - 1) == start_open_tag[0])
     {

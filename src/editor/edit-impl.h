@@ -260,6 +260,10 @@ off_t edit_insert_column_of_text_from_file (WEdit * edit, int file,
 
 char *edit_get_word_from_pos (const WEdit * edit, off_t start_pos, off_t * start, gsize * len,
                               gsize * cut);
+char *edit_get_word_from_pos_with_callback (const WEdit * edit, off_t start_pos, off_t * start,
+                                            gsize * len, gsize * cut,
+                                            gboolean (*is_break_char_cb) (char));
+
 long edit_insert_file (WEdit * edit, const vfs_path_t * filename_vpath);
 gboolean edit_load_back_cmd (WEdit * edit);
 gboolean edit_load_forward_cmd (WEdit * edit);

@@ -2026,10 +2026,22 @@ is_break_char (char c)
 }
 
 /* --------------------------------------------------------------------------------------------- */
+/**
+ * Get a word under cursor. Used callback for calculating border of word
+ *
+ * @param edit             editor object
+ * @param start_pos        the start position for a word
+ * @param start            holder for store the start of a  word (if found)
+ * @param len              holder for store the length of a word (if found)
+ * @param cut              holder for store the actual length of searched word (if found)
+ * @param is_break_char_cb callback for recognize a word border
+ *
+ * @return newly allocated string
+ */
 
 char *
-edit_get_word_from_pos (const WEdit * edit, off_t start_pos, off_t * start, gsize * len,
-                        gsize * cut)
+edit_get_word_from_pos_with_callback (const WEdit * edit, off_t start_pos, off_t * start,
+                                      gsize * len, gsize * cut, gboolean (*is_break_char_cb) (char))
 {
     off_t word_start;
     long cut_len = 0;
@@ -2055,13 +2067,33 @@ edit_get_word_from_pos (const WEdit * edit, off_t start_pos, off_t * start, gsiz
         c2 = edit_get_byte (edit, word_start + match_expr->len + 1);
         g_string_append_c (match_expr, c1);
     }
-    while (!(is_break_char (c1) != is_break_char (c2) || c1 == '\n' || c2 == '\n'));
+    while (!(is_break_char_cb (c1) != is_break_char_cb (c2) || c1 == '\n' || c2 == '\n'));
 
     *len = match_expr->len;
     *start = word_start;
     *cut = cut_len;
 
     return g_string_free (match_expr, FALSE);
+}
+
+/* --------------------------------------------------------------------------------------------- */
+/**
+ * Get a word under cursor.
+ *
+ * @param edit             editor object
+ * @param start_pos        the start position for a word
+ * @param start            holder for store the start of a  word (if found)
+ * @param len              holder for store the length of a word (if found)
+ * @param cut              holder for store the actual length of searched word (if found)
+ *
+ * @return newly allocated string
+ */
+
+char *
+edit_get_word_from_pos (const WEdit * edit, off_t start_pos, off_t * start, gsize * len,
+                        gsize * cut)
+{
+    return edit_get_word_from_pos_with_callback (edit, start_pos, start, len, cut, is_break_char);
 }
 
 /* --------------------------------------------------------------------------------------------- */
