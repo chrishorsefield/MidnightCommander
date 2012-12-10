@@ -91,7 +91,7 @@ xmltag_create_search_object (const char *open_bracket, const char *text, const c
 /* --------------------------------------------------------------------------------------------- */
 
 static void
-xmltag_init_struct (WEdit * edit, xmltag_info_t * info, xmltag_match_word_t match_word,
+xmltag_init_struct (WEdit * edit, xmltag_info_t * info, xmltag_match_word_t * match_word,
                     gboolean backward, gboolean in_screen)
 {
     info->found_len = 0;
@@ -101,27 +101,27 @@ xmltag_init_struct (WEdit * edit, xmltag_info_t * info, xmltag_match_word_t matc
     {
         if (in_screen)
             /* seach only on the current screen */
-            info->open.start = edit_move_backward (edit, match_word.start, WIDGET (edit)->lines);
+            info->open.start = edit_move_backward (edit, match_word->start, WIDGET (edit)->lines);
         else
             info->open.start = 0;
 
-        info->close.start = match_word.start - 1;
+        info->close.start = match_word->start - 1;
         info->close.end = info->close.start;
     }
     else
     {
-        info->open.start = match_word.start + match_word.len;
+        info->open.start = match_word->start + match_word->len;
         if (in_screen)
             /* seach only on the current screen */
-            info->open.end = edit_move_forward (edit, match_word.start, WIDGET (edit)->lines, 0);
+            info->open.end = edit_move_forward (edit, match_word->start, WIDGET (edit)->lines, 0);
         else
             info->open.end = edit->last_byte;
 
         info->close.start = info->open.start + 1;
         info->close.end = info->open.end;
     }
-    info->open.search = xmltag_create_search_object ("<", match_word.text, "[>\\s]");
-    info->close.search = xmltag_create_search_object ("</", match_word.text, ">");
+    info->open.search = xmltag_create_search_object ("<", match_word->text, "[>\\s]");
+    info->close.search = xmltag_create_search_object ("</", match_word->text, ">");
 }
 
 /* --------------------------------------------------------------------------------------------- */
@@ -136,14 +136,14 @@ xmltag_deinit_struct (xmltag_info_t * info)
 /* --------------------------------------------------------------------------------------------- */
 
 static gboolean
-xmltag_check_tags_count (WEdit * edit, xmltag_match_word_t match_word, xmltag_info_t * info)
+xmltag_check_tags_count (WEdit * edit, xmltag_match_word_t * match_word, xmltag_info_t * info)
 {
     if (info->backward)
     {
         if (info->tags_count == 0)
         {
-            edit->xmltag.close.pos = match_word.start - 2;
-            edit->xmltag.close.len = match_word.len + 3;
+            edit->xmltag.close.pos = match_word->start - 2;
+            edit->xmltag.close.len = match_word->len + 3;
             edit->xmltag.open.pos = (off_t) info->open.search->normal_offset;
             edit->xmltag.open.len = info->found_len;
             return TRUE;
@@ -153,8 +153,8 @@ xmltag_check_tags_count (WEdit * edit, xmltag_match_word_t match_word, xmltag_in
     {
         if (info->tags_count == 0)
         {
-            edit->xmltag.open.pos = match_word.start - 1;
-            edit->xmltag.open.len = match_word.len + 2;
+            edit->xmltag.open.pos = match_word->start - 1;
+            edit->xmltag.open.len = match_word->len + 2;
             edit->xmltag.close.pos = (off_t) info->close.search->normal_offset;
             edit->xmltag.close.len = info->found_len;
             return TRUE;
@@ -168,14 +168,14 @@ xmltag_check_tags_count (WEdit * edit, xmltag_match_word_t match_word, xmltag_in
 /* --------------------------------------------------------------------------------------------- */
 
 static gboolean
-xmltag_find_backward (WEdit * edit, xmltag_match_word_t match_word, xmltag_info_t * info)
+xmltag_find_backward (WEdit * edit, xmltag_match_word_t * match_word, xmltag_info_t * info)
 {
     off_t bol;
     off_t bot = info->open.start;
     off_t i = info->close.start;
     off_t k, k1;
     off_t j;
-    int delta = match_word.len + 1;
+    int delta = match_word->len + 1;
 
     info->tags_count = 1;
     k1 = k = j = i - 1;
@@ -209,7 +209,7 @@ xmltag_find_backward (WEdit * edit, xmltag_match_word_t match_word, xmltag_info_
 /* --------------------------------------------------------------------------------------------- */
 
 static gboolean
-xmltag_find_forward (WEdit * edit, xmltag_match_word_t match_word, xmltag_info_t * info)
+xmltag_find_forward (WEdit * edit, xmltag_match_word_t * match_word, xmltag_info_t * info)
 {
     while (mc_search_run (info->open.search, (void *) edit, info->open.start,
                           info->open.end, &info->found_len))
@@ -274,20 +274,20 @@ xmltag_get_pair_tag (WEdit * edit, gboolean in_screen)
     edit->xmltag.close.len = 0;
 
     /* search start of the current word */
-    match_word.text =
-        edit_get_word_from_pos (edit, edit->curs1, &match_word.start, &match_word.len, &cut_len);
+    match_word.text = edit_get_word_from_pos (edit, edit->curs1, &match_word.start,
+                                              &match_word.len, &cut_len);
 
     if (match_word.start > 0 && edit_get_byte (edit, match_word.start - 1) == '<')
     {
-        xmltag_init_struct (edit, &info, match_word, FALSE, in_screen);
-        result = xmltag_find_forward (edit, match_word, &info);
+        xmltag_init_struct (edit, &info, &match_word, FALSE, in_screen);
+        result = xmltag_find_forward (edit, &match_word, &info);
         xmltag_deinit_struct (&info);
     }
     else if (match_word.start > 1 && edit_get_byte (edit, match_word.start - 2) == '<'
              && edit_get_byte (edit, match_word.start - 1) == '/')
     {
-        xmltag_init_struct (edit, &info, match_word, TRUE, in_screen);
-        result = xmltag_find_backward (edit, match_word, &info);
+        xmltag_init_struct (edit, &info, &match_word, TRUE, in_screen);
+        result = xmltag_find_backward (edit, &match_word, &info);
         xmltag_deinit_struct (&info);
     }
 
@@ -305,7 +305,7 @@ xmltag_get_pair_tag (WEdit * edit, gboolean in_screen)
 void
 edit_find_xmlpair (WEdit * edit)
 {
-    if (xmltag_get_pair_tag (edit, TRUE))
+    if (xmltag_get_pair_tag (edit, FALSE))
     {
         if (edit->xmltag.close.last != edit->xmltag.close.pos)
             edit->force |= REDRAW_PAGE;
