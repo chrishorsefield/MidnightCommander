@@ -68,6 +68,9 @@ typedef struct
 
 /*** file scope variables ************************************************************************/
 
+static const char start_open_tag[] = "<";
+static const char start_close_tag[] = "</";
+
 /*** file scope functions ************************************************************************/
 /* --------------------------------------------------------------------------------------------- */
 
@@ -120,8 +123,8 @@ xmltag_init_struct (WEdit * edit, xmltag_info_t * info, xmltag_match_word_t * ma
         info->close.start = info->open.start + 1;
         info->close.end = info->open.end;
     }
-    info->open.search = xmltag_create_search_object ("<", match_word->text, "[>\\s]");
-    info->close.search = xmltag_create_search_object ("</", match_word->text, ">");
+    info->open.search = xmltag_create_search_object (start_open_tag, match_word->text, "[>\\s]");
+    info->close.search = xmltag_create_search_object (start_close_tag, match_word->text, ">");
 }
 
 /* --------------------------------------------------------------------------------------------- */
@@ -260,13 +263,8 @@ xmltag_get_pair_tag (WEdit * edit, gboolean in_screen)
 {
     gsize cut_len = 0;
     xmltag_info_t info;
-    xmltag_match_word_t match_word;
+    xmltag_match_word_t match_word = { NULL, 0, 0 };
     gboolean result = FALSE;
-
-    if (!visualize_tags)
-        return FALSE;
-
-    memset (&match_word, 0, sizeof (match_word));
 
     edit->xmltag.open.pos = 0;
     edit->xmltag.open.len = 0;
@@ -277,14 +275,15 @@ xmltag_get_pair_tag (WEdit * edit, gboolean in_screen)
     match_word.text = edit_get_word_from_pos (edit, edit->curs1, &match_word.start,
                                               &match_word.len, &cut_len);
 
-    if (match_word.start > 0 && edit_get_byte (edit, match_word.start - 1) == '<')
+    if (match_word.start > 0 && edit_get_byte (edit, match_word.start - 1) == start_open_tag[0])
     {
         xmltag_init_struct (edit, &info, &match_word, FALSE, in_screen);
         result = xmltag_find_forward (edit, &match_word, &info);
         xmltag_deinit_struct (&info);
     }
-    else if (match_word.start > 1 && edit_get_byte (edit, match_word.start - 2) == '<'
-             && edit_get_byte (edit, match_word.start - 1) == '/')
+    else if (match_word.start > 1
+             && edit_get_byte (edit, match_word.start - 2) == start_close_tag[0]
+             && edit_get_byte (edit, match_word.start - 1) == start_close_tag[1])
     {
         xmltag_init_struct (edit, &info, &match_word, TRUE, in_screen);
         result = xmltag_find_backward (edit, &match_word, &info);
@@ -305,7 +304,7 @@ xmltag_get_pair_tag (WEdit * edit, gboolean in_screen)
 void
 edit_find_xmlpair (WEdit * edit)
 {
-    if (xmltag_get_pair_tag (edit, FALSE))
+    if (visualize_tags && xmltag_get_pair_tag (edit, FALSE))
     {
         if (edit->xmltag.close.last != edit->xmltag.close.pos)
             edit->force |= REDRAW_PAGE;
