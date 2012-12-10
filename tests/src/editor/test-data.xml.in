@@ -1,0 +1,80 @@
+<test>
+
+    <modules>
+        <module>mod1</module>
+
+        <module>
+            <module>
+                <module>
+                    mod2
+                </module>
+            </module>
+            <module>
+                mod3
+            </module>
+        </module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <dependency />
+        </dependency>
+    </dependencies>
+
+    <invalid1>
+    <invalid1>
+    <invalid1>
+    <invalid1>
+    <invalid1>
+    <invalid1>
+    <invalid1>
+    <invalid1>
+    <invalid1>
+    <invalid1>
+    <invalid1>
+    <invalid1>
+    <invalid1>
+    <invalid1>
+    <invalid1>
+
+
+    </invalid2>
+    </invalid2>
+    </invalid2>
+    </invalid2>
+    </invalid2>
+    </invalid2>
+    </invalid2>
+    </invalid2>
+    </invalid2>
+    </invalid2>
+    </invalid2>
+    </invalid2>
+    </invalid2>
+    </invalid2>
+
+
+    <invalid3>
+
+    <invalid4>
+
+    </invalid3>
+
+    </invalid4>
+</test>
+
+<тест>test</тест>
+<テスト>test</テスト>
+<testTest>test</testTest>
+<test-test>test</test-test>
+<test:test>test</test:test>
+<test.test>test</test.test>
+<test_test>test</test_test>
+<01234567890>test</01234567890>
+
+
+<invalid.*>test</invalid.*>
+<invalid+test>test</invalid+test>
+<invalid=test>test</invalid=test>
+<invalid&test>test</invalid&test>
+<Testtest>test</testTest>

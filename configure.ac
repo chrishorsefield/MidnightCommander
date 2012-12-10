@@ -646,6 +646,8 @@ tests/lib/mcconfig/Makefile
 tests/lib/search/Makefile
 tests/lib/vfs/Makefile
 tests/src/Makefile
+tests/src/editor/Makefile
+tests/src/editor/test-data.xml
 tests/src/filemanager/Makefile
 ])
 fi
