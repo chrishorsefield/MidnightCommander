@@ -2852,47 +2852,57 @@ panel_operate (void *source_panel, FileOperation operation, gboolean force_singl
         else
             source_with_vpath = vfs_path_append_new (panel->cwd_vpath, source, (char *) NULL);
 #endif /* WITH_FULL_PATHS */
-        if (panel_operate_init_totals (panel, vfs_path_as_str (source_with_vpath), ctx, dialog_type)
-            == FILE_CONT)
+
+        if (operation == OP_DELETE)
         {
-            if (operation == OP_DELETE)
+            value =
+                panel_operate_init_totals (panel, vfs_path_as_str (source_with_vpath), ctx,
+                                           dialog_type);
+
+            if (value == FILE_CONT)
             {
                 if (S_ISDIR (src_stat.st_mode))
                     value = erase_dir (tctx, ctx, source_with_vpath);
                 else
                     value = erase_file (tctx, ctx, source_with_vpath);
             }
+        }
+        else
+        {
+            temp = transform_source (ctx, source_with_vpath);
+            if (temp == NULL)
+                value = transform_error;
             else
             {
-                temp = transform_source (ctx, source_with_vpath);
-                if (temp == NULL)
-                    value = transform_error;
-                else
+                char *repl_dest, *temp2;
+
+                repl_dest = mc_search_prepare_replace_str2 (ctx->search_handle, dest);
+                if (ctx->search_handle->error != MC_SEARCH_E_OK)
                 {
-                    char *repl_dest, *temp2;
+                    if (ctx->search_handle->error_str != NULL)
+                        message (D_ERROR, MSG_ERROR, "%s", ctx->search_handle->error_str);
 
-                    repl_dest = mc_search_prepare_replace_str2 (ctx->search_handle, dest);
-                    if (ctx->search_handle->error != MC_SEARCH_E_OK)
-                    {
-                        if (ctx->search_handle->error_str != NULL)
-                            message (D_ERROR, MSG_ERROR, "%s", ctx->search_handle->error_str);
-
-                        g_free (repl_dest);
-                        goto clean_up;
-                    }
-
-                    temp2 = mc_build_filename (repl_dest, temp, (char *) NULL);
-                    g_free (temp);
                     g_free (repl_dest);
-                    g_free (dest);
-                    vfs_path_free (dest_vpath);
-                    dest = temp2;
-                    dest_vpath = vfs_path_from_str (dest);
+                    goto clean_up;
+                }
 
-                    switch (operation)
+                temp2 = mc_build_filename (repl_dest, temp, (char *) NULL);
+                g_free (temp);
+                g_free (repl_dest);
+                g_free (dest);
+                vfs_path_free (dest_vpath);
+                dest = temp2;
+
+                switch (operation)
+                {
+                case OP_COPY:
+                    dest_vpath = NULL;
+                    value =
+                        panel_operate_init_totals (panel, vfs_path_as_str (source_with_vpath), ctx,
+                                                   dialog_type);
+                    /* we use file_mask_op_follow_links only with OP_COPY */
+                    if (value == FILE_CONT)
                     {
-                    case OP_COPY:
-                        /* we use file_mask_op_follow_links only with OP_COPY */
                         ctx->stat_func (source_with_vpath, &src_stat);
 
                         if (S_ISDIR (src_stat.st_mode))
@@ -2903,28 +2913,44 @@ panel_operate (void *source_panel, FileOperation operation, gboolean force_singl
                             value =
                                 copy_file_file (tctx, ctx, vfs_path_as_str (source_with_vpath),
                                                 dest);
-                        break;
-
-                    case OP_MOVE:
-                        if (S_ISDIR (src_stat.st_mode))
-                            value =
-                                move_dir_dir (tctx, ctx, vfs_path_as_str (source_with_vpath), dest);
-                        else
-                            value =
-                                move_file_file (tctx, ctx, vfs_path_as_str (source_with_vpath),
-                                                dest);
-                        break;
-
-                    default:
-                        /* Unknown file operation */
-                        abort ();
                     }
-                }
-            }                   /* Copy or move operation */
+                    break;
 
-            if ((value == FILE_CONT) && !force_single)
-                unmark_files (panel);
-        }
+                case OP_MOVE:
+                    dest_vpath = vfs_path_from_str (dest);
+                    /* try rename */
+                    if (mc_rename (source_with_vpath, dest_vpath) == 0)
+                        value = FILE_CONT;
+                    else
+                    {
+                        /* copy + delete */
+
+                        value =
+                            panel_operate_init_totals (panel, vfs_path_as_str (source_with_vpath),
+                                                       ctx, dialog_type);
+                        if (value == FILE_CONT)
+                        {
+                            if (S_ISDIR (src_stat.st_mode))
+                                value =
+                                    move_dir_dir (tctx, ctx, vfs_path_as_str (source_with_vpath),
+                                                  dest);
+                            else
+                                value =
+                                    move_file_file (tctx, ctx, vfs_path_as_str (source_with_vpath),
+                                                    dest);
+                        }
+                    }
+                    break;
+
+                default:
+                    /* Unknown file operation */
+                    abort ();
+                }
+            }
+        }                       /* Copy or move operation */
+
+        if ((value == FILE_CONT) && !force_single)
+            unmark_files (panel);
     }
     else
     {
