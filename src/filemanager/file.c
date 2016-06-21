@@ -186,8 +186,6 @@ static GSList *erase_list = NULL;
  */
 static GSList *dest_dirs = NULL;
 
-static FileProgressStatus transform_error = FILE_CONT;
-
 /* --------------------------------------------------------------------------------------------- */
 /*** file scope functions ************************************************************************/
 /* --------------------------------------------------------------------------------------------- */
@@ -226,10 +224,14 @@ dirsize_status_locate_buttons (dirsize_status_msg_t * dsm)
 /* --------------------------------------------------------------------------------------------- */
 
 static char *
-transform_source (file_op_context_t * ctx, const vfs_path_t * source_vpath)
+file_build_dest (file_op_context_t * ctx, const vfs_path_t * source_vpath, const char *dest,
+                 FileProgressStatus * status)
 {
     char *s, *q;
     const char *fnsource;
+    char *repl_dest;
+
+    *status = FILE_CONT;
 
     s = g_strdup (vfs_path_as_str (source_vpath));
 
@@ -241,7 +243,9 @@ transform_source (file_op_context_t * ctx, const vfs_path_t * source_vpath)
 
     fnsource = x_basename (s);
 
-    if (mc_search_run (ctx->search_handle, fnsource, 0, strlen (fnsource), NULL))
+    if (!mc_search_run (ctx->search_handle, fnsource, 0, strlen (fnsource), NULL))
+        *status = FILE_SKIP;
+    else
     {
         q = mc_search_prepare_replace_str2 (ctx->search_handle, ctx->dest_mask);
         if (ctx->search_handle->error != MC_SEARCH_E_OK)
@@ -249,18 +253,38 @@ transform_source (file_op_context_t * ctx, const vfs_path_t * source_vpath)
             if (ctx->search_handle->error_str != NULL)
                 message (D_ERROR, MSG_ERROR, "%s", ctx->search_handle->error_str);
 
-            q = NULL;
-            transform_error = FILE_ABORT;
+            *status = FILE_ABORT;
         }
-    }
-    else
-    {
-        q = NULL;
-        transform_error = FILE_SKIP;
     }
 
     g_free (s);
-    return q;
+
+    if (*status != FILE_CONT)
+        return NULL;
+
+    repl_dest = mc_search_prepare_replace_str2 (ctx->search_handle, dest);
+    if (ctx->search_handle->error == MC_SEARCH_E_OK)
+    {
+        s = mc_build_filename (repl_dest, q, (char *) NULL);
+        g_free (q);
+        q = strutils_shell_unescape (s);
+        g_free (s);
+        s = q;
+    }
+    else
+    {
+        s = NULL;
+        g_free (q);
+
+        if (ctx->search_handle->error_str != NULL)
+            message (D_ERROR, MSG_ERROR, "%s", ctx->search_handle->error_str);
+
+        *status = FILE_ABORT;
+    }
+
+    g_free (repl_dest);
+
+    return s;
 }
 
 /* --------------------------------------------------------------------------------------------- */
@@ -2610,7 +2634,6 @@ panel_operate (void *source_panel, FileOperation operation, gboolean force_singl
 #endif /* WITH_FULL_PATHS */
     char *dest = NULL;
     vfs_path_t *dest_vpath = NULL;
-    char *temp = NULL;
     char *save_cwd = NULL, *save_dest = NULL;
     struct stat src_stat;
     gboolean ret_val = TRUE;
@@ -2869,32 +2892,19 @@ panel_operate (void *source_panel, FileOperation operation, gboolean force_singl
         }
         else
         {
-            temp = transform_source (ctx, source_with_vpath);
-            if (temp == NULL)
-                value = transform_error;
-            else
+            char *temp;
+
+            temp = file_build_dest (ctx, source_with_vpath, dest, &value);
+            g_free (dest);
+            vfs_path_free (dest_vpath);
+            dest = temp;
+
+            if (temp != NULL)
             {
-                char *repl_dest, *temp2;
-                const char *source_with_path_str;
+                char *source_with_path_str;
 
-                repl_dest = mc_search_prepare_replace_str2 (ctx->search_handle, dest);
-                if (ctx->search_handle->error != MC_SEARCH_E_OK)
-                {
-                    if (ctx->search_handle->error_str != NULL)
-                        message (D_ERROR, MSG_ERROR, "%s", ctx->search_handle->error_str);
-
-                    g_free (repl_dest);
-                    goto clean_up;
-                }
-
-                temp2 = mc_build_filename (repl_dest, temp, (char *) NULL);
-                g_free (temp);
-                g_free (repl_dest);
-                g_free (dest);
-                vfs_path_free (dest_vpath);
-                dest = temp2;
-
-                source_with_path_str = vfs_path_as_str (source_with_vpath);
+                source_with_path_str =
+                    strutils_shell_unescape (vfs_path_as_str (source_with_vpath));
 
                 switch (operation)
                 {
@@ -2941,6 +2951,8 @@ panel_operate (void *source_panel, FileOperation operation, gboolean force_singl
                     /* Unknown file operation */
                     abort ();
                 }
+
+                g_free (source_with_path_str);
             }
         }                       /* Copy or move operation */
 
@@ -2998,30 +3010,16 @@ panel_operate (void *source_panel, FileOperation operation, gboolean force_singl
                 }
                 else
                 {
-                    temp = transform_source (ctx, source_with_vpath);
-                    if (temp == NULL)
-                        value = transform_error;
-                    else
+                    char *temp;
+
+                    temp = file_build_dest (ctx, source_with_vpath, dest, &value);
+
+                    if (temp != NULL)
                     {
-                        char *temp2, *repl_dest, *source_with_path_str;
+                        char *source_with_path_str;
 
-                        repl_dest = mc_search_prepare_replace_str2 (ctx->search_handle, dest);
-                        if (ctx->search_handle->error != MC_SEARCH_E_OK)
-                        {
-                            if (ctx->search_handle->error_str != NULL)
-                                message (D_ERROR, MSG_ERROR, "%s", ctx->search_handle->error_str);
-
-                            g_free (repl_dest);
-                            goto clean_up;
-                        }
-
-                        temp2 = mc_build_filename (repl_dest, temp, (char *) NULL);
-                        g_free (temp);
-                        g_free (repl_dest);
                         source_with_path_str =
                             strutils_shell_unescape (vfs_path_as_str (source_with_vpath));
-                        temp = strutils_shell_unescape (temp2);
-                        g_free (temp2);
 
                         switch (operation)
                         {
