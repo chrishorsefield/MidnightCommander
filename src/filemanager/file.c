@@ -2875,6 +2875,7 @@ panel_operate (void *source_panel, FileOperation operation, gboolean force_singl
             else
             {
                 char *repl_dest, *temp2;
+                const char *source_with_path_str;
 
                 repl_dest = mc_search_prepare_replace_str2 (ctx->search_handle, dest);
                 if (ctx->search_handle->error != MC_SEARCH_E_OK)
@@ -2893,13 +2894,14 @@ panel_operate (void *source_panel, FileOperation operation, gboolean force_singl
                 vfs_path_free (dest_vpath);
                 dest = temp2;
 
+                source_with_path_str = vfs_path_as_str (source_with_vpath);
+
                 switch (operation)
                 {
                 case OP_COPY:
                     dest_vpath = NULL;
                     value =
-                        panel_operate_init_totals (panel, vfs_path_as_str (source_with_vpath), ctx,
-                                                   dialog_type);
+                        panel_operate_init_totals (panel, source_with_path_str, ctx, dialog_type);
                     /* we use file_mask_op_follow_links only with OP_COPY */
                     if (value == FILE_CONT)
                     {
@@ -2907,12 +2909,10 @@ panel_operate (void *source_panel, FileOperation operation, gboolean force_singl
 
                         if (S_ISDIR (src_stat.st_mode))
                             value =
-                                copy_dir_dir (tctx, ctx, vfs_path_as_str (source_with_vpath),
-                                              dest, TRUE, FALSE, FALSE, NULL);
+                                copy_dir_dir (tctx, ctx, source_with_path_str, dest, TRUE, FALSE,
+                                              FALSE, NULL);
                         else
-                            value =
-                                copy_file_file (tctx, ctx, vfs_path_as_str (source_with_vpath),
-                                                dest);
+                            value = copy_file_file (tctx, ctx, source_with_path_str, dest);
                     }
                     break;
 
@@ -2924,20 +2924,15 @@ panel_operate (void *source_panel, FileOperation operation, gboolean force_singl
                     else
                     {
                         /* copy + delete */
-
                         value =
-                            panel_operate_init_totals (panel, vfs_path_as_str (source_with_vpath),
-                                                       ctx, dialog_type);
+                            panel_operate_init_totals (panel, source_with_path_str, ctx,
+                                                       dialog_type);
                         if (value == FILE_CONT)
                         {
                             if (S_ISDIR (src_stat.st_mode))
-                                value =
-                                    move_dir_dir (tctx, ctx, vfs_path_as_str (source_with_vpath),
-                                                  dest);
+                                value = move_dir_dir (tctx, ctx, source_with_path_str, dest);
                             else
-                                value =
-                                    move_file_file (tctx, ctx, vfs_path_as_str (source_with_vpath),
-                                                    dest);
+                                value = move_file_file (tctx, ctx, source_with_path_str, dest);
                         }
                     }
                     break;
