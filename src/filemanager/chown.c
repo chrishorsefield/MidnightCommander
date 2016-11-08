@@ -335,7 +335,6 @@ chown_cmd (void)
     struct stat sf_stat;
     uid_t new_user;
     gid_t new_group;
-    char buffer[BUF_TINY];
 
     chown_i18n ();
 
@@ -343,6 +342,7 @@ chown_cmd (void)
     {                           /* do while any files remaining */
         vfs_path_t *vpath;
         WDialog *ch_dlg;
+        const char *buffer;
 
         ch_dlg = init_chown ();
         new_user = new_group = -1;
@@ -368,7 +368,7 @@ chown_cmd (void)
         chown_label (0, str_trunc (fname, GW - 4));
         chown_label (1, str_trunc (get_owner (sf_stat.st_uid), GW - 4));
         chown_label (2, str_trunc (get_group (sf_stat.st_gid), GW - 4));
-        size_trunc_len (buffer, GW - 4, sf_stat.st_size, 0, panels_options.kilobyte_si);
+        buffer = size_trunc_len (GW - 4, sf_stat.st_size, 0, panels_options.kilobyte_si);
         chown_label (3, buffer);
         chown_label (4, string_perm (sf_stat.st_mode));
 
