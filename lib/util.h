@@ -146,8 +146,8 @@ const char *size_trunc (uintmax_t size, gboolean use_si);
  * NOTE: uses the same static buffer as size_trunc. */
 const char *size_trunc_sep (uintmax_t size, gboolean use_si);
 
-/* Return a static string representing size, appending "K" or "M" for
- * big sizes. but don't exceed LEN characters,
+/* Return a static string representation of size, appending "K" or "M" for
+ * big sizes, but don't exceed LEN characters,
  * Units: size units (0=bytes, 1=Kbytes, 2=Mbytes, etc.) */
 const char *size_trunc_len (unsigned int len, uintmax_t size, unsigned int units, gboolean use_si);
 

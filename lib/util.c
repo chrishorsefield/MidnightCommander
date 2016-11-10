@@ -402,7 +402,7 @@ size_trunc_sep (uintmax_t size, gboolean use_si)
 
 /* --------------------------------------------------------------------------------------------- */
 /**
- * Represent some numeric value as string of required length.
+ * Represent a numeric value as string of required length.
  *
  * @param len number of characters to represent @size
  * @param size value to represent
