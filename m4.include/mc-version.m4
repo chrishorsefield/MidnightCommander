@@ -8,6 +8,10 @@ dnl @license GPL
 dnl @copyright Free Software Foundation, Inc.
 
 AC_DEFUN([mc_VERSION],[
+    if test ! -f ${srcdir}/version.h; then
+        ${srcdir}/maint/utils/version.sh ${srcdir}
+    fi
+
     dnl Version and Release without dashes for the distro packages
     DISTR_VERSION=`echo $VERSION | sed 's/^\([[^\-]]*\).*/\1/'`
     DISTR_RELEASE=`echo $VERSION | sed 's/^[[^\-]]*\-\(.*\)/\1/' | sed 's/-/./g'`
