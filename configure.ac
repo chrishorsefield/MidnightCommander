@@ -5,7 +5,7 @@ dnl
 AC_PREREQ(2.64)
 AC_INIT([GNU Midnight Commander],
         m4_esyscmd_s([sed -n 's/^#define MC_CURRENT_VERSION.*"\(.*\)"$/\1/p' version.h 2>/dev/null || git describe 2>/dev/null || echo unknown]),
-        [mc-devel@gnome.org], [mc], [https://www.midnight-commander.org/])
+        [https://www.midnight-commander.org/wiki/NewTicket], [mc], [https://www.midnight-commander.org/])
 m4_pattern_forbid(MC_)
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_AUX_DIR(config)
