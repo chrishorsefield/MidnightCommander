@@ -3,21 +3,11 @@ dnl
 dnl Get current version of Midnight Commander from git tags
 dnl
 dnl @author Slava Zanko <slavazanko@gmail.com>
-dnl @version 2009-12-30
+dnl @version 2016-12-07
 dnl @license GPL
 dnl @copyright Free Software Foundation, Inc.
 
 AC_DEFUN([mc_VERSION],[
-    if test ! -f ${srcdir}/version.h; then
-        ${srcdir}/maint/utils/version.sh ${srcdir}
-    fi
-    if test -f ${srcdir}/version.h; then
-        VERSION=$(grep '^#define MC_CURRENT_VERSION' ${srcdir}/version.h | sed 's/.*"\(.*\)"$/\1/')
-    else
-        VERSION="unknown"
-    fi
-    AC_SUBST(VERSION)
-
     dnl Version and Release without dashes for the distro packages
     DISTR_VERSION=`echo $VERSION | sed 's/^\([[^\-]]*\).*/\1/'`
     DISTR_RELEASE=`echo $VERSION | sed 's/^[[^\-]]*\-\(.*\)/\1/' | sed 's/-/./g'`
@@ -34,5 +24,4 @@ AC_DEFUN([mc_VERSION],[
 
     AC_SUBST(DISTR_VERSION)
     AC_SUBST(DISTR_RELEASE)
-
 ])
