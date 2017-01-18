@@ -195,14 +195,8 @@ sftpfs_fstat (void *data, struct stat *buf, GError ** mcerror)
         if (res >= 0)
             break;
 
-        if (res != LIBSSH2_ERROR_EAGAIN)
-        {
-            sftpfs_ssherror_to_gliberror (super_data, res, mcerror);
+        if (!sftpfs_waitsocket (super_data, res, mcerror))
             return -1;
-        }
-
-        sftpfs_waitsocket (super_data, mcerror);
-        mc_return_val_if_error (mcerror, -1);
     }
     while (res == LIBSSH2_ERROR_EAGAIN);
 
@@ -248,14 +242,8 @@ sftpfs_read_file (vfs_file_handler_t * file_handler, char *buffer, size_t count,
         if (rc >= 0)
             break;
 
-        if (rc != LIBSSH2_ERROR_EAGAIN)
-        {
-            sftpfs_ssherror_to_gliberror (super_data, rc, mcerror);
+        if (!sftpfs_waitsocket (super_data, (int) rc, mcerror))
             return -1;
-        }
-
-        sftpfs_waitsocket (super_data, mcerror);
-        mc_return_val_if_error (mcerror, -1);
     }
     while (rc == LIBSSH2_ERROR_EAGAIN);
 
@@ -298,14 +286,8 @@ sftpfs_write_file (vfs_file_handler_t * file_handler, const char *buffer, size_t
         if (rc >= 0)
             break;
 
-        if (rc != LIBSSH2_ERROR_EAGAIN)
-        {
-            sftpfs_ssherror_to_gliberror (super_data, rc, mcerror);
+        if (!sftpfs_waitsocket (super_data, (int) rc, mcerror))
             return -1;
-        }
-
-        sftpfs_waitsocket (super_data, mcerror);
-        mc_return_val_if_error (mcerror, -1);
     }
     while (rc == LIBSSH2_ERROR_EAGAIN);
 
