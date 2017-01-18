@@ -58,15 +58,6 @@ sftpfs_blksize (struct stat *s)
 }
 
 /* --------------------------------------------------------------------------------------------- */
-
-static gboolean
-sftpfs_is_sftp_error (LIBSSH2_SFTP * sftp_session, int sftp_res, int sftp_error)
-{
-    return (sftp_res == LIBSSH2_ERROR_SFTP_PROTOCOL &&
-            libssh2_sftp_last_error (sftp_session) == (unsigned long) sftp_error);
-}
-
-/* --------------------------------------------------------------------------------------------- */
 /**
  * Awaiting for any activity on socket.
  *
@@ -190,6 +181,15 @@ sftpfs_waitsocket (sftpfs_super_data_t * super_data, int sftp_res, GError ** mce
     sftpfs_internal_waitsocket (super_data, mcerror);
 
     return (mcerror == NULL || *mcerror == NULL);
+}
+
+/* --------------------------------------------------------------------------------------------- */
+
+gboolean
+sftpfs_is_sftp_error (LIBSSH2_SFTP * sftp_session, int sftp_res, int sftp_error)
+{
+    return (sftp_res == LIBSSH2_ERROR_SFTP_PROTOCOL &&
+            libssh2_sftp_last_error (sftp_session) == (unsigned long) sftp_error);
 }
 
 /* --------------------------------------------------------------------------------------------- */
